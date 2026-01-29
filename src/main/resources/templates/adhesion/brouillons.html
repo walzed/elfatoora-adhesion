@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+  <meta charset="UTF-8">
+  <title>Mes brouillons – Adhésion</title>
+  
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+<link rel="stylesheet" th:href="@{/ft-theme.min.css}">
+  <style>
+    .formal-item{ background:#fff; border-radius:14px; border:1px solid rgba(0,0,0,.08); padding:16px 18px; margin-bottom:14px;}
+    .formal-item:hover{ box-shadow:0 10px 30px rgba(0,0,0,.08); }
+  </style>
+</head>
+
+<body>
+
+<div class="ft-shell">
+<div th:replace="fragments/layout :: appHeader('Suivi des formalités')"></div>
+
+<div class="container py-4">
+
+  <div class="d-flex justify-content-between align-items-start mb-3">
+    <div>
+      <a class="btn btn-outline-secondary" th:href="@{/adhesion/suivi}">
+        &larr; Retour
+      </a>
+      <h3 class="mt-3 mb-1">Mes brouillons</h3>
+      <div class="text-muted">Reprenez une demande pour la compléter (étape 1 à étape 6).</div>
+    </div>
+    <div class="text-muted small">
+      Compte : <b sec:authentication="name">email@exemple.tn</b>
+    </div>
+  </div>
+
+  <div class="alert alert-danger" th:if="${error != null}" th:text="${error}"></div>
+
+  <div th:if="${#lists.isEmpty(brouillons)}" class="text-muted">
+    Aucun brouillon.
+  </div>
+
+  <a th:each="d : ${brouillons}" class="text-decoration-none text-dark"
+     th:href="@{/adhesion/reprendre(ref=${d.dossierRef})}">
+    <div class="formal-item">
+      <div class="d-flex justify-content-between align-items-start">
+        <div>
+			<div class="fw-bold"
+			     th:text="${(d.raisonSociale ?: 'Demande d’adhésion')
+			              + (d.matriculeFiscal != null ? ' (' + d.matriculeFiscal + ')' : '')}">
+			  Demande d’adhésion
+			</div>
+          	<div class="fst-italic text-muted small">Brouillon</div>
+        </div>
+        <div class="text-end small text-muted">
+          <div th:text="${d.createdAt != null ? #temporals.format(d.createdAt, 'dd/MM/yyyy') : '-'}">-</div>
+          <div class="fw-semibold" th:text="${d.dossierRef}">ELF-ADH-2026-00000000</div>
+        </div>
+      </div>
+      <div class="mt-2 small text-muted">Cliquer pour reprendre la saisie.</div>
+    </div>
+  </a>
+
+</div>
+
+<div th:replace="fragments/layout :: appFooter"></div>
+</div>
+
+<script th:src="@{/js/ft-theme.js}"></script>
+</body>
+</html>

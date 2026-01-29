@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+  <meta charset="UTF-8">
+  <title>El Fatoora – Adhésion</title>
+  	<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+	<link rel="stylesheet" th:href="@{/css/ft-theme.min.css}">
+</head>
+<body>
+
+<div class="ft-shell">
+<div th:replace="fragments/layout :: appHeader('Adhésion')"></div>
+<div class="container py-5">
+  <div class="card shadow-sm mx-auto" style="max-width: 980px;">
+    <div class="card-body p-4 p-md-5">
+
+      <!-- Bandeau wizard -->
+      <div class="d-flex justify-content-between align-items-start mb-3">
+        <div>
+          <h3 class="mb-1">Adhésion El Fatoora</h3>
+          <div class="text-muted small">
+            <span th:if="${wiz != null && wiz.dossierRef != null}">
+              Référence : <b th:text="${wiz.dossierRef}">ELF-ADH-...</b>
+            </span>
+            <span th:if="${wiz != null && wiz.dossierRef == null}">
+              Référence : <span class="text-muted">non générée</span>
+            </span>
+          </div>
+        </div>
+        <div class="text-muted small">
+          Email : <b sec:authentication="name">email@exemple.tn</b>
+        </div>
+      </div>
+
+      <p class="text-primary fw-semibold mb-4">Demande d’adhésion au service El Fatoora</p>
+
+      <ul class="text-muted mb-4">
+        <li>L’adhésion se fait 100% en ligne</li>
+        <li>La demande doit être signée électroniquement</li>
+        <li>Préparez vos pièces justificatives numérisées</li>
+      </ul>
+
+      <div class="d-flex flex-column flex-sm-row gap-2">
+        <a class="btn btn-primary btn-lg" th:href="@{/adhesion/etape1}">Démarrer / Reprendre</a>
+        <a class="btn btn-outline-secondary btn-lg" th:href="@{/adhesion/suivi}">Suivre une demande</a>
+      </div>
+
+      <hr class="my-4">
+      <div class="text-muted small">
+        Conseil : conservez les originaux papier. TTN peut les demander ultérieurement pour contrôle.
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div th:replace="fragments/layout :: appFooter"></div>
+</div>
+  <script th:src="@{/js/ft-theme.js}"></script>
+</body>
+</html>

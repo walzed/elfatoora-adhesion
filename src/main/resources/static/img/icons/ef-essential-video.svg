@@ -1,0 +1,49 @@
+<!--?xml version="1.0" encoding="UTF-8"?-->
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="220" viewBox="0 0 320 220" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Regarder une vidéo pour en savoir plus sur l’inscription">
+
+  <defs>
+    <linearGradient id="bg2" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#FFE6F0"></stop>
+      <stop offset="1" stop-color="#FFF4F8"></stop>
+    </linearGradient>
+    <linearGradient id="screen" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#FFFFFF"></stop>
+      <stop offset="1" stop-color="#F7F8FF"></stop>
+    </linearGradient>
+    <filter id="shadow2" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="7" stdDeviation="10" flood-color="#101326" flood-opacity="0.16"></feDropShadow>
+    </filter>
+  </defs>
+
+  <!-- soft blob background -->
+  <path d="M32 140c-18-54 10-106 70-122 62-16 86 20 128 14 44-6 78-30 98 2 22 34 6 74-10 96-18 26-44 34-70 50-26 16-46 32-84 32-38 0-58-18-90-26-28-8-54 10-42-46z" fill="url(#bg2)"></path>
+
+  <!-- video card -->
+  <g filter="url(#shadow2)">
+    <rect x="64" y="44" width="192" height="132" rx="18" fill="url(#screen)" stroke="#F2C7D8"></rect>
+  </g>
+
+  <!-- top bar (like a player header) -->
+  <rect x="82" y="60" width="120" height="10" rx="5" fill="#F7D7E6"></rect>
+  <circle cx="236" cy="65" r="8" fill="#F7D7E6"></circle>
+
+  <!-- play button -->
+  <circle cx="160" cy="114" r="28" fill="#1F3A8A"></circle>
+  <path d="M152 100l22 14-22 14z" fill="#FFFFFF"></path>
+
+  <!-- “learn more” badge (i) -->
+  <g transform="translate(214 104)">
+    <circle cx="28" cy="28" r="20" fill="#FFFFFF" stroke="#1F3A8A" opacity="0.98"></circle>
+    <path d="M28 26v12" stroke="#1F3A8A" stroke-width="3" stroke-linecap="round"></path>
+    <circle cx="28" cy="20" r="2.2" fill="#1F3A8A"></circle>
+  </g>
+
+  <!-- small checklist cue (inscription) -->
+  <g transform="translate(88 128)">
+    <rect x="0" y="0" width="86" height="32" rx="10" fill="#FFF0F6" stroke="#F2C7D8"></rect>
+    <circle cx="14" cy="12" r="4.5" fill="#1F3A8A"></circle>
+    <rect x="26" y="9" width="46" height="6" rx="3" fill="#F7D7E6"></rect>
+    <circle cx="14" cy="24" r="4.5" fill="#1F3A8A"></circle>
+    <rect x="26" y="21" width="36" height="6" rx="3" fill="#F7D7E6"></rect>
+  </g>
+</svg>

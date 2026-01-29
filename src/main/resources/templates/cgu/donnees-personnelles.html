@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="fragments/layout :: appHead('Politique de Confidentialité — El Fatoora')"></head>
+
+<body>
+
+<div class="ft-shell">
+<div th:replace="fragments/layout :: appHeader('Protection des données')"></div>
+
+<main class="ft-main">
+  <div class="ft-container">
+
+    <section class="ft-card" aria-label="Politique de confidentialité">
+      <div class="ft-card-inner">
+
+        <section class="ft-page-hero" aria-label="Introduction">
+          <h1>Politique de confidentialité et protection des données personnelles</h1>
+        </section>
+
+        <div class="ef-content-privacy" style="line-height: 1.6; color: #333;">
+          
+          <p>
+            La plateforme <strong>El Fatoora</strong>, gérée par <strong>Tunisie Trade Net (TTN)</strong>, traite vos données conformément à la <strong>Loi organique n° 2004-63 du 27 juillet 2004</strong> relative à la protection des données à caractère personnel.
+          </p>
+
+          <hr class="ft-separator" style="margin: 2rem 0; border: 0; border-top: 1px solid #eee;">
+
+          <h2 style="color: #0056b3;">1. Pourquoi TTN utilise vos données ?</h2>
+          <p>Dans le cadre de ses missions de service public et de dématérialisation des échanges, TTN traite vos données pour :</p>
+          <ul style="margin-bottom: 1.5rem;">
+            <li>L'inscription et la gestion des comptes utilisateurs sur El Fatoora </li>
+            <li>La transmission sécurisée et l'horodatage des factures électroniques </li>
+            <li>La vérification de l'authenticité via les certificats de signature <strong>TunTrust</strong> (Loi n° 2000-83 du 9 août 2000) ;</li>
+            <li>La prévention et la lutte contre la fraude fiscale et documentaire </li>
+            <li>La réalisation de statistiques par l'adminsitration fiscale.</li>
+          </ul>
+
+          <h2 style="color: #0056b3;">2. À qui sont transmises vos données ?</h2>
+          <p>Ces informations peuvent être partagées, dans la stricte limite des missions autorisées, avec :</p>
+          <ul style="margin-bottom: 1.5rem;">
+            <li><strong>L’Administration Fiscale</strong> (Direction Générale des Impôts) pour le suivi des obligations légales </li>
+            <li><strong>L’ANCE (TunTrust)</strong> pour la validation des identités numériques </li>
+            <li><strong>Le Registre National des Entreprises (RNE)</strong> pour la certification des données morales.</li>
+          </ul>
+
+          <h2 style="color: #0056b3;">3. Durée de conservation</h2>
+          <table style="width: 100%; border-collapse: collapse; margin-bottom: 1.5rem;">
+            <thead>
+              <tr style="background-color: #f8f9fa;">
+                <th style="padding: 10px; border: 1px solid #ddd; text-align: left;">Type de donnée</th>
+                <th style="padding: 10px; border: 1px solid #ddd; text-align: left;">Durée de conservation</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="padding: 10px; border: 1px solid #ddd;">Factures électroniques</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">10 ans (Code de Commerce)</td>
+              </tr>
+              <tr>
+                <td style="padding: 10px; border: 1px solid #ddd;">Données de connexion (Logs)</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">6 mois</td>
+              </tr>
+              <tr>
+                <td style="padding: 10px; border: 1px solid #ddd;">Dossier d'adhésion</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">Durée du contrat + 5 ans</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h2 style="color: #0056b3;">4. Sécurité et Vigilance</h2>
+          <div style="background-color: #fff4f4; border-left: 5px solid #d9534f; padding: 15px; margin-bottom: 1.5rem;">
+            <strong>Attention aux tentatives de fraude :</strong> TTN ne vous demandera jamais votre mot de passe ni vos codes de signature électronique par e-mail ou par téléphone. Toute action de signature s'effectue exclusivement dans votre espace sécurisé.
+          </div>
+
+          <h2 style="color: #0056b3;">5. Vos Droits</h2>
+          <p>
+            Conformément à la loi tunisienne, vous disposez d'un droit d'accès, de rectification, de suppression (après délai légal) et d'opposition au traitement de vos données.
+          </p>
+        </div>
+
+        <section class="ef-faq" aria-label="FAQ Données">
+          <h3>Questions fréquentes sur vos données</h3>
+          <div class="ef-faq-list">
+            <details class="ef-faq-item">
+              <summary class="ef-faq-summary">
+                <span>Mes factures sont-elles accessibles par TTN ?</span>
+                <span class="ef-faq-caret" aria-hidden="true"></span>
+              </summary>
+              <div class="ef-faq-body">
+                <p>TTN agit en tant que tiers de confiance technique. L'accès aux données de la facture est strictement limité aux processus automatisés de transmission et aux agents habilités de l'administration fiscale (DGI )dans le cadre de la loi.</p>
+              </div>
+            </details>
+            <details class="ef-faq-item">
+              <summary class="ef-faq-summary">
+                <span>Où sont stockées mes données ?</span>
+                <span class="ef-faq-caret" aria-hidden="true"></span>
+              </summary>
+              <div class="ef-faq-body">
+                <p>Toutes les données de la plateforme El Fatoora sont hébergées sur des serveurs sécurisés situés en Tunisie, sous le contrôle exclusif de TTN.</p>
+              </div>
+            </details>
+          </div>
+        </section>
+
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<div th:replace="fragments/layout :: appFooter"></div>
+</div>
+<script th:src="@{/js/ft-theme.js}"></script>
+
+</body>
+</html>

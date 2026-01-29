@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="fragments/layout :: appHead('CGU — El Fatoora')"></head>
+
+<body>
+
+<div class="ft-shell">
+<div th:replace="fragments/layout :: appHeader('Conditions Générales')"></div>
+
+<main class="ft-main">
+  <div class="ft-container">
+
+    <section class="ft-card" aria-label="Conditions Générales d'Utilisation">
+      <div class="ft-card-inner">
+
+        <section class="ft-page-hero" aria-label="Introduction">
+          <h1>Conditions Générales d’Utilisation (CGU)</h1>
+          <div class="ft-hero-sub">
+            Règles d'utilisation de la plateforme nationale de facturation électronique <b>El Fatoora</b>.
+          </div>
+        </section>
+
+        <div class="ef-content-cgu" style="line-height: 1.6; color: #333; text-align: justify;">
+          
+          <p>
+            Les présentes conditions générales ont pour objet de définir les modalités de mise à disposition des services de la plateforme <strong>El Fatoora</strong> par <strong>Tunisie Trade Net (TTN)</strong>.
+          </p>
+
+          <h2 style="color: #0056b3; border-bottom: 1px solid #eee; padding-bottom: 5px; margin-top: 2rem;">1. Objet et Cadre Légal</h2>
+          <p>
+            L’utilisation de la plateforme est régie par la législation tunisienne, notamment la <strong>Loi n° 2000-83 du 9 août 2000</strong> relative aux échanges et au commerce électroniques et les dispositions de la <strong>Loi de Finances 2026</strong> relatives à la généralisation de la facturation électronique.
+          </p>
+
+          <h2 style="color: #0056b3; border-bottom: 1px solid #eee; padding-bottom: 5px; margin-top: 2rem;">2. Accès au Service et Signature Electronique</h2>
+          <p>
+            L'accès à El Fatoora nécessite une adhésion préalable auprès de TTN. 
+          </p>
+          <ul style="margin-left: 20px;">
+            <li><strong>Authentification :</strong> L'utilisateur est responsable de la confidentialité de ses identifiants.</li>
+            <li><strong>Certificat TunTrust :</strong> L'émission de factures électroniques légales requiert obligatoirement l'usage d'un certificat de signature électronique valide délivré par <strong>TunTrust</strong> ou une autorité homologuée.</li>
+            <li><strong>Valeur Probante :</strong> Toute facture signée électroniquement via la plateforme est juridiquement opposable à son auteur.</li>
+          </ul>
+
+          <h2 style="color: #0056b3; border-bottom: 1px solid #eee; padding-bottom: 5px; margin-top: 2rem;">3. Conditions Tarifaires</h2>
+          <p>
+            L'accès aux services El Fatoora est soumis au paiement d'une redevance annuelle ou d'un abonnement selon la grille tarifaire en vigueur de TTN. 
+            En cas de défaut de paiement après mise en demeure, TTN se réserve le droit de suspendre l'accès aux services d'émission de factures.
+          </p>
+
+          <h2 style="color: #0056b3; border-bottom: 1px solid #eee; padding-bottom: 5px; margin-top: 2rem;">4. Responsabilités de l'Utilisateur</h2>
+          <p>L'utilisateur s'engage à :</p>
+          <ul style="margin-left: 20px;">
+            <li>Fournir des informations exactes lors de son adhésion (Matricule fiscal, RNE, etc.).</li>
+            <li>Assurer la sécurité de ses équipements informatiques et de ses clés de signature.</li>
+            <li>Ne pas utiliser la plateforme pour transmettre des contenus illicites ou malveillants.</li>
+          </ul>
+
+          <h2 style="color: #0056b3; border-bottom: 1px solid #eee; padding-bottom: 5px; margin-top: 2rem;">5. Résiliation</h2>
+          <p>
+            L'abonnement peut être résilié par l'utilisateur moyennant un préavis de <strong>trente (30) jours</strong>. 
+            En cas de manquement grave aux présentes CGU (fraude, usage détourné), TTN peut résilier l'accès sans préavis. 
+            <strong>Note :</strong> La résiliation n'efface pas l'obligation légale de conservation des factures déjà émises (10 ans).
+          </p>
+
+          <div style="background-color: #f1f8ff; border-left: 5px solid #0056b3; padding: 15px; margin: 2rem 0;">
+            <strong>Continuité de service :</strong> TTN s'efforce d'assurer une disponibilité de la plateforme 24h/24. Toutefois, les opérations de maintenance peuvent entraîner des interruptions temporaires, lesquelles sont notifiées à l'avance dans la mesure du possible.
+          </div>
+        </div>
+
+        <section class="ef-faq" aria-label="FAQ CGU">
+          <h3>Questions sur les conditions d'utilisation</h3>
+          <div class="ef-faq-list">
+            
+            <details class="ef-faq-item">
+              <summary class="ef-faq-summary">
+                <span>Puis-je utiliser ma propre solution logicielle ?</span>
+                <span class="ef-faq-caret" aria-hidden="true"></span>
+              </summary>
+              <div class="ef-faq-body">
+                <p>Oui, El Fatoora permet l'interconnexion via API ou EDI. Votre solution doit cependant être homologuée par TTN pour garantir la conformité au format TEIF (Tunisian Electronic Invoice Format).</p>
+              </div>
+            </details>
+
+            <details class="ef-faq-item">
+              <summary class="ef-faq-summary">
+                <span>Que se passe-t-il si mon certificat TunTrust expire ?</span>
+                <span class="ef-faq-caret" aria-hidden="true"></span>
+              </summary>
+              <div class="ef-faq-body">
+                <p>Vous ne pourrez plus signer de nouvelles factures. Vous devrez renouveler votre certificat auprès de l'ANCE pour rétablir les fonctionnalités d'émission sur la plateforme.</p>
+              </div>
+            </details>
+
+          </div>
+        </section>
+
+        <div class="ef-cta" style="margin-top: 3rem;">
+            <div class="ef-cta-left">
+                <p class="ef-cta-sub">En poursuivant votre navigation, vous acceptez l'intégralité de ces conditions générales.</p>
+            </div>
+            <div class="ef-cta-actions">
+                <a class="ft-btn ft-btn-primary" th:href="@{/}">Retour à l'accueil</a>
+            </div>
+        </div>
+
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<div th:replace="fragments/layout :: appFooter"></div>
+</div>
+<script th:src="@{/js/ft-theme.js}"></script>
+
+</body>
+</html>

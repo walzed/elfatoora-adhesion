@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="_csrf" th:content="${_csrf.token}">
+  <meta name="_csrf_header" th:content="${_csrf.headerName}">
+  
+  <title>Adhésion El Fatoora – Etape 3</title>
+
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+<link rel="stylesheet" th:href="@{/css/ft-theme.min.css}">
+
+</head>
+
+<body class="ft-body">
+
+<div class="ft-shell">
+  <div th:replace="fragments/layout :: appHeader('Adhésion – Etape 3')"></div>
+  <!--  <div th:replace="fragments/stepper :: stepper(currentStep=${3})"></div> -->
+
+  <main class="ft-main">
+    <div class="container py-4 py-md-5">
+      <div class="row justify-content-center">
+        <div class="col-12 col-lg-10 col-xl-9">
+
+          <div class="card shadow-sm border-0 ft-card">
+            <div class="card-body p-4 p-md-5">
+
+              <div class="d-flex justify-content-between align-items-start gap-3 mb-3">
+                <div>
+                  <h1 class="h4 mb-1">Adhésion El Fatoora</h1>
+                  <div class="text-muted small">
+                    <span th:if="${wiz != null and wiz.dossierRef != null}">
+                      Référence : <span class="fw-semibold" th:text="${wiz.dossierRef}">ELF-ADH-...</span>
+                    </span>
+                    <span th:if="${wiz == null or wiz.dossierRef == null}">
+                      Référence : <span class="text-muted">non générée</span>
+                    </span>
+                    <span class="mx-2">•</span>
+                    Etape 3 / 6 – Paramétrage accès et abonnements
+                  </div>
+                </div>
+                <div class="text-muted small">
+                  Email : <span class="fw-semibold" sec:authentication="name">email@exemple.tn</span>
+                </div>
+              </div>
+
+              <hr class="my-4"/>
+
+              <div class="alert alert-danger" th:if="${error != null}" th:text="${error}">Erreur</div>
+
+              <form th:action="@{/adhesion/etape3}" method="post" th:object="${wiz}" class="ft-validate">
+
+                <!-- Champs cachés (pour copier Admin -> Responsable technique EDI) -->
+                <input type="hidden" th:field="*{nomAdminPrincipal}" id="adminNomHidden">
+                <input type="hidden" th:field="*{prenomAdminPrincipal}" id="adminPrenomHidden">
+                <input type="hidden" th:field="*{cinAdminPrincipal}" id="adminCinHidden">
+                <input type="hidden" th:field="*{emailAdminPrincipal}" id="adminEmailHidden">
+                <input type="hidden" th:field="*{telAdminPrincipal}" id="adminTelHidden">
+
+                <!-- Mode de connexion -->
+                <h2 class="h6 mb-3">Mode de connexion <span class="text-danger">*</span></h2>
+                <div class="row g-3 mb-4">
+
+                  <div class="col-12 col-md-6">
+                    <div class="radio-tile" data-radio-tile>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio"
+                               th:field="*{modeConnexion}" value="WEB"
+                               id="mc1" required>
+                        <label class="form-check-label w-100" for="mc1">
+                          <div class="title">Mode Web</div>
+                          <div class="hint">Accès via le Portail Web El Fatoora.</div>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-12 col-md-6">
+                    <div class="radio-tile" data-radio-tile>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio"
+                               th:field="*{modeConnexion}" value="EDI"
+                               id="mc2">
+                        <label class="form-check-label w-100" for="mc2">
+                          <div class="title">Mode EDI</div>
+                          <div class="hint">Echange(SFTP ou Web Service)</div>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+
+                <!-- Champs -->
+                <div class="row g-3 mb-4">
+                  <div class="col-md-4">
+                    <label class="form-label fw-semibold mb-1">Nombre de comptes <span class="text-danger">*</span></label>
+                    <input class="form-control ft-input" type="number" min="1"
+                           th:field="*{nombreComptes}" required>
+                  </div>
+                  <div class="col-md-8">
+                    <label class="form-label fw-semibold mb-1">Email facturation / support </label>
+                    <input class="form-control ft-input" type="email"
+                           th:field="*{emailFacturation}" placeholder="optionnel">
+                  </div>
+                </div>
+
+                <!-- Type de signature -->
+                <h2 class="h6 mb-3">Signature de la demande d'adhésion <span class="text-danger">*</span></h2>
+                <div class="row g-3 mb-4">
+
+                  <div class="col-12 col-md-6">
+                    <div class="radio-tile" data-radio-tile>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio"
+                               th:field="*{typeSignatureElfAdh}" value="ELECTRONIQUE"
+                               id="op1" required>
+                        <label class="form-check-label w-100" for="op1">
+                          <div class="title">Signature électronique</div>
+                          <div class="hint">Signature avec clé TunTrust</div>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-12 col-md-6">
+                    <div class="radio-tile" data-radio-tile>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio"
+                               th:field="*{typeSignatureElfAdh}" value="MANUSCRITE"
+                               id="op2">
+                        <label class="form-check-label w-100" for="op2">
+                          <div class="title">Signature manuscrite</div>
+                          <div class="hint">Signature à la main avec cachet</div>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div id="signManuInfo"
+                       class="alert alert-warning mt-3 mb-0"
+                       style="border-radius: 14px; display:none;">
+                    <div class="fw-bold mb-1">Information importante</div>
+                    <div class="muted-small" style="color: rgba(0,0,0,.75);">
+                      Vous avez opté pour signer manuellement, vous allez devoir soit déposer votre dossier complet au Bureau d'ordre de TTN soit l'envoyer par voie postale avec accusé de réception.
+                    </div>
+                  </div>
+
+                </div>
+
+                <!-- EDI -->
+                <div class="alert alert-info mb-3" id="ediInfo">
+                  <div class="fw-semibold">Paramètres EDI (si Mode EDI)</div>
+                  <div class="small text-muted">Ces champs ne sont requis que si le mode EDI est sélectionné.</div>
+                </div>
+
+                <div class="row g-4 ef-form-grid" id="ediFields">
+
+                  <!-- Ligne 1 : Canal / IP -->
+                  <div class="col-md-6">
+                    <div class="ef-field">
+                      <div class="ef-label-row">
+                        <label class="ef-mini-label">Canal EDI</label>
+                        <button type="button" class="ef-help-btn"
+                                data-bs-toggle="tooltip"
+                                data-bs-placement="top"
+                                title="Choisir le canal EDI : SFTP (dépôt de fichiers) ou SOAP (Web Service).">?</button>
+                      </div>
+                      <select class="form-select ft-input" th:field="*{canalEdi}" id="canalEdiSelect">
+                        <option value="" th:text="'-- Sélectionner --'">-- Sélectionner --</option>
+                        <option value="SFTP">SFTP</option>
+                        <option value="SOAP">SOAP</option>
+                      </select>
+                      <div class="form-text">SFTP : dépôt de fichiers. SOAP : échange via Web Service.</div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <div class="ef-field">
+                      <div class="ef-label-row">
+                        <label class="ef-mini-label">IP Fixe</label>
+                        <button type="button" class="ef-help-btn"
+                                data-bs-toggle="tooltip"
+                                data-bs-placement="top"
+                                title="IP publique fixe (si disponible) utilisée pour l’accès EDI.">?</button>
+                      </div>
+                      <input class="form-control ft-input" th:field="*{ipFixe}" placeholder="IP Publique Fixe">
+                    </div>
+                  </div>
+
+                  <!-- Séparateur comme la capture -->
+                  <div class="col-12">
+                    <hr class="my-2">
+                  </div>
+
+                  <!-- Checkbox copier Admin -> Responsable technique EDI -->
+                  <div class="col-12">
+                    <div class="form-check mb-1">
+                      <input class="form-check-input" type="checkbox" id="sameAsAdminEdi">
+                      <label class="form-check-label" for="sameAsAdminEdi">
+                        Responsable technique EDI est identique à l'administrateur principal
+                      </label>
+                    </div>
+                  </div>
+
+                  <!-- Titre -->
+                  <div class="col-12" style="margin-top: 10px;">
+                    <h6 class="mb-3">Responsable technique EDI</h6>
+                  </div>
+
+                  <!-- Ligne 1 : Nom / Prénom -->
+                  <div class="col-md-6">
+                    <div class="ef-field">
+                      <div class="ef-label-row">
+                        <label class="ef-mini-label">Nom</label>
+                        <button type="button" class="ef-help-btn"
+                                data-bs-toggle="tooltip"
+                                data-bs-placement="top"
+                                title="Nom du responsable technique EDI (personne de contact côté entreprise).">?</button>
+                      </div>
+                      <input class="form-control ft-input"
+                             th:field="*{nomRespTechniqueEdi}"
+                             id="nomRespTechniqueEdiInput"
+                             placeholder="Nom Responsable technique">
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <div class="ef-field">
+                      <div class="ef-label-row">
+                        <label class="ef-mini-label">Prénom</label>
+                        <button type="button" class="ef-help-btn"
+                                data-bs-toggle="tooltip"
+                                data-bs-placement="top"
+                                title="Prénom du responsable technique EDI.">?</button>
+                      </div>
+                      <input class="form-control ft-input"
+                             th:field="*{prenomRespTechniqueEdi}"
+                             id="prenomRespTechniqueEdiInput"
+                             placeholder="Prénom Responsable technique">
+                    </div>
+                  </div>
+
+                  <!-- Ligne 2 : CIN / Email / Téléphone -->
+                  <div class="col-md-3">
+                    <div class="ef-field">
+                      <div class="ef-label-row">
+                        <label class="ef-mini-label">CIN</label>
+                        <button type="button" class="ef-help-btn"
+                                data-bs-toggle="tooltip"
+                                data-bs-placement="top"
+                                title="CIN du responsable technique EDI (ou N° carte de séjour si étranger).">?</button>
+                      </div>
+                      <input class="form-control ft-input"
+                             th:field="*{cinRespTechniqueEdi}"
+                             id="cinRespTechniqueEdiInput"
+                             placeholder="CIN">
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <div class="ef-field">
+                      <div class="ef-label-row">
+                        <label class="ef-mini-label">Email</label>
+                        <button type="button" class="ef-help-btn"
+                                data-bs-toggle="tooltip"
+                                data-bs-placement="top"
+                                title="Email professionnel du responsable technique EDI (utilisé pour contact et échanges techniques).">?</button>
+                      </div>
+                      <input class="form-control ft-input"
+                             th:field="*{emailRespTechniqueEdi}"
+                             id="emailRespTechniqueEdiInput"
+                             placeholder="E-mail Responsable technique">
+                    </div>
+                  </div>
+
+                  <div class="col-md-3">
+                    <div class="ef-field">
+                      <div class="ef-label-row">
+                        <label class="ef-mini-label">Téléphone</label>
+                        <button type="button" class="ef-help-btn"
+                                data-bs-toggle="tooltip"
+                                data-bs-placement="top"
+                                title="Téléphone (portable) du responsable technique EDI.">?</button>
+                      </div>
+                      <input class="form-control ft-input"
+                             th:field="*{telRespTechniqueEdi}"
+                             id="telRespTechniqueEdiInput"
+                             placeholder="Téléphone">
+                    </div>
+                  </div>
+
+                </div>
+                
+                
+                <div class="d-flex justify-content-center my-4">
+				  <button type="button" class="btn btn-primary px-4 py-3"
+				          style="border-radius: 14px; min-width: 320px;"
+				          data-bs-toggle="modal" data-bs-target="#efSignatairesModal">
+				    Gérer Signataire(s)
+				  </button>
+				</div>
+                
+                
+                
+                
+
+                <div class="d-flex justify-content-between align-items-center mt-4">
+                  <a class="btn btn-outline-secondary" th:href="@{/adhesion/etape2}">Retour</a>
+                  <button type="submit" class="btn btn-primary px-4">Suivant</button>
+                </div>
+
+              </form>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </main>
+
+
+<div class="modal fade" id="efSignatairesModal" tabindex="-1"
+     aria-labelledby="efSignatairesTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-xl">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title" id="efSignatairesTitle">Gérer Signataire(s)</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+      </div>
+
+      <div class="modal-body">
+
+        <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
+          <div class="text-muted small">
+            Ajoutez, modifiez le certificat (N° série + dates), ou désactivez un signataire.
+          </div>
+
+          <button type="button" class="btn btn-outline-primary"
+                  id="efBtnAddSignataire">
+            + Ajouter un signataire
+          </button>
+        </div>
+
+        <!-- Form (charte graphique identique capture 1) -->
+        <div id="efSignataireFormWrap" class="border rounded-4 p-3 mb-3" style="display:none; background:#fff;">
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <h6 class="mb-0" id="efSignataireFormTitle">Nouveau signataire</h6>
+            <button type="button" class="btn btn-sm btn-outline-secondary" id="efBtnCancelEdit">Annuler</button>
+          </div>
+
+          <input type="hidden" id="efSigId">
+
+          <div class="row g-3">
+            <div class="col-md-6">
+              <div class="ef-field">
+                <div class="ef-label-row">
+                  <label class="ef-mini-label">Nom <span class="text-danger">*</span></label>
+                  <button type="button" class="ef-help-btn" data-bs-toggle="tooltip" title="Nom du signataire.">?</button>
+                </div>
+                <input class="form-control ft-input" id="efSigNom" placeholder="Nom" required>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="ef-field">
+                <div class="ef-label-row">
+                  <label class="ef-mini-label">Prénom <span class="text-danger">*</span></label>
+                  <button type="button" class="ef-help-btn" data-bs-toggle="tooltip" title="Prénom du signataire.">?</button>
+                </div>
+                <input class="form-control ft-input" id="efSigPrenom" placeholder="Prénom" required>
+              </div>
+            </div>
+
+            <div class="col-md-3">
+              <div class="ef-field">
+                <div class="ef-label-row">
+                  <label class="ef-mini-label">CIN <span class="text-danger">*</span></label>
+                  <button type="button" class="ef-help-btn" data-bs-toggle="tooltip" title="Identifiant du signataire (CIN).">?</button>
+                </div>
+                <input class="form-control ft-input" id="efSigCin" placeholder="CIN" required>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="ef-field">
+                <div class="ef-label-row">
+                  <label class="ef-mini-label">Email <span class="text-danger">*</span></label>
+                  <button type="button" class="ef-help-btn" data-bs-toggle="tooltip" title="Email du signataire.">?</button>
+                </div>
+                <input class="form-control ft-input" id="efSigEmail" placeholder="email@domaine.tn" required>
+              </div>
+            </div>
+
+            <div class="col-md-3">
+              <div class="ef-field">
+                <div class="ef-label-row">
+                  <label class="ef-mini-label">N° série certificat</label>
+                  <button type="button" class="ef-help-btn" data-bs-toggle="tooltip" title="Numéro de série du certificat.">?</button>
+                </div>
+                <input class="form-control ft-input" id="efSigCertSerie" placeholder="Numéro de série">
+              </div>
+            </div>
+
+            <div class="col-md-3">
+              <div class="ef-field">
+                <div class="ef-label-row">
+                  <label class="ef-mini-label">Début validité</label>
+                  <button type="button" class="ef-help-btn" data-bs-toggle="tooltip" title="Date début de validité du certificat.">?</button>
+                </div>
+                <input class="form-control ft-input" type="date" id="efSigCertDebut">
+              </div>
+            </div>
+
+            <div class="col-md-3">
+              <div class="ef-field">
+                <div class="ef-label-row">
+                  <label class="ef-mini-label">Fin validité</label>
+                  <button type="button" class="ef-help-btn" data-bs-toggle="tooltip" title="Date fin de validité du certificat.">?</button>
+                </div>
+                <input class="form-control ft-input" type="date" id="efSigCertFin">
+              </div>
+            </div>
+
+            <div class="col-12 d-flex justify-content-end gap-2">
+              <button type="button" class="btn btn-primary px-4" id="efBtnSaveSig">Enregistrer</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tableau -->
+        <div class="table-responsive">
+          <table class="table align-middle" id="efSignatairesTable">
+            <thead>
+            <tr>
+              <th>Nom</th>
+              <th>Prénom</th>
+              <th>CIN</th>
+              <th>Email</th>
+              <th>N° série</th>
+              <th>Début</th>
+              <th>Fin</th>
+              <th>Statut</th>
+              <th class="text-end">Actions</th>
+            </tr>
+            </thead>
+            <tbody id="efSignatairesTbody">
+            <tr>
+              <td colspan="9" class="text-muted">Chargement...</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Fermer</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+  <div th:replace="fragments/layout :: appFooter"></div>
+</div>
+
+<script th:src="@{/js/ft-theme.js}"></script>
+<script th:src="@{/js/ef-signataires.js}"></script>
+<script th:src="@{/js/ft-etape3-4-5.js}"></script>
+
+
+</body>
+</html>

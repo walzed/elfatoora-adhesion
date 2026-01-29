@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+  <meta charset="UTF-8">
+  <title>Suivi – Demande d’adhésion</title>
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+<link rel="stylesheet" th:href="@{/css/ft-theme.min.css}">
+</head>
+
+<body>
+
+<div class="ft-shell">
+<div th:replace="fragments/layout :: appHeader('Suivi des formalités')"></div>
+
+<div class="container py-4">
+
+  <div class="d-flex justify-content-between align-items-start mb-4">
+    <div>
+      <h2 class="mb-1">Tableau de bord des formalités</h2>
+      <h5 class="mb-1"> Suivi de vos demandes d’adhésion El Fatoora</h5>
+    </div>
+    <div class="text-muted small">
+      Compte : <b sec:authentication="name">email@exemple.tn</b>
+    </div>
+  </div>
+
+  <div class="alert alert-danger" th:if="${error != null}" th:text="${error}"></div>
+  <div class="alert alert-success" th:if="${success != null}" th:text="${success}"></div>
+
+<!-- Recherche + brouillons -->
+<form th:action="@{/adhesion/suivi}" method="get" class="ft-suivi-topbar mb-4">
+
+  <a class="btn btn-outline-primary ft-suivi-btn"
+     th:href="@{/adhesion/mes-brouillons}">
+    Accéder à mes brouillons
+  </a>
+
+  <a class="btn btn-outline-primary ft-suivi-btn"
+     th:href="@{/adhesion/etape1}">
+    Démarrer Nouvelle Demande
+  </a>
+
+  <input class="form-control ft-suivi-input"
+         name="ref"
+         th:value="${searchRef}"
+         placeholder="Dossier (Ex: ELF-ADH-2026-0000123)">
+
+  <button class="btn btn-primary ft-suivi-search" type="submit">
+    Rechercher
+  </button>
+
+</form>
+
+
+  <!-- KPI (hors brouillons) -->
+  <div class="row g-3 mb-4">
+
+    <div class="col-6 col-md">
+      <div class="kpi-card">
+        <h2 th:text="${stats != null && stats['SOUMIS'] != null ? stats['SOUMIS'] : 0}">0</h2>
+        <p>Demandes en attente de prise en charge</p>
+      </div>
+    </div>
+
+    <div class="col-6 col-md">
+      <div class="kpi-card">
+        <h2 th:text="${stats != null && stats['EN_INSTRUCTION'] != null ? stats['EN_INSTRUCTION'] : 0}">0</h2>
+        <p>Demandes en attente de validation</p>
+      </div>
+    </div>
+
+    <div class="col-6 col-md">
+      <div class="kpi-card">
+        <h2 th:text="${stats != null && stats['COMPLEMENT'] != null ? stats['COMPLEMENT'] : 0}">0</h2>
+        <p>Demandes en attente de régularisation</p>
+      </div>
+    </div>
+
+    <div class="col-6 col-md">
+      <div class="kpi-card">
+        <h2 th:text="${stats != null && stats['VALIDEE'] != null ? stats['VALIDEE'] : 0}">0</h2>
+        <p>Demandes validées</p>
+      </div>
+    </div>
+
+    <div class="col-6 col-md">
+      <div class="kpi-card">
+        <h2 th:text="${stats != null && stats['REJETEE'] != null ? stats['REJETEE'] : 0}">0</h2>
+        <p>Demandes rejetées</p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- filtres -->
+  <form th:action="@{/adhesion/suivi}" method="get" class="row g-3 mb-4">
+    <input type="hidden" name="ref" th:value="${searchRef}">
+    <div class="col-md-6">
+      <label class="form-label fw-semibold">Filtrer les formalités par type</label>
+      <select class="form-select" disabled>
+        <option selected>Demande d’adhésion El Fatoora</option>
+      </select>
+    </div>
+
+    <div class="col-md-6">
+      <label class="form-label fw-semibold">Filtrer les formalités par statut</label>
+      <select class="form-select" name="statut">
+        <option value="" th:selected="${selectedStatut == null}">Tous</option>
+        <option value="SOUMIS" th:selected="${selectedStatut != null and selectedStatut.name() == 'SOUMIS'}">Demande en attente de prise en charge</option>
+        <option value="EN_INSTRUCTION" th:selected="${selectedStatut != null and selectedStatut.name() == 'EN_INSTRUCTION'}">Demande en attente de validation</option>
+        <option value="COMPLEMENT" th:selected="${selectedStatut != null and selectedStatut.name() == 'COMPLEMENT'}">Demande en attente de régularisation</option>
+        <option value="VALIDEE" th:selected="${selectedStatut != null and selectedStatut.name() == 'VALIDEE'}">Demande validée</option>
+        <option value="REJETEE" th:selected="${selectedStatut != null and selectedStatut.name() == 'REJETEE'}">Demande rejetée</option>
+      </select>
+    </div>
+
+    <div class="col-12 d-grid d-md-flex justify-content-end">
+      <button class="btn btn-outline-secondary" type="submit">Appliquer</button>
+    </div>
+  </form>
+
+  <div class="row g-4">
+    <div class="col-lg-12">
+      <h5 class="mb-3">Etat d’avancement des formalités</h5>
+
+      <div th:if="${#lists.isEmpty(dossiers)}" class="text-muted">
+        Aucune demande trouvée.
+      </div>
+
+      <a th:each="d : ${dossiers}"
+         class="text-decoration-none text-dark"
+         th:href="@{/adhesion/suivi/{dossierRef}(dossierRef=${d.dossierRef}, statut=${selectedStatut}, ref=${searchRef})}">
+        <div class="formal-item">
+
+          <div class="d-flex justify-content-between align-items-start">
+            <div>
+         	  <div class="fw-bold" th:text="${(d.raisonSociale ?: 'Demande d’adhésion')
+				              + (d.matriculeFiscal != null ? ' (' + d.matriculeFiscal + ')' : '')}">
+				  Demande d’adhésion
+				</div>
+              
+              <div class="fst-italic text-muted small">Formalité de création</div>
+            </div>
+            <div class="text-end small text-muted">
+              <div th:text="${d.createdAt != null ? #temporals.format(d.createdAt, 'dd/MM/yyyy') : '-'}">19/12/2025</div>
+              <div class="fw-semibold" th:text="${d.dossierRef}">ELF-ADH-2026-0001234</div>
+              <div>Déposée par <span sec:authentication="name">Walid</span></div>
+            </div>
+          </div>
+
+          <div class="mt-2 small">
+            <span th:if="${d.statut.name() == 'SOUMIS'}"><span class="status-dot status-primary"></span>En attente de prise en charge</span>
+            <span th:if="${d.statut.name() == 'EN_INSTRUCTION'}"><span class="status-dot status-info"></span>En cours d’instruction</span>
+            <span th:if="${d.statut.name() == 'COMPLEMENT'}"><span class="status-dot status-warn"></span>Complément d’information</span>
+            <span th:if="${d.statut.name() == 'VALIDEE'}"><span class="status-dot status-success"></span>Validée</span>
+            <span th:if="${d.statut.name() == 'REJETEE'}"><span class="status-dot status-danger"></span>Rejetée</span>
+          </div>
+
+        </div>
+      </a>
+
+    </div>
+  </div>
+
+</div>
+
+<div th:replace="fragments/layout :: appFooter"></div>
+</div>
+
+<script th:src="@{/js/ft-theme.js}"></script>
+
+</body>
+</html>

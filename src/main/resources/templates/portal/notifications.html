@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Notifications</title>
+  	<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+	<link rel="stylesheet" th:href="@{/css/ft-theme.min.css}">
+</head>
+<body>
+
+<div class="ft-shell">
+<div th:replace="fragments/layout :: appHeader('Notifications')"></div>
+
+<div class="container py-5" style="max-width: 980px;">
+  <div class="card shadow-sm">
+    <div class="card-body p-4">
+      <h3 class="mb-1">Notifications</h3>
+      <p class="text-muted mb-4">Messages liés à vos dossiers.</p>
+
+      <div class="alert alert-info" th:if="${notifications == null || #lists.isEmpty(notifications)}">
+        Aucune notification pour le moment.
+      </div>
+
+      <div class="list-group" th:if="${notifications != null && !#lists.isEmpty(notifications)}">
+        <div class="list-group-item" th:each="n : ${notifications}">
+          <div class="d-flex justify-content-between">
+            <div class="fw-semibold" th:text="${n.subject}">Sujet</div>
+            <div class="text-muted small" th:text="${#temporals.format(n.createdAt,'yyyy-MM-dd HH:mm')}">date</div>
+          </div>
+          <div class="text-muted small">
+            Dossier: <span th:text="${n.dossierRef}">ELF-ADH-...</span>
+          </div>
+          <div class="mt-2" th:text="${n.message}">Message…</div>
+        </div>
+      </div>
+
+      <div class="mt-4">
+        <a class="btn btn-outline-secondary" th:href="@{/myspace}">Retour</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div th:replace="fragments/layout :: appFooter"></div>
+</div>
+<script th:src="@{/js/ft-theme.js}"></script>
+</body>
+</html>

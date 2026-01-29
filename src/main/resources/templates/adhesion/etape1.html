@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="UTF-8">
+<title>Adhésion – Etape 1</title>
+
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+<link rel="stylesheet" th:href="@{/css/ft-theme.min.css}">
+
+</head>
+<body>
+
+	<div class="ft-shell">
+		<div th:replace="fragments/layout :: appHeader('Adhésion – Etape 1')"></div>
+
+<!-- 		<div th:replace="fragments/stepper :: stepper(currentStep=${1})"></div> -->
+
+		<div class="container py-5">
+			<div class="card shadow-sm mx-auto" style="max-width: 980px;">
+				<div class="card-body p-4">
+
+					<!-- Bandeau wizard -->
+					<div class="d-flex justify-content-between align-items-start mb-3">
+						<div>
+							<h3 class="mb-1">Adhésion El Fatoora</h3>
+							<div class="text-muted small">
+								<span th:if="${wiz != null && wiz.dossierRef != null}">
+									Référence : <b th:text="${wiz.dossierRef}">ELF-ADH-...</b>
+								</span> <span th:if="${wiz != null && wiz.dossierRef == null}">
+									Référence : <span class="text-muted">non générée</span>
+								</span>
+							</div>
+							<div class="text-muted">Etape 1 / 6 – Identification de
+								l’opérateur économique</div>
+						</div>
+					</div>
+					
+					
+
+					<div class="alert alert-danger" th:if="${error != null}"
+						th:text="${error}"></div>
+
+					<form th:action="@{/adhesion/etape1}" method="post"
+						th:object="${wiz}" class="ft-validate">
+						<h6 class="mb-3">Informations générales</h6>
+						
+						
+<div class="mb-4">
+  <div class="d-flex align-items-center gap-2 mb-2">
+    <h6 class="mb-0">Forme juridique</h6>
+  </div>
+
+  <div class="row g-3">
+    <div class="col-md-6">
+      <label class="w-100">
+        <input class="form-check-input visually-hidden"
+               type="radio"
+               th:field="*{formeJuridique}"
+               value="MORALE"
+               id="fjMorale">
+        <div class="border rounded-4 p-3 h-100 d-flex align-items-start gap-3 ef-fj-card" data-target="MORALE">
+          <div class="pt-1">
+            <span class="ef-radio-dot"></span>
+          </div>
+          <div>
+            <div class="fw-semibold">Personne Morale</div>
+            <div class="text-muted small">Société (SARL, SUARL, SA)</div>
+          </div>
+        </div>
+      </label>
+    </div>
+
+    <div class="col-md-6">
+      <label class="w-100">
+        <input class="form-check-input visually-hidden"
+               type="radio"
+               th:field="*{formeJuridique}"
+               value="PHYSIQUE"
+               id="fjPhysique">
+        <div class="border rounded-4 p-3 h-100 d-flex align-items-start gap-3 ef-fj-card" data-target="PHYSIQUE">
+          <div class="pt-1">
+            <span class="ef-radio-dot"></span>
+          </div>
+          <div>
+            <div class="fw-semibold">Personne Physique</div>
+            <div class="text-muted small">Individu (Patente propre)</div>
+          </div>
+        </div>
+      </label>
+    </div>
+  </div>
+</div>
+					
+						
+						
+						
+						
+						
+						
+						
+
+						<div class="row g-4 ef-form-grid">
+
+<!-- Personne Morale : Raison sociale -->
+<div class="col-md-6" id="blocRaisonSociale">
+  <div class="ef-field">
+    <div class="ef-label-row">
+      <label class="ef-mini-label">Raison sociale</label>
+
+      <button type="button" class="ef-help-btn"
+              data-bs-toggle="tooltip"
+              data-bs-html="true"
+              data-bs-trigger="hover focus"
+              th:title="|&lt;div class='text-start'&gt;
+                          RS pour une personne morale (telle qu'indiquée dans le RC).
+                          &lt;hr class='my-1'&gt;
+                          &lt;img src='@{/img/helpers/rs-nom-sample.png}'
+                               class='img-fluid rounded help-zoom-img'
+                               style='max-width:200px; display:block;'
+                               onmouseup='zoomImage(this.src)'&gt;
+                        &lt;/div&gt;|">
+        ?
+      </button>
+    </div>
+
+    <input class="form-control ft-input"
+           id="raisonSocialeInput"
+           th:field="*{raisonSociale}"
+           placeholder="Raison sociale"
+           required>
+  </div>
+</div>
+
+<!-- Personne Physique : Nom + Prénom -->
+<div class="col-md-6 d-none" id="blocNomPrenom">
+  <div class="row g-4">
+    <div class="col-md-6">
+      <div class="ef-field">
+        <div class="ef-label-row">
+          <label class="ef-mini-label">Nom</label>
+          <button type="button" class="ef-help-btn"
+                  data-bs-toggle="tooltip"
+                  data-bs-placement="top"
+                  title="Nom (tel qu'indiqué sur la CIN ou carte de séjour).">?</button>
+        </div>
+        <input class="form-control ft-input"
+               id="nomInput"
+               th:field="*{nomPersonnePhysique}"
+               placeholder="Nom">
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="ef-field">
+        <div class="ef-label-row">
+          <label class="ef-mini-label">Prénom</label>
+          <button type="button" class="ef-help-btn"
+                  data-bs-toggle="tooltip"
+                  data-bs-placement="top"
+                  title="Prénom (tel qu'indiqué sur la CIN).">?</button>
+        </div>
+        <input class="form-control ft-input"
+               id="prenomInput"
+               th:field="*{prenomPersonnePhysique}"
+               placeholder="Prénom">
+      </div>
+    </div>
+  </div>
+</div>
+
+
+							<div class="col-md-6">
+								<div class="ef-field">
+									<div class="ef-label-row">
+										<label class="ef-mini-label">N° RNE - Registre National des Entreprises</label>
+ <button type="button" class="ef-help-btn"
+        data-bs-toggle="tooltip" 
+        data-bs-html="true"
+        data-bs-trigger="hover focus" 
+        th:title="|&lt;div class='text-start'&gt;
+                    Numéro du registre de commerce  (telle qu'indiquée dans le RC).
+                    &lt;hr class='my-1'&gt;
+                    &lt;img src='@{/img/helpers/rc-sample.png}' 
+                         class='img-fluid rounded help-zoom-img' 
+                         style='max-width:200px; display:block;' 
+                         onmouseup='zoomImage(this.src)'&gt;
+                  &lt;/div&gt;|">
+    ?
+</button>	
+									</div>
+									<input class="form-control ft-input"
+										th:field="*{registreCommerce}"
+										placeholder="N° Registre de commerce" required>
+								</div>
+							</div>
+
+							<div class="col-md-4">
+								<div class="ef-field">
+									<div class="ef-label-row">
+										<label class="ef-mini-label">Matricule fiscal</label>
+ <button type="button" class="ef-help-btn"
+        data-bs-toggle="tooltip" 
+        data-bs-html="true"
+        data-bs-trigger="hover focus" 
+        th:title="|&lt;div class='text-start'&gt;
+                    Matricule fiscal (Identifiant fiscal) telle qu'indiqué  dans le RC  ou la Patente (sans /).
+                    &lt;hr class='my-1'&gt;
+                    &lt;img src='@{/img/helpers/mf-sample.png}' 
+                         class='img-fluid rounded help-zoom-img' 
+                         style='max-width:200px; display:block;' 
+                         onmouseup='zoomImage(this.src)'&gt;
+                  &lt;/div&gt;|">
+    ?
+</button>											
+									</div>
+									<input class="form-control ft-input"
+                                        th:field="*{matriculeFiscal}" placeholder="Matricule fiscal"
+                                        required pattern="[0-9]{7}[A-Za-z]" minlength="8" maxlength="8"
+                                        autocapitalize="characters" spellcheck="false"
+                                        oninput="this.value=(this.value||'').toUpperCase();">
+                                    <div class="form-text">Format : 7 chiffres + 1 lettre (ex : 1234567A).</div>
+                                    <div class="invalid-feedback">Matricule fiscal invalide (7 chiffres suivis d'une lettre).</div>
+								</div>
+							</div>
+
+							<div class="col-md-2">
+								<div class="ef-field">
+									<div class="ef-label-row">
+										<label class="ef-mini-label">Code TVA</label>
+<button type="button" class="ef-help-btn"
+        data-bs-toggle="tooltip" 
+        data-bs-html="true"
+        data-bs-trigger="hover focus" 
+        th:title="|&lt;div class='text-start'&gt;
+                    Code TVA tel qu'indiqué dans la Fiche d'identification fiscale (ou Patente).
+                    &lt;hr class='my-1'&gt;
+                    &lt;img src='@{/img/helpers/mf-tva-sample.png}' 
+                         class='img-fluid rounded help-zoom-img' 
+                         style='max-width:200px; display:block;' 
+                         onmouseup='zoomImage(this.src)'&gt;
+                  &lt;/div&gt;|">
+    ?
+</button>
+									</div>
+									<input class="form-control ft-input" th:field="*{codeTVA}"
+										placeholder="Code TVA">
+								</div>
+							</div>
+
+							<div class="col-md-3">
+								<div class="ef-field">
+									<div class="ef-label-row">
+										<label class="ef-mini-label">Code catégorie</label>
+<button type="button" class="ef-help-btn"
+        data-bs-toggle="tooltip" 
+        data-bs-html="true"
+        data-bs-trigger="hover focus" 
+        th:title="|&lt;div class='text-start'&gt;
+                    Code catégorie tel qu'indiqué dans la Fiche d'identification fiscale (ou Patente).
+                    &lt;hr class='my-1'&gt;
+                    &lt;img src='@{/img/helpers/mf-categ-sample.png}' 
+                         class='img-fluid rounded help-zoom-img' 
+                         style='max-width:200px; display:block;' 
+                         onmouseup='zoomImage(this.src)'&gt;
+                  &lt;/div&gt;|">
+    ?
+</button>
+									</div>
+									<input class="form-control ft-input"
+										th:field="*{codeCategorie}" placeholder="Code catégorie">
+								</div>
+							</div>
+
+							<div class="col-md-3">
+								<div class="ef-field">
+									<div class="ef-label-row">
+										<label class="ef-mini-label">N° Etab secondaire</label>
+<button type="button" class="ef-help-btn"
+        data-bs-toggle="tooltip" 
+        data-bs-html="true"
+        data-bs-trigger="hover focus" 
+        th:title="|&lt;div class='text-start'&gt;
+                    N° Etab secondaire tel qu'indiqué dans la Fiche d'identification fiscale (ou Patente).
+                    &lt;hr class='my-1'&gt;
+                    &lt;img src='@{/img/helpers/mf-etab-sec-sample.png}' 
+                         class='img-fluid rounded help-zoom-img' 
+                         style='max-width:200px; display:block;' 
+                         onmouseup='zoomImage(this.src)'&gt;
+                  &lt;/div&gt;|">
+    ?
+</button>
+									</div>
+									<input class="form-control ft-input"
+										th:field="*{etabSecondaire}" placeholder="N° Etab secondaire">
+								</div>
+							</div>
+
+<!-- Secteur activité + Adresse complète (même ligne) -->
+<div class="col-md-4">
+  <div class="ef-field">
+    <div class="ef-label-row">
+      <label class="ef-mini-label">Secteur activité</label>                 
+      <button type="button" class="ef-help-btn"
+              data-bs-toggle="tooltip"
+              data-bs-html="true"
+              data-bs-trigger="hover focus"
+              th:title="|&lt;div class='text-start'&gt;
+                          Secteur activité ( ou activité principale) tel qu'indiqué dans la Fiche d'identification fiscale (ou Patente).
+                          &lt;hr class='my-1'&gt;
+                          &lt;img src='@{/img/helpers/mf-activite-sample.png}'
+                               class='img-fluid rounded help-zoom-img'
+                               style='max-width:200px; display:block;'
+                               onmouseup='zoomImage(this.src)'&gt;
+                        &lt;/div&gt;|">?</button>                   
+                        
+    </div>
+    <input class="form-control ft-input"
+           th:field="*{secteurActivite}"
+           placeholder="Secteur activité"
+           required>
+  </div>
+</div>
+
+<div class="col-md-8">
+  <div class="ef-field">
+    <div class="ef-label-row">
+      <label class="ef-mini-label">Adresse complète</label>
+      <button type="button" class="ef-help-btn"
+              data-bs-toggle="tooltip"
+              data-bs-html="true"
+              data-bs-trigger="hover focus"
+              th:title="|&lt;div class='text-start'&gt;
+                          Adresse complète telle qu'indiquée la Fiche d'identification fiscale (ou Patente).
+                          &lt;hr class='my-1'&gt;
+                          &lt;img src='@{/img/helpers/mf-adr-sample.png}'
+                               class='img-fluid rounded help-zoom-img'
+                               style='max-width:200px; display:block;'
+                               onmouseup='zoomImage(this.src)'&gt;
+                        &lt;/div&gt;|">?</button>
+                        
+    </div>
+    <input class="form-control ft-input"
+           th:field="*{adresse}"
+           placeholder="Adresse complète"
+           required>
+  </div>
+</div>
+
+
+							<div class="col-md-3">
+								<div class="ef-field">
+									<div class="ef-label-row">
+										<label class="ef-mini-label">Code postal</label>
+										<button type="button" class="ef-help-btn"
+											data-bs-toggle="tooltip" data-bs-placement="top"
+											title="Code postal (optionnel).">?</button>
+									</div>
+									<input class="form-control ft-input" th:field="*{codePostal}"
+										placeholder="Code postal">
+								</div>
+							</div>
+
+							<div class="col-md-4">
+								<div class="ef-field">
+									<div class="ef-label-row">
+										<label class="ef-mini-label">Gouvernorat</label>
+										<button type="button" class="ef-help-btn"
+											data-bs-toggle="tooltip" data-bs-placement="top"
+											title="Sélectionner le gouvernorat.">?</button>
+									</div>
+									<input class="form-control ft-input" th:field="*{gouvernorat}"
+										id="govInput" list="govList" placeholder="Gouvernorat"
+										required>
+									<datalist id="govList">
+										<option value="Tunis">
+										<option value="Ariana">
+										<option value="Ben Arous">
+										<option value="La Manouba">
+										<option value="Sfax">
+										<option value="Sousse">
+										<option value="Gabès">
+										<option value="Monastir">
+										<option value="Nabeul">
+										<option value="Bizerte">
+										<option value="Béja">
+										<option value="Gafsa">
+										<option value="Jendouba">
+										<option value="Kairouan">
+										<option value="Kasserine">
+										<option value="Kébili">
+										<option value="Le Kef">
+										<option value="Mahdia">
+										<option value="Médenine">
+										<option value="Sidi Bouzid">
+										<option value="Siliana">
+										<option value="Tataouine">
+										<option value="Tozeur">
+										<option value="Zaghouan">
+									</datalist>
+								</div>
+							</div>
+
+							<div class="col-md-5">
+								<div class="ef-field">
+									<div class="ef-label-row">
+										<label class="ef-mini-label">Ville</label>
+										<button type="button" class="ef-help-btn"
+											data-bs-toggle="tooltip" data-bs-placement="top"
+											title="Ville correspondant au gouvernorat.">?</button>
+									</div>
+									<input class="form-control ft-input" th:field="*{ville}"
+										id="villeInput" list="villeList" placeholder="Ville"
+										required>
+									<datalist id="villeList"></datalist>
+								</div>
+							</div>
+
+							<div class="col-md-4">
+								<div class="ef-field">
+									<div class="ef-label-row">
+										<label class="ef-mini-label">Téléphone</label>
+										<button type="button" class="ef-help-btn"
+											data-bs-toggle="tooltip" data-bs-placement="top"
+											title="Téléphone de contact.">?</button>
+									</div>
+									<input class="form-control ft-input" th:field="*{telephone}"
+										placeholder="Téléphone" required>
+								</div>
+							</div>
+
+							<div class="col-md-8">
+								<div class="ef-field">
+									<div class="ef-label-row">
+										<label class="ef-mini-label">Email général</label>
+										<button type="button" class="ef-help-btn"
+											data-bs-toggle="tooltip" data-bs-placement="top"
+											title="Email principal de communication.">?</button>
+									</div>
+									<input class="form-control ft-input" type="email"
+										th:field="*{emailGeneral}" placeholder="Email général"
+										required>
+								</div>
+							</div>
+
+							<div class="col-12">
+								<div class="ef-field">
+									<div class="ef-label-row">
+										<label class="ef-mini-label">Email facturation </label>
+										<button type="button" class="ef-help-btn"
+											data-bs-toggle="tooltip" data-bs-placement="top"
+											title="Email utilisé pour les notifications de facturation.">?</button>
+									</div>
+									<input class="form-control ft-input" type="email"
+										th:field="*{emailFacturation}"
+										placeholder="Email facturation ">
+								</div>
+							</div>
+
+						</div>
+
+						<div class="d-flex justify-content-between mt-4">
+							<a class="btn btn-outline-secondary" th:href="@{/adhesion}">Retour</a>
+							<button type="submit" class="btn btn-primary">Suivant</button>
+						</div>
+					</form>
+
+				</div>
+			</div>
+		</div>
+
+
+		<div th:replace="fragments/layout :: appFooter"></div>
+	</div>
+	<script th:src="@{/js/ft-theme.js}"></script>
+	
+	
+<div id="imageZoomModal" class="modal fade" tabindex="-1" style="background: rgba(0,0,0,0.8);">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content" style="background: transparent; border: none;">
+      <div class="modal-body text-center">
+        <img id="zoomedImage" src="" class="img-fluid rounded shadow-lg">
+      </div>
+    </div>
+  </div>
+</div>
+	
+</body>
+</html>

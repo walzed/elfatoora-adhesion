@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+  <meta charset="UTF-8">
+  <title>Adhésion – Etape 6</title>
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+<link rel="stylesheet" th:href="@{/css/ft-theme.min.css}">
+</head>
+<body>
+
+<div class="ft-shell">
+<div th:replace="fragments/layout :: appHeader('Adhésion – Etape 6')"></div>
+<!-- <div th:replace="fragments/stepper :: stepper(currentStep=${6})"></div> -->
+
+<div class="container py-5">
+  <div class="card shadow-sm mx-auto" style="max-width: 980px;">
+    <div class="card-body p-4">
+
+      <!-- Bandeau wizard -->
+      <div class="d-flex justify-content-between align-items-start mb-3">
+        <div>
+          <h3 class="mb-1">Adhésion El Fatoora</h3>
+          <div class="text-muted small">
+            <span th:if="${wiz != null && wiz.dossierRef != null}">
+              Référence : <b th:text="${wiz.dossierRef}">ELF-ADH-...</b>
+            </span>
+            <span th:if="${wiz != null && wiz.dossierRef == null}">
+              Référence : <span class="text-muted">non générée</span>
+            </span>
+          </div>
+          <div class="text-muted">Etape 6 / 6 – Signature du dossier et soumission à TTN</div>
+        </div>
+        <div class="text-muted small">
+          Email : <b sec:authentication="name">email@exemple.tn</b>
+        </div>
+      </div>
+
+ 	
+ 
+      <div class="alert alert-danger" th:if="${error != null}" th:text="${error}"></div>
+
+      <div class="p-4 rounded border bg-light mb-3">
+        <div class="fw-semibold mb-1">Signature électronique</div>
+        <div class="text-muted small">V1 : simulation. V2 : intégration PKI (certificat + OCSP/CRL + horodatage).</div>
+
+        <div class="row g-3 mt-2" th:object="${wiz}">
+          <div class="col-md-6"><input class="form-control ft-input" th:value="*{certAuthority}" readonly placeholder="Autorité de certification (auto)"></div>
+          <div class="col-md-6"><input class="form-control ft-input" th:value="*{certSerial}" readonly placeholder="N° série certificat (auto)"></div>
+          <div class="col-md-6"><input class="form-control ft-input" th:value="*{certExpiry}" readonly placeholder="Date d’expiration (auto)"></div>
+          <div class="col-md-6"><input class="form-control ft-input" th:value="*{horodatage}" readonly placeholder="Horodatage (auto)"></div>
+        </div>
+
+        <div class="d-flex gap-2 mt-3">
+          <form th:action="@{/adhesion/etape6/sign}" method="post" class="ft-validate"
+      			data-ft-loader="on-submit" data-ft-loader-text="Signature en cours...">
+      
+            <button class="btn btn-primary" type="submit">Signer électroniquement</button>
+          </form>
+          
+          
+          <button class="btn btn-outline-secondary" type="button" disabled>Preuve de signature</button>
+        </div>
+      </div>
+
+      <div class="alert alert-info" th:if="${wiz != null && wiz.signatureOk}">
+        <div class="fw-semibold">Signature OK</div>
+        <div class="small">Empreinte (hash) : <span th:text="${wiz.hash}">hash</span></div>
+        <div class="small">Horodatage : <span th:text="${wiz.horodatage}">date</span></div>
+      </div>
+
+      <div class="alert alert-success">
+        <b>Soumission à TTN :</b> le bouton « Soumettre » est activé uniquement après signature valide.
+      </div>
+
+      <div class="d-flex justify-content-between mt-4">
+        <a class="btn btn-outline-secondary" th:href="@{/adhesion/etape5}">Retour</a>
+
+        <form th:action="@{/adhesion/etape6/submit}" method="post" class="m-0 ft-validate"
+   			  data-ft-loader="on-submit" data-ft-loader-text="Soumission à TTN en cours...">
+        
+          <button class="btn btn-primary" type="submit" th:disabled="${wiz == null || !wiz.signatureOk}">
+            Soumettre à TTN
+          </button>
+        </form>
+      </div>
+
+      <div class="alert alert-warning mt-4">
+        <b>IMPORTANT :</b> conservez les originaux papier. TTN peut les demander ultérieurement pour vérification.
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<div th:replace="fragments/layout :: appFooter"></div>
+</div>
+
+<script th:src="@{/js/ft-theme.js}"></script>
+
+</body>
+</html>

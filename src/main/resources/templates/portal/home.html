@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+      
+<head th:replace="fragments/layout :: appHead('Espace client — El Fatoora')"></head>
+<link rel="stylesheet" th:href="@{/css/ef-video.min.css}">
+
+
+<body>
+
+<div class="ft-shell">
+<div th:replace="fragments/layout :: appHeader('Espace client')"></div>
+
+
+<main class="ft-main">
+  <div class="ft-container">
+
+    <!-- Carte principale -->
+    <section class="ft-card" aria-label="Espace client">
+      <div class="ft-card-inner">
+
+        <!-- Bandeau / page intro -->
+        <section class="ft-page-hero" aria-label="Introduction">
+          <h1>Mon inscription à El Fatoora, comment ça se passe&nbsp;?</h1>
+          <div class="ft-hero-sub">
+            Retrouvez les étapes clés pour déposer votre <b>demande d’adhésion</b> et suivre sa validation par TTN.
+          </div>
+        </section>
+
+        <!-- 4 étapes -->
+        <div class="ef-steps" aria-label="Etapes du parcours">
+          <article class="ef-step is-active">
+            <div class="ef-step-head">
+              <div class="ef-step-badge">1</div>
+              <div>
+                <h3 class="ef-step-title">Identité & entreprise</h3>
+                <p class="ef-step-text">
+                  Renseignez l’identité du demandeur et les informations de l’entreprise (matricule fiscal, raison sociale, etc.).
+                </p>
+              </div>
+            </div>
+            <div class="ef-step-footer">
+              <span class="ef-chip">
+                <img class="step-icon" th:src="@{/img/icons/ef-step-1-identity.svg}" alt="" aria-hidden="true">
+                Identification de l’opérateur économique
+              </span>
+            </div>
+          </article>
+
+          <article class="ef-step">
+            <div class="ef-step-head">
+              <div class="ef-step-badge">2</div>
+              <div>
+                <h3 class="ef-step-title">Contacts & accès</h3>
+                <p class="ef-step-text">
+                  Ajoutez les coordonnées du Premier responsable (représentant légal), choisissez le Mode de connexion (Web ou EDI).
+                </p>
+              </div>
+            </div>
+            <div class="ef-step-footer">
+              <span class="ef-chip">
+                <img class="step-icon" th:src="@{/img/icons/ef-step-2-contacts.svg}" alt="" aria-hidden="true">
+                Responsables et signataire
+              </span>
+            </div>
+          </article>
+
+          <article class="ef-step">
+            <div class="ef-step-head">
+              <div class="ef-step-badge">3</div>
+              <div>
+                <h3 class="ef-step-title">Pièces jointes</h3>
+                <p class="ef-step-text">
+                  Téléversez les documents (pièces justificatives) que vous avez scannés (PDF, PNG, JPEG).
+                </p>
+              </div>
+            </div>
+            <div class="ef-step-footer">
+              <span class="ef-chip">
+                <img class="step-icon" th:src="@{/img/icons/ef-step-4-docs.svg}" alt="" aria-hidden="true">
+                Documents
+              </span>
+            </div>
+          </article>
+
+          <article class="ef-step">
+            <div class="ef-step-head">
+              <div class="ef-step-badge">4</div>
+              <div>
+                <h3 class="ef-step-title">Signature & soumission</h3>
+                <p class="ef-step-text">
+                  Validez vos données  et signez le contrat d'adhésion, puis soumettez la dossier à TTN.
+                </p>
+              </div>
+            </div>
+            <div class="ef-step-footer">
+              <span class="ef-chip">
+                <img class="step-icon" th:src="@{/img/icons/ef-step-3-signature.svg}" alt="" aria-hidden="true">
+                Signature
+              </span>
+            </div>
+          </article>
+        </div>
+
+        <!-- Bloc validation / CTA -->
+        <div class="ef-cta" aria-label="Démarrer">
+          <div class="ef-cta-left">
+            <img class="validation__icon" th:src="@{/img/icons/ef-validate.svg}" alt="" aria-hidden="true">
+            <div>
+              <h3 class="ef-cta-title">Commencez votre demande d’adhésion</h3>
+              <p class="ef-cta-sub">
+                Lancez une nouvelle demande ou reprenez un dossier en cours, puis suivez l’état et les messages TTN.
+              </p>
+            </div>
+          </div>
+
+          <div class="ef-cta-actions">
+            <a class="ft-btn ft-btn-primary" th:href="@{/adhesion}">Je commence</a>
+          </div>
+        </div>
+
+        <!-- Bloc infos essentielles (style bandeau) -->
+        <section class="ef-info-banner" aria-label="Informations essentielles">
+          <div class="ef-info-banner__content">
+            <h3 class="ef-info-banner__title">Les informations essentielles à connaître pour s’inscrire</h3>
+
+            <p class="ef-info-banner__lead">
+              Dans cette vidéo, retrouvez toutes les informations suivantes :
+            </p>
+
+            <ul class="ef-info-banner__list">
+              <li><b>Qui peut s’inscrire</b> : entreprises, fournisseurs et organismes concernés par la facture électronique.</li>
+              <li><b>Quand s’inscrire</b> : avant le dépôt / l’émission des premières factures via El Fatoora.</li>
+              <li><b>Quels documents préparer</b> : contrat & déclaration d’adhésion, justificatifs, informations d’identification.</li>
+            </ul>
+
+			<button type="button"
+			        class="ef-info-banner__btn"
+			        data-bs-toggle="modal"
+			        data-bs-target="#efVideoModal">
+			  <span class="ef-info-banner__btn-ico" aria-hidden="true">▶</span>
+			  Regarder la vidéo
+			</button>
+
+          </div>
+
+          <div class="ef-info-banner__visual" aria-hidden="true">
+           <img class="ef-info-banner__img" th:src="@{/img/icons/ef-essential-video.svg}" alt="">
+
+          </div>
+        </section>
+
+ 
+<!-- Aide rapide facturation électronique -->
+<section class="ef-info-banner ef-info-banner--quick mt-3" aria-label="Aide rapide facturation électronique">
+  <div class="ef-info-banner__content">
+    <h3 class="ef-info-banner__title">Aide rapide : suis-je concerné par El Fatoora ?</h3>
+
+    <p class="ef-info-banner__lead">
+      Répondez à quelques questions simples pour savoir si vous êtes concerné par l’obligation
+      de facturation électronique et afficher les questions FAQ les plus pertinentes.
+      <span class="ef-legal-ref">Référence : note commune n°02/2026.</span>
+    </p>
+
+	<button type="button"
+	        id="qcStartBtn"
+	        class="ef-info-banner__btn"
+	        data-bs-toggle="modal"
+	        data-bs-target="#efQuickCheckModal">
+	  <span class="ef-info-banner__btn-ico" aria-hidden="true">?</span>
+	  Démarrer
+	</button>
+
+  </div>
+
+  <div class="ef-info-banner__visual" aria-hidden="true">
+    <img class="ef-info-banner__img" th:src="@{/img/icons/ef-quick-check.svg}" alt="">
+
+  </div>
+</section>
+
+
+
+<!-- Modal Aide rapide -->
+<div class="modal fade" id="efQuickCheckModal" tabindex="-1"
+     aria-labelledby="efQuickCheckTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-xl">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title" id="efQuickCheckTitle">Aide rapide : suis-je concerné par El Fatoora ?</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+      </div>
+
+      <div class="modal-body">
+
+        <div class="small text-muted mb-3">
+          Répondez à ces questions pour obtenir une indication et afficher les questions FAQ les plus pertinentes.
+        </div>
+
+        <hr class="my-3"/>
+
+        <div class="row g-3">
+
+          <div class="col-12 col-lg-4">
+            <label class="ef-qc-label" for="qcActivity">
+              <span class="ef-qc-num" aria-hidden="true">1</span>
+              <span class="ef-qc-text">Votre activité</span>
+            </label>
+            <select class="form-select" id="qcActivity">
+              <option value="" selected>— Choisir —</option>
+              <option value="services">Prestations de services</option>
+              <option value="goods">Vente de biens</option>
+              <option value="mixed">Services + Biens</option>
+              <option value="unknown">Je ne sais pas</option>
+            </select>
+          </div>
+
+          <div class="col-12 col-lg-4">
+            <label class="ef-qc-label" for="qcClients">
+              <span class="ef-qc-num" aria-hidden="true">2</span>
+              <span class="ef-qc-text">Vos clients principaux</span>
+            </label>
+            <select class="form-select" id="qcClients">
+              <option value="" selected>— Choisir —</option>
+              <option value="public">Etat / collectivités / établissements publics</option>
+              <option value="b2b">Entreprises (B2B)</option>
+              <option value="b2c">Particuliers (B2C)</option>
+              <option value="mixed">Mixte</option>
+            </select>
+          </div>
+
+          <div class="col-12 col-lg-4">
+            <label class="ef-qc-label" for="qcStatus">
+              <span class="ef-qc-num" aria-hidden="true">3</span>
+              <span class="ef-qc-text">Etat de préparation</span>
+            </label>
+            <select class="form-select" id="qcStatus">
+              <option value="" selected>— Choisir —</option>
+              <option value="ready">J’ai les informations et pièces</option>
+              <option value="missing">Il me manque des pièces</option>
+              <option value="already">J’ai déjà commencé</option>
+            </select>
+          </div>
+
+          <div class="col-12 col-lg-6">
+            <label class="ef-qc-label" for="qcSector">
+              <span class="ef-qc-num" aria-hidden="true">4</span>
+              <span class="ef-qc-text">Secteurs spécifiques</span>
+            </label>
+            <select class="form-select" id="qcSector">
+              <option value="" selected>— Choisir —</option>
+              <option value="none">Aucun</option>
+              <option value="meds">Je vends des médicaments (B2B)</option>
+              <option value="hydro">Je vends des hydrocarbures (B2B)</option>
+              <option value="both">Médicaments + Hydrocarbures (B2B)</option>
+              <option value="retail">Je suis détaillant (vente au détail)</option>
+            </select>
+            <div class="form-text">
+              Certains secteurs sont traités de façon spécifique dans les textes et la note commune n°02/2026.
+            </div>
+          </div>
+
+          <div class="col-12 col-lg-6">
+            <label class="ef-qc-label" for="qcMode">
+              <span class="ef-qc-num" aria-hidden="true">5</span>
+              <span class="ef-qc-text">Mode souhaité</span>
+            </label>
+            <select class="form-select" id="qcMode">
+              <option value="" selected>— Choisir —</option>
+              <option value="web">Portail web</option>
+              <option value="edi">Solution connectée (EDI / API / SFTP)</option>
+              <option value="unknown">Je ne sais pas encore</option>
+            </select>
+          </div>
+
+        </div>
+
+        <div class="mt-3" id="qcResult" style="display:none;">
+          <div class="alert mb-0" role="alert" id="qcAlert">
+            <div class="fw-semibold mb-1" id="qcTitle"></div>
+            <div id="qcText"></div>
+            <div class="small mt-2 text-muted" id="qcLegal"></div>
+          </div>
+        </div>
+
+        <div class="mt-3" id="qcFaqHint" style="display:none;">
+          <div class="small text-muted">
+            Les questions FAQ les plus pertinentes ont été mises en avant ci-dessous.
+          </div>
+        </div>
+
+      </div>
+
+      <div class="modal-footer d-flex gap-2 flex-wrap">
+        <button type="button" class="btn btn-primary" id="qcBtn">Voir le résultat</button>
+        <button type="button" class="btn btn-outline-secondary" id="qcResetBtn">Réinitialiser</button>
+        <button type="button" class="btn btn-link ms-auto" data-bs-dismiss="modal">Fermer</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+ 
+
+<!-- FAQ -->
+<section class="ef-faq" aria-label="FAQ inscription">
+  <h3>Les questions fréquemment posées - FAQ</h3>
+
+  <div class="ef-faq-list">
+
+    <details class="ef-faq-item">
+      <summary class="ef-faq-summary">
+        <span>Qui peut s’inscrire à El Fatoora ?</span>
+        <span class="ef-faq-caret" aria-hidden="true"></span>
+      </summary>
+      
+<div class="ef-faq-body">
+  <p>
+    L’inscription à « El Fatoora » concerne les personnes physiques et morales dont les opérations
+    entrent dans le champ de la facturation électronique (tel que précisé par les textes officiels).
+  </p>
+
+  <p class="mb-2"><strong>Vous êtes notamment concerné si vous :</strong></p>
+  <ul class="mb-3">
+    <li>Fournissez des <strong>prestations de services</strong> (extension prévue par la Loi de finances 2026).</li>
+    <li>Réalisez des opérations avec :</li>
+    <ul>
+      <li><strong>l’Etat</strong>,</li>
+      <li><strong>les collectivités locales</strong>,</li>
+      <li><strong>les établissements publics</strong> (administratifs ou non).</li>
+    </ul>
+    <li>Réalisez des <strong>ventes de médicaments</strong> entre professionnels.</li>
+    <li>Réalisez des <strong>ventes d’hydrocarbures</strong> entre professionnels.</li>
+    <li>Réalisez toute autre opération incluse dans le champ réglementaire de la facturation électronique.</li>
+  </ul>
+
+  <div class="alert alert-light border mb-3" role="note">
+    <strong>À noter :</strong>
+    certaines opérations et situations particulières ne sont pas concernées, conformément aux précisions des notes officielles
+    (ex. certains documents ne constituant pas une facture au sens fiscal).
+  </div>
+
+  <p class="mb-0">
+    La plateforme nationale « El Fatoora » est opérée par <strong>Tunisie TradeNet (TTN)</strong>
+    pour la transmission, le contrôle et le traitement des factures électroniques.
+  </p>
+</div>
+  </details>
+
+ <details class="ef-faq-item">
+      <summary class="ef-faq-summary">
+        <span>Qu’est-ce qu’une «facture électronique» au sens légal ?</span>
+        <span class="ef-faq-caret" aria-hidden="true"></span>
+      </summary>
+<div class="ef-faq-body">
+
+  <p>
+    Une <strong>facture électronique</strong>, au sens légal, n’est pas un simple fichier PDF.
+    Il s’agit d’une facture émise, transmise, reçue et conservée selon un
+    <strong>système électronique encadré par la réglementation</strong>,
+    garantissant l’authenticité de l’origine, l’intégrité du contenu
+    et la traçabilité des opérations.
+  </p>
+
+  <p class="mb-2"><strong>Selon la réglementation :</strong></p>
+  <ul class="mb-3">
+    <li>
+      La facture électronique doit être émise à travers un
+      <strong>système de facturation électronique agréé</strong>
+      ou via la plateforme nationale dédiée.
+    </li>
+    <li>
+      Elle doit contenir les <strong>mêmes mentions légales</strong>
+      qu’une facture papier (identification des parties, date, nature de l’opération,
+      montants, TVA, etc.).
+    </li>
+    <li>
+      Elle doit être <strong>conservée électroniquement</strong>
+      selon les conditions et durées prévues par la réglementation.
+    </li>
+  </ul>
+
+  <p class="mb-2"><strong>Ce qui ne constitue pas une facture électronique :</strong></p>
+  <ul class="mb-3">
+    <li>
+      Un simple PDF généré sans passer par un système de facturation électronique reconnu.
+    </li>
+    <li>
+      Une facture papier scannée.
+    </li>
+  </ul>
+
+  <div class="alert alert-light border mb-3" role="note">
+    <strong>Règle simple :</strong>
+    une facture est considérée comme « électronique » uniquement
+    si elle est émise et traitée via le réseau de facturation électronique
+    conformément aux conditions fixées par les textes officiels.
+  </div>
+
+  <p class="mb-0">
+    En Tunisie, la plateforme nationale de facturation électronique est
+    <strong>« El Fatoora »</strong>, opérée par <strong>Tunisie TradeNet (TTN)</strong>,
+    qui assure la transmission et le traitement des factures électroniques.
+  </p>
+
+</div>
+
+    </details>
+    
+  
+    <details class="ef-faq-item">
+      <summary class="ef-faq-summary">
+        <span>Y a-t-il des documents qui ne sont pas concernés par la facturation électronique ?</span>
+        <span class="ef-faq-caret" aria-hidden="true"></span>
+      </summary>
+<div class="ef-faq-body">
+
+  <p>
+    Oui. La note commune 02/2026 précise que la facturation électronique <strong> ne s’applique pas
+    à tous les documents</strong>, mais uniquement aux documents qui constituent
+    des <strong>factures ou documents en tenant lieu</strong> au sens fiscal.
+  </p>
+
+  <p class="mb-2"><strong>1) Documents qui ne sont pas considérés comme des factures</strong></p>
+  <ul class="mb-3">
+    <li>
+      Les <strong>devis</strong>.
+    </li>
+    <li>
+      Les <strong>bons de commande</strong>.
+    </li>
+    <li>
+      Les <strong>bons de livraison</strong>.
+    </li>
+    <li>
+      Les <strong>contrats</strong> et conventions.
+    </li>
+    <li>
+      Les documents internes de gestion (rapports, états internes, situations non facturées).
+    </li>
+  </ul>
+
+  <p class="mb-2"><strong>2) Documents exclus même s’ils accompagnent une opération</strong></p>
+  <ul class="mb-3">
+    <li>
+      Les documents servant uniquement à <strong>décrire ou préparer l’opération</strong>
+      sans constituer une demande de paiement.
+    </li>
+    <li>
+      Les documents relatifs à la <strong>logistique</strong> ou au <strong>suivi</strong>
+      lorsqu’ils ne remplacent pas une facture.
+    </li>
+  </ul>
+
+  <p class="mb-2"><strong>3) Cas particuliers précisés par la note commune 02/2026</strong></p>
+  <ul class="mb-3">
+    <li>
+      Les services liés directement à une vente de biens
+      (exemple : <strong>transport lors de la vente</strong>,
+      <strong>installation lors de la vente</strong>)
+      ne sont pas considérés comme des prestations de services distinctes,
+      <strong>sauf</strong> s’ils sont déclarés comme <strong>activité secondaire</strong>.
+    </li>
+    <li>
+      Certaines situations spécifiques peuvent être exclues selon la nature
+      de l’opération et le statut fiscal de l’opérateur.
+    </li>
+  </ul>
+
+  <div class="alert alert-light border mb-3" role="note">
+    <strong>Règle simple :</strong>
+    seule la <strong>facture</strong> ou le document qui <strong>tient lieu de facture</strong>
+    (par exemple note d’honoraires pour professions libérales)
+    est concerné par l’obligation de facturation électronique.
+  </div>
+
+  <p class="mb-0">
+    En cas de doute sur la nature d’un document,
+    il est recommandé de se référer aux notes communes en vigueur
+    ou de démarrer l’inscription sur <strong>El Fatoora</strong>.
+  </p>
+
+</div>
+
+    </details>
+      
+      
+      
+      
+      
+    <details class="ef-faq-item">
+      <summary class="ef-faq-summary">
+        <span>À partir de quand la facturation électronique s’applique-t-elle aux prestations de services ?</span>
+        <span class="ef-faq-caret" aria-hidden="true"></span>
+      </summary>
+<div class="ef-faq-body">
+
+  <p>
+    La facturation électronique est étendue aux <strong>prestations de services</strong>
+    à partir de l’entrée en vigueur des dispositions prévues par la <strong>Loi de finances 2026</strong>,
+    telles que précisées par la note commune 02/2026 publiée par l’administration fiscale.
+  </p>
+
+  <p class="mb-2"><strong>Concrètement :</strong></p>
+
+  <ul class="mb-3">
+    <li>
+      Les prestataires de services concernés sont tenus d’émettre leurs factures
+      sous forme <strong>électronique</strong> via la plateforme nationale de facturation électronique <strong>« El Fatoora »</strong>,
+    opérée par <strong>Tunisie TradeNet (TTN)</strong>.
+    </li>
+    <li>
+      Cette extension vient s’ajouter aux périmètres déjà soumis auparavant
+      (opérations avec le secteur public, ventes de médicaments et d’hydrocarbures entre professionnels, etc.).
+    </li>
+    <li>
+      L’application est organisée selon une <strong>mise en œuvre progressive</strong>,
+      conformément aux modalités précisées dans les textes officiels.
+    </li>
+  </ul>
+
+  <div class="alert alert-light border mb-3" role="note">
+    <strong>Important :</strong>
+    Les personnes invitées à accomplir les démarches d’inscription peuvent continuer,
+    à titre transitoire, à émettre des factures selon les modalités habituelles
+    jusqu’à finalisation des formalités requises pour l’accès à la plateforme <strong>« El Fatoora »</strong>.
+  </div>
+
+
+</div>
+
+    </details>
+
+
+
+    <details class="ef-faq-item">
+      <summary class="ef-faq-summary">
+        <span>Dois-je m’inscrire même si je fais des prestations de services «à côté» (activité secondaire) ?</span>
+        <span class="ef-faq-caret" aria-hidden="true"></span>
+      </summary>
+<div class="ef-faq-body">
+
+  <p>
+    Oui. La note commune précise que l’obligation de facturation électronique
+    s’applique aux prestations de services <strong>déclarées dans la déclaration d’existence</strong>,
+    qu’elles soient exercées à titre <strong>principal ou secondaire</strong>.
+  </p>
+
+  <p class="mb-2"><strong>Concrètement :</strong></p>
+  <ul class="mb-3">
+    <li>
+      Si vous avez déclaré une activité de prestations de services
+      (même en complément d’une activité principale de vente de biens),
+      les factures relatives à ces prestations entrent dans le champ de la facturation électronique.
+    </li>
+    <li>
+      L’obligation ne dépend pas du volume d’activité,
+      mais du <strong>type d’opération déclarée</strong>.
+    </li>
+  </ul>
+
+  <p class="mb-2"><strong>Cas important précisé par la note commune</strong></p>
+  <ul class="mb-3">
+    <li>
+      Les services liés directement à une vente
+      (exemple : transport lors de la vente, installation lors de la vente)
+      <strong>ne sont pas considérés</strong> comme des prestations de services distinctes,
+      <strong>sauf</strong> s’ils ont été déclarés comme activité secondaire.
+    </li>
+  </ul>
+
+  <div class="alert alert-light border mb-3" role="note">
+    <strong>Exemple :</strong>
+    <ul class="mb-0">
+      <li>Vous vendez du matériel informatique (activité principale).</li>
+      <li>Vous avez déclaré aussi une activité de maintenance ou de formation.</li>
+      <li>Les factures de maintenance / formation doivent être émises électroniquement.</li>
+    </ul>
+  </div>
+
+  <p class="mb-0">
+    Dans ce cas, vous devez procéder à l’inscription sur <strong>El Fatoora</strong>
+    afin de pouvoir émettre vos factures de services conformément aux règles.
+  </p>
+
+</div>
+
+    </details>
+
+    <details class="ef-faq-item">
+      <summary class="ef-faq-summary">
+        <span>Est-ce que je peux commencer l’inscription si je n’ai pas encore toutes les pièces ?</span>
+        <span class="ef-faq-caret" aria-hidden="true"></span>
+      </summary>
+      <div class="ef-faq-body">
+        <p>
+          Oui. Vous pouvez créer votre demande et compléter les pièces ensuite.
+          L’important est de finaliser le dossier selon les exigences de la procédure d’adhésion
+          pour pouvoir activer votre accès et utiliser le réseau de facturation électronique.
+        </p>
+      </div>
+    </details>
+
+    <details class="ef-faq-item">
+      <summary class="ef-faq-summary">
+        <span>Si je ne suis pas encore «prêt», puis-je continuer à émettre des factures papier ?</span>
+        <span class="ef-faq-caret" aria-hidden="true"></span>
+      </summary>
+<div class="ef-faq-body">
+
+  <p>
+    Oui, <strong>à titre transitoire</strong>.
+    La <strong>note commune n°02/2026</strong> précise que les personnes invitées à accomplir
+    les démarches d’inscription au réseau de facturation électronique opérée par
+    <strong>Tunisie TradeNet (TTN)</strong>,
+    peuvent continuer à émettre des factures selon les modalités habituelles
+    tant qu’elles n’ont pas encore finalisé les formalités requises.
+  </p>
+
+  <p class="mb-2"><strong>Concrètement :</strong></p>
+  <ul class="mb-3">
+    <li>
+      Si vous êtes concerné par l’obligation mais que vous n’avez pas encore
+      finalisé votre inscription, vous <strong>devez vous inscrire le plutôt possible </strong>et vous pourriez temporairement continuer
+      à utiliser la facturation papier.
+    </li>
+    <li>
+      Cette tolérance s’inscrit dans le cadre d’une
+      <strong>mise en œuvre progressive</strong> prévue par la note commune n°02/2026.
+    </li>
+    <li>
+      Dès que votre accès à la plateforme est activé,
+      les factures relevant du périmètre devront être émises électroniquement.
+    </li>
+  </ul>
+
+  <div class="alert alert-light border mb-3" role="note">
+    <strong>Important :</strong>
+    cette situation transitoire ne dispense pas de l’obligation
+    de procéder aux démarches d’inscription dans les meilleurs délais,
+    conformément à la note commune n°02/2026.
+  </div>
+
+  <p class="mb-0">
+    Pour éviter tout risque de non-conformité,
+    il est recommandé de démarrer l’inscription sur <strong>El Fatoora</strong>
+    dès que possible.
+  </p>
+
+</div>
+
+    </details>
+
+
+    <details class="ef-faq-item">
+      <summary class="ef-faq-summary">
+        <span>Quelles sont les sanctions si j’émets encore des factures papier alors que je suis obligé de passer à l’électronique ?</span>
+        <span class="ef-faq-caret" aria-hidden="true"></span>
+      </summary>
+<div class="ef-faq-body">
+
+  <p>
+    La <strong>note commune n°02/2026</strong> précise que l’émission de factures papier
+    pour des opérations soumises obligatoirement à la facturation électronique
+    constitue une <strong>infraction aux obligations fiscales</strong>
+    et expose le contrevenant à des sanctions.
+  </p>
+
+  <p class="mb-2"><strong>Nature de la sanction</strong></p>
+  <ul class="mb-3">
+    <li>
+      Une <strong>amende comprise entre 100 dinars et 500 dinars</strong>
+      par facture émise en dehors du système de facturation électronique.
+    </li>
+    <li>
+      Un <strong>plafond annuel de 50 000 dinars</strong> est appliqué
+      pour l’ensemble des amendes liées à ce manquement.
+    </li>
+  </ul>
+
+  <p class="mb-2"><strong>Quand ces sanctions s’appliquent</strong></p>
+  <ul class="mb-3">
+    <li>
+      Lorsque vous êtes concerné par l’obligation de facturation électronique ( Prestataire de service),
+    </li>
+     <li>
+      ET
+    </li>
+    <li>
+      Vous continuez à émettre des factures papier
+      pour des opérations relevant du périmètre obligatoire et vous n'êtes pas encore adhérés à El fatoora .
+    </li>
+  </ul>
+
+  <div class="alert alert-light border mb-3" role="note">
+    <strong>Important :</strong>
+	Pour éviter toute pénalité,
+    il est fortement recommandé de finaliser votre inscription,  dès que possible, sur la plateforme nationale de facturation électronique 
+    <strong>El Fatoora</strong>  opérée par <strong>Tunisie TradeNet (TTN)</strong>.
+  </div>
+ 
+
+</div>
+
+    </details>
+
+
+
+    <details class="ef-faq-item">
+      <summary class="ef-faq-summary">
+        <span>La signature électronique est-elle obligatoire pour l’inscription ?</span>
+        <span class="ef-faq-caret" aria-hidden="true"></span>
+      </summary>
+<div class="ef-faq-body">
+
+  <p>
+    Non. La <strong>note commune n°02/2026</strong> ne prévoit pas que la possession d’une signature électronique
+    soit une condition préalable obligatoire pour <strong>démarrer</strong> l’inscription
+    au réseau de facturation électronique <strong>El Fatoora</strong> opérée par <strong>Tunisie TradeNet (TTN)</strong>.
+  </p>
+
+  <p class="mb-2"><strong>Concrètement :</strong></p>
+  <ul class="mb-3">
+    <li>
+      Vous pouvez créer votre demande d’adhésion sur <strong>El Fatoora</strong>
+      et saisir vos informations sans disposer immédiatement d’une signature électronique ( délivré exclusivement par l'ANCE ou TunTrust).
+    </li>
+    <li>
+      En revanche, une fois inscrit sur El Fatoora, pour <strong>émettre vos factures électroniques</strong>,
+      Les solutions et les modes d’utilisation
+      exigent l’usage d’une <strong>signature électronique</strong>
+      afin de garantir l’authenticité et l’intégrité des factures,
+      conformément aux règles techniques en vigueur.
+    </li>
+  </ul>
+
+  <p class="mb-2"><strong>Selon le mode d’utilisation choisi :</strong></p>
+  <ul class="mb-3">
+    <li>
+      En mode <strong>Portail Web</strong> : la plateforme exige
+      d’utiliser la signatture électronique adapté:  soit une clé de signature <strong><«TunTrust»</strong>  soit <strong><«Digigo»</strong> 	.
+    </li>
+    <li>
+      En mode <strong>EDI</strong> :
+      Ce mode concerne principalement les grandes entreprises, le Cachet électronique Enterprise-ID de l'ANCE est la solution de la signature la plus recommendée.
+    </li>
+  </ul>
+
+  <div class="alert alert-light border mb-3" role="note">
+    <strong>Important :</strong>
+    l’obligation porte principalement sur l’émission de factures électroniques conformes.
+    La signature électronique constitue un <strong>moyen technique</strong>
+    permettant d’atteindre cet objectif, selon les modalités définies par la plateforme El Fatoora.
+  </div>
+
+  <p class="mb-0">
+    Il est donc recommandé d’anticiper l’obtention d’une signature électronique,
+    même si vous pouvez commencer votre inscription sans l’avoir immédiatement.
+    La plateforme nationale <strong>El Fatoora</strong> est opérée par
+    <strong>Tunisie TradeNet (TTN)</strong>.
+  </p>
+
+</div>
+
+    </details>
+
+    <details class="ef-faq-item">
+      <summary class="ef-faq-summary">
+        <span>Quels sont les modes disponibles (Portail Web / EDI) ?</span>
+        <span class="ef-faq-caret" aria-hidden="true"></span>
+      </summary>
+      <div class="ef-faq-body">
+        <p>
+          Après acceptation de votre dossier d'adhésion, vous pourrez utiliser El Fatoora selon le mode que vous avez choisi lors de l'adhesion ()vous pourriez le modifier ultérieurement):
+          soit via une solution connectée (mode EDI), soit via l’interface ou le Portail web opéré par TTN (mode Web).
+        </p>
+        <b></b>
+        <p>
+    La <strong>note commune n°02/2026</strong> précise que l’émission des factures électroniques
+    doit se faire à travers le <strong>réseau de facturation électronique</strong>
+    selon les conditions et procédures fixées par la réglementation.
+    La plateforme nationale utilisée en Tunisie est <strong>El Fatoora</strong>,
+    opérée par <strong>Tunisie TradeNet (TTN)</strong>.
+  </p>
+
+  <p class="mb-2"><strong>Après acceptation de votre inscription, deux modes principaux sont disponibles :</strong></p>
+
+  <ul class="mb-3">
+    <li>
+      <strong>1) Mode Web - Portail Web El Fatoora</strong>
+      <ul class="mt-1">
+        <li>Saisie des factures directement en ligne.</li>
+        <li>Consultation et suivi des factures émises.</li>
+        <li>Mode adapté aux petites structures et aux volumes modestes.</li>
+        <li>Aucune intégration technique avec un logiciel interne n’est requise.</li>
+      </ul>
+    </li>
+
+    <li class="mt-2">
+      <strong>2) Mode EDI - Solution connectée (Web Service ou SFTP)</strong>
+      <ul class="mt-1">
+        <li>Connexion entre votre système de gestion (ERP, logiciel de facturation, application métier) et El Fatoora.</li>
+        <li>Emission automatique des factures électroniques.</li>
+        <li>Mode adapté aux entreprises avec volumes importants ou systèmes informatisés.</li>
+        <li>Nécessite une conformité technique avec les spécifications de la plateforme.</li>
+      </ul>
+    </li>
+  </ul>
+
+  <div class="alert alert-light border mb-3" role="note">
+    <strong>Important :</strong>
+    Pour le mode EDI, des intégrateurs qualifiés peuvent vous assister à s'intégrer avec la plateforme EL Fatoora.
+  </div>
+
+  <p class="mb-0">
+    Le choix du mode dépend de votre organisation, de votre volume de factures
+    et de votre niveau d’équipement informatique.
+    Si vous ne disposez pas d'un  logiciel de facturation, ou d'un ERP, ou d'un application métier, 
+    le <strong>mode Web</strong> est le plus recommandé. Mais en revanche, 
+    vous en disposez et que vous devez transmettre vos facture électroniquement le plutôt possible, vous pouvez commencer avec le <strong>Portail Web</strong> puis évoluer vers
+    une <strong>solution connectée (EDI) </strong> ultérieurement.
+  </p>
+      </div>
+    </details>
+
+    
+    <details class="ef-faq-item">
+      <summary class="ef-faq-summary">
+        <span>Quel est le meilleur moment pour s’inscrire ?</span>
+        <span class="ef-faq-caret" aria-hidden="true"></span>
+      </summary>
+      <div class="ef-faq-body">
+        <p>
+          Le plus tôt possible. La note commune insiste sur la logique de mise en œuvre progressive :
+          s’inscrire tôt évite les blocages au moment où vos opérations basculent dans l’obligation.
+          Vous aurez ainsi le temps de compléter votre dossier, activer votre accès, et choisir le mode d’utilisation.
+        </p>
+      </div>
+    </details>
+
+    <details class="ef-faq-item">
+      <summary class="ef-faq-summary">
+        <span>Où trouver les références officielles (textes) ?</span>
+        <span class="ef-faq-caret" aria-hidden="true"></span>
+      </summary>
+      <div class="ef-faq-body">
+        <p>
+          Les références principales sont : la مذكرة عامة عدد 02 لسنة 2026 publiée sur Jibaya (Ministère des Finances),
+          la Loi de finances 2026 (article/fasl 53 expliqué), et le texte réglementaire fixant les conditions et procédures
+          d’émission et de conservation des factures électroniques, ainsi que le JORT (الرائد الرسمي).
+        </p>
+      </div>
+    </details>
+
+  </div>
+</section>
+
+
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<!-- Modal Vidéo (choix langue + player) -->
+<div class="modal fade ef-video-modal" id="efVideoModal" tabindex="-1"
+     aria-labelledby="efVideoTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title" id="efVideoTitle">Regarder la vidéo</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+      </div>
+
+      <div class="modal-body">
+        <!-- Etape A : Choix de langue -->
+        <div id="efVideoPick" class="ef-video-hero">
+          <p class="mb-2" style="color:#5f6b85;">
+            Choisissez la langue avant de lancer la vidéo.
+          </p>
+
+          <div class="ef-lang-grid">
+            <button type="button" class="ef-lang-btn" id="efPickFr">
+              <div class="ef-lang-label">
+                <strong>Français</strong>
+                <span>Version en français</span>
+              </div>
+              <span class="ef-lang-chip">FR</span>
+            </button>
+
+            <button type="button" class="ef-lang-btn" id="efPickAr">
+              <div class="ef-lang-label ef-rtl">
+                <strong>عربي</strong>
+                <span>النسخة العربية</span>
+              </div>
+              <span class="ef-lang-chip">AR</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Etape B : Lecture vidéo -->
+        <div id="efVideoPlay" class="ef-video-stage">
+          <div class="ef-video-wrap">
+            <video id="efVideoPlayer" controls playsinline preload="metadata">
+              <source id="efVideoSource" src="" type="video/mp4">
+              Votre navigateur ne supporte pas la lecture vidéo.
+            </video>
+          </div>
+
+          <div class="ef-video-actions">
+            <button type="button" class="btn btn-outline-secondary" id="efVideoBack">
+              Changer de langue
+            </button>
+            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">
+              Fermer
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div th:replace="fragments/layout :: appFooter"></div>
+</div>
+<script th:src="@{/js/ft-theme.js}"></script>
+<script th:src="@{/js/ef-video.js}"></script>
+<script th:src="@{/js/faq-home.js}"></script>
+
+</body>
+
+</html>

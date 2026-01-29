@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+  <meta charset="UTF-8">
+  <title>Détail – Suivi demande</title>
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+<link rel="stylesheet" th:href="@{/css/ft-theme.min.css}">
+</head>
+
+<body>
+
+<div class="ft-shell">
+<div th:replace="fragments/layout :: appHeader('Suivi des formalités')"></div>
+
+<div class="container py-4">
+
+  <div class="d-flex justify-content-between align-items-start mb-3">
+    <div>
+		<a class="btn btn-outline-secondary mb-3"
+		   th:href="@{/adhesion/suivi(statut=${selectedStatut}, ref=${searchRef})}">
+		  ← Retour
+		</a>
+    </div>
+    <div class="text-muted small">
+      Compte : <b sec:authentication="name">email@exemple.tn</b>
+    </div>
+  </div>
+
+  <div class="alert alert-danger" th:if="${error != null}" th:text="${error}"></div>
+
+  <!-- header dossier -->
+  <div class="card shadow-sm mb-3">
+    <div class="card-body">
+      <div class="fw-bold" th:text="${dossier.raisonSociale ?: 'Demande d’adhésion'}">Demande d’adhésion</div>
+      <div class="text-muted small">
+        <span th:text="${dossier.createdAt != null ? #temporals.format(dossier.createdAt, 'dd/MM/yyyy') : '-'}">19/12/2025</span>
+        -
+        <span th:text="${
+            dossier.statut.name() == 'VALIDEE' ? 'Demande Adhésion El Fatoora Validée' :
+            (dossier.statut.name() == 'REJETEE' ? 'Demande Adhésion El Fatoora Rejetée' :
+            (dossier.statut.name() == 'COMPLEMENT' ? 'Complément Information' :
+            (dossier.statut.name() == 'EN_INSTRUCTION' ? 'En cours d\u2019instruction' : 'Dossier soumis')))
+        }">Statut</span>
+      </div>
+      <div class="d-flex justify-content-between mt-2 small">
+        <div><span class="text-muted">Réf:</span> <b th:text="${dossier.dossierRef}">ELF-ADH-2026-0001234</b></div>
+        <div class="text-muted">Documents joints : <b th:text="${piecesCount}">0</b></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row g-3">
+    <!-- historique -->
+    <div class="col-md-4">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <div class="fw-bold mb-2">Historique</div>
+          <div class="timeline">
+          
+            <div th:each="a : ${audit}"
+                 th:with="act=${a.action != null ? a.action : ''}"
+                 class="tl-item"
+                 th:classappend="${#strings.containsIgnoreCase(act,'REJECT') ? ' tl-danger' : (#strings.containsIgnoreCase(act,'COMPLEMENT') ? ' tl-warn' : (#strings.containsIgnoreCase(act,'VALID') ? ' tl-success' : ''))}">
+
+              <div class="fw-semibold" th:text="${a.createdAt != null ? #temporals.format(a.createdAt, 'dd/MM/yyyy') : '-'}">15/12/2025</div>
+              <div class="text-muted small" th:text="${a.action}">Instruction</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- synthèse -->
+    <div class="col-md-8">
+
+      <div th:if="${dossier.statut.name() == 'VALIDEE'}" class="badge-box badge-ok mb-3">
+        <div class="fw-bold">Demande validée</div>
+        <div class="fw-semibold mt-2"
+             th:text="${(dossier.decidedAt != null ? #temporals.format(dossier.decidedAt,'dd/MM/yyyy') : (dossier.updatedAt != null ? #temporals.format(dossier.updatedAt,'dd/MM/yyyy') : '-'))}">
+          19/12/2025
+        </div>
+        <div class="mt-2"><b>Observation :</b></div>
+        <div th:text="${dossier.motifDecision ?: 'Ok sans restriction'}">Ok sans restriction</div>
+      </div>
+
+      <div th:if="${dossier.statut.name() == 'REJETEE'}" class="badge-box badge-ko mb-3">
+        <div class="fw-bold">Demande rejetée</div>
+        <div class="fw-semibold mt-2"
+             th:text="${(dossier.decidedAt != null ? #temporals.format(dossier.decidedAt,'dd/MM/yyyy') : (dossier.updatedAt != null ? #temporals.format(dossier.updatedAt,'dd/MM/yyyy') : '-'))}">
+          06/12/2025
+        </div>
+        <div class="mt-2"><b>Observation :</b></div>
+        <div th:text="${dossier.motifDecision ?: '-'}">- Votre registre de commerce est invalide</div>
+      </div>
+
+      <div th:if="${dossier.statut.name() == 'COMPLEMENT'}" class="badge-box badge-comp mb-3">
+        <div class="fw-bold">Complément d'information</div>
+        <div class="fw-semibold mt-2"
+             th:text="${(dossier.updatedAt != null ? #temporals.format(dossier.updatedAt,'dd/MM/yyyy') : '-')}">
+          06/12/2025
+        </div>
+        <div class="mt-2"><b>Observation :</b></div>
+        <div th:text="${dossier.motifDecision ?: '-'}">- Votre registre de commerce est invalide</div>
+      </div>
+
+      <!-- entreprise -->
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <div class="d-flex justify-content-between align-items-center">
+            <div class="fw-bold">Entreprise</div>
+            <button class="btn btn-sm btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEntreprise">
+              ^
+            </button>
+          </div>
+
+          <div class="collapse show mt-3" id="collapseEntreprise">
+            <div class="mb-3">
+              <div class="fw-semibold">Dénomination</div>
+              <div th:text="${dossier.raisonSociale ?: '-'}">-</div>
+            </div>
+
+            <div class="mb-3">
+              <div class="fw-semibold">Matricule Fiscale</div>
+              <div th:text="${dossier.matriculeFiscal ?: '-'}">-</div>
+            </div>
+
+            <div class="mb-3">
+              <div class="fw-semibold">Registre de Commerce</div>
+              <div th:text="${dossier.registreCommerce ?: '-'}">-</div>
+            </div>
+
+            <div class="mb-3">
+              <div class="fw-semibold">Date Demande</div>
+              <div th:text="${dossier.createdAt != null ? #temporals.format(dossier.createdAt, 'dd/MM/yyyy') : '-'}">-</div>
+            </div>
+
+            <div class="mb-3">
+              <div class="fw-semibold">Adresse</div>
+              <div th:text="${dossier.adresse ?: '-'}">-</div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<div th:replace="fragments/layout :: appFooter"></div>
+</div>
+
+<script th:src="@{/js/ft-theme.js}"></script>
+</body>
+</html>

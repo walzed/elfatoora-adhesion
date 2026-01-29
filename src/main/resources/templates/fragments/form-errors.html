@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<body>
+
+  <!-- =======================================================
+       FORM ERRORS fragment
+       Standardise l'affichage des erreurs (globales + champs)
+       Utilisation : <div th:replace="fragments/form-errors :: formErrors"></div>
+  ======================================================= -->
+  <th:block th:fragment="formErrors">
+
+    <!-- Erreur globale (controller : model.addAttribute("error", ...)) -->
+    <div class="alert alert-danger" role="alert" th:if="${error}">
+      <strong>Erreur :</strong>
+      <span th:text="${error}">Une erreur est survenue</span>
+    </div>
+
+    <!-- Erreur globale alternative -->
+    <div class="alert alert-danger" role="alert" th:if="${globalError}">
+      <strong>Erreur :</strong>
+      <span th:text="${globalError}">Une erreur est survenue</span>
+    </div>
+
+    <!-- Résumé des erreurs de validation -->
+    <div class="alert alert-warning" role="alert"
+         th:if="${#fields.hasErrors('*')}">
+      <div class="d-flex align-items-start gap-2">
+        <div style="font-size: 18px; line-height: 1">⚠</div>
+        <div>
+          <div class="fw-semibold mb-1">Veuillez corriger les champs en erreur.</div>
+          <ul class="mb-0 ps-3">
+            <li th:each="e : ${#fields.errors('*')}" th:text="${e}">Erreur</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </th:block>
+
+</body>
+</html>

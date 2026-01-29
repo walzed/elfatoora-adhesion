@@ -1,0 +1,35 @@
+1
+00:00:00,000 --> 00:00:05,500
+Bienvenue sur El Fatoora, la plateforme de facture électronique de Tunisie TradeNet.
+
+2
+00:00:05,500 --> 00:00:14,000
+Pour vous inscrire, suivez quatre étapes simples.
+
+3
+00:00:14,000 --> 00:00:23,000
+Étape 1 : Qui peut s’inscrire ?
+Entreprises, fournisseurs et organismes concernés par la facture électronique.
+
+4
+00:00:23,000 --> 00:00:32,000
+Étape 2 : Quand s’inscrire ?
+Avant l’émission ou le dépôt de vos premières factures via El Fatoora.
+
+5
+00:00:32,000 --> 00:00:46,000
+Étape 3 : Quels documents préparer ?
+Contrat, déclaration d’adhésion, justificatifs et informations d’identification.
+
+6
+00:00:46,000 --> 00:00:58,000
+Étape 4 : Signature et dépôt en ligne.
+Votre demande est signée électroniquement et transmise à TTN pour validation.
+
+7
+00:00:58,000 --> 00:01:05,000
+Une fois le dossier complet, TTN valide l’adhésion et vous êtes notifié.
+
+8
+00:01:05,000 --> 00:01:12,000
+Important : conservez vos originaux papier. TTN peut les demander pour contrôle.

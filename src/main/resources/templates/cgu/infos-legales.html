@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="fragments/layout :: appHead('Informations Légales — El Fatoora')"></head>
+
+<body>
+
+<div class="ft-shell">
+<div th:replace="fragments/layout :: appHeader('Mentions Légales')"></div>
+
+<main class="ft-main">
+  <div class="ft-container">
+
+    <section class="ft-card" aria-label="Informations légales">
+      <div class="ft-card-inner">
+
+        <section class="ft-page-hero" aria-label="Introduction">
+          <h1>Informations Légales</h1>
+          <div class="ft-hero-sub">
+            Identification de l'éditeur et cadre réglementaire de la plateforme El Fatoora.
+          </div>
+        </section>
+
+        <div class="ef-content-legals" style="line-height: 1.6; color: #333;">
+          
+          <h2 style="color: #0056b3; border-bottom: 1px solid #eee; padding-bottom: 5px; margin-top: 2rem;">1. Editeur de la Plateforme</h2>
+          <p>
+            La plateforme <strong>El Fatoora</strong> est éditée par <strong>Tunisie Trade Net (TTN)</strong>, établissement publique opérant sous la tutelle du <strong>Ministère des Finances</strong>, dont le rôle est de dématérialiser les procédures administratives et la facturation électronique.
+          </p>
+          <ul style="list-style: none; padding-left: 0;">
+            <li><strong>Siège social :</strong> Immeuble El Khalij, Rue du, 1053 Lac Malären, Tunis</li>
+            <li><strong>Matricule Fiscal :</strong> 736202X</li>
+            <li><strong>Registre de Commerce :</strong> B 11260/2000</li>
+            <li><strong>Email :</strong> contact@elfatoora.tn</li>
+          </ul>
+
+          <h2 style="color: #0056b3; border-bottom: 1px solid #eee; padding-bottom: 5px; margin-top: 2rem;">2. Directeur de la Publication</h2>
+          <p>
+            Le Directeur de la Publication de la plateforme est le <strong>Président Directeur Général de TTN</strong>.
+          </p>
+
+          <h2 style="color: #0056b3; border-bottom: 1px solid #eee; padding-bottom: 5px; margin-top: 2rem;">3. Hébergement du site</h2>
+          <p>
+            L'hébergement de la plateforme El Fatoora est assuré par les infrastructures propres de <strong>Tunisie Trade Net</strong>, garantissant la souveraineté et la sécurité des données sur le territoire tunisien.
+          </p>
+          <ul style="list-style: none; padding-left: 0;">
+            <li><strong>Adresse de l'hébergeur :</strong> Data Center TTN, Tunis, Tunisie.</li>
+          </ul>
+
+          <h2 style="color: #0056b3; border-bottom: 1px solid #eee; padding-bottom: 5px; margin-top: 2rem;">4. Propriété Intellectuelle</h2>
+          <p>
+            L’ensemble de la plateforme (structure, textes, graphismes, logos, logiciels) est la propriété exclusive de <strong>TTN</strong>. 
+            Toute reproduction, représentation, modification ou adaptation totale ou partielle de ces éléments sans l'autorisation écrite préalable de TTN est strictement interdite et constitue une contrefaçon sanctionnée par le <strong>Code de la Propriété Littéraire et Artistique</strong> (Loi n° 94-36 du 24 février 1994).
+          </p>
+
+          <h2 style="color: #0056b3; border-bottom: 1px solid #eee; padding-bottom: 5px; margin-top: 2rem;">5. Technologies</h2>
+          <p>
+            La plateforme utilise des technologies de signature électronique certifiées par l'<strong>Agence Nationale de Certification Electronique (TunTrust)</strong>.
+          </p>
+
+          <div style="background-color: #f9f9f9; border: 1px solid #ddd; padding: 15px; margin: 2rem 0; border-radius: 4px;">
+            <strong>Note juridique :</strong> TTN s'efforce de fournir des informations précises sur ce site, mais ne saurait être tenue pour responsable des omissions ou des carences dans la mise à jour des informations administratives externes.
+          </div>
+        </div>
+
+        <section class="ef-faq" aria-label="FAQ Légale">
+          <h3>En savoir plus</h3>
+          <div class="ef-faq-list">
+            
+            <details class="ef-faq-item">
+              <summary class="ef-faq-summary">
+                <span>Comment signaler un contenu illicite ?</span>
+                <span class="ef-faq-caret" aria-hidden="true"></span>
+              </summary>
+              <div class="ef-faq-body">
+                <p>Pour tout signalement ou question relative au contenu de la plateforme, vous pouvez envoyer un émail  à l'adresse dédiée au support  TTN : support@elfatoora.tn.</p>
+              </div>
+            </details>
+
+          </div>
+        </section>
+
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<div th:replace="fragments/layout :: appFooter"></div>
+</div>
+<script th:src="@{/js/ft-theme.js}"></script>
+
+</body>
+</html>

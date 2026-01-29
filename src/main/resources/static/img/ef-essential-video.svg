@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="640" height="340" viewBox="0 0 640 340" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Illustration vidéo - El Fatoora">
+  <!-- Fond décor -->
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#F2B7D0"/>
+      <stop offset="1" stop-color="#F7DCE8"/>
+    </linearGradient>
+    <linearGradient id="screen" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#EEF2FF"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Grande forme arrondie -->
+  <path d="M430 18C515 18 622 66 622 170C622 274 535 322 440 322H380C292 322 246 285 224 245C200 201 200 150 224 105C251 55 331 18 430 18Z" fill="url(#bg)" opacity="0.95"/>
+
+  <!-- Carte vidéo -->
+  <g transform="translate(360 130)">
+    <rect x="0" y="0" width="220" height="140" rx="18" fill="#E85B5B"/>
+    <rect x="14" y="14" width="192" height="112" rx="14" fill="url(#screen)" opacity="0.18"/>
+    <!-- bouton play -->
+    <rect x="84" y="48" width="52" height="44" rx="12" fill="#FFFFFF" opacity="0.85"/>
+    <path d="M104 58L104 82L124 70L104 58Z" fill="#E85B5B"/>
+  </g>
+
+  <!-- Petit coeur (clin d'oeil UI, pas France Travail) -->
+  <g transform="translate(525 52)">
+    <rect x="0" y="0" width="60" height="84" rx="16" fill="#F9C64B" opacity="0.92"/>
+    <path d="M30 52C22 45 16 41 16 34C16 28 20 24 26 24C28.7 24 31 25.1 33 27.1C35 25.1 37.3 24 40 24C46 24 50 28 50 34C50 41 44 45 36 52L33 54L30 52Z" fill="#E85B5B"/>
+  </g>
+
+  <!-- Personnage (style simple, couleurs El Fatoora) -->
+  <g transform="translate(60 80)">
+    <!-- cheveux -->
+    <path d="M160 58C150 28 116 18 92 26C66 35 52 60 58 88C64 115 86 120 104 120C128 120 168 108 160 58Z" fill="#111827"/>
+    <!-- visage -->
+    <path d="M86 92C86 72 102 56 122 56C142 56 158 72 158 92C158 112 142 128 122 128C102 128 86 112 86 92Z" fill="#E38A77"/>
+    <!-- corps -->
+    <path d="M62 210C68 164 96 140 136 140C176 140 205 164 210 210C212 224 201 234 187 234H85C71 234 60 224 62 210Z" fill="#7A2B55"/>
+    <!-- bras -->
+    <path d="M206 190C230 178 262 170 292 170C316 170 334 180 342 192C348 200 344 210 334 212C320 215 306 214 292 214C260 214 232 216 206 224V190Z" fill="#E38A77"/>
+    <!-- main doigt -->
+    <circle cx="336" cy="206" r="7" fill="#E38A77"/>
+  </g>
+
+  <!-- Petit “pointeur” vers la vidéo (sens) -->
+  <path d="M345 240C325 246 310 254 298 266" stroke="#27306D" stroke-width="6" stroke-linecap="round" opacity="0.35"/>
+</svg>

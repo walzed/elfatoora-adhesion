@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Adhésion El Fatoora – Etape 4</title>
+ 
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+<link rel="stylesheet" th:href="@{/css/font-awesome.all.min.css}">
+<link rel="stylesheet" th:href="@{/css/animate.min.css}">
+<link rel="stylesheet" th:href="@{/css/ft-theme.min.css}">
+
+<style>
+/* Ergonomie Etape 4 : cartes par pièce, sans changer la logique/back */
+.doc-card {
+	border: 1px solid #dee2e6;
+	border-radius: 12px;
+	transition: 0.3s;
+	background: #fff;
+	overflow: hidden;
+}
+
+.doc-card:hover {
+	border-color: #0d6efd;
+	box-shadow: 0 8px 20px rgba(0, 0, 0, 0.10);
+	transform: translateY(-2px);
+}
+
+.icon-circle {
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex: 0 0 50px;
+}
+
+.file-input-wrapper {
+	position: relative;
+	overflow: hidden;
+}
+
+.bg-success-subtle {
+	background-color: #e2f5ea !important;
+}
+
+.bg-danger-subtle {
+	background-color: #fbe9e9 !important;
+}
+
+/* Optionnel: espace et scroll plus agréable */
+#uploadSection {
+	scroll-margin-top: 90px;
+}
+</style>
+</head>
+
+<body class="ft-body">
+
+	<div class="ft-shell">
+		<div th:replace="fragments/layout :: appHeader(title=${'Adhésion El Fatoora – Etape 4'})"></div>
+<!-- 		<div th:replace="fragments/stepper :: stepper(currentStep=${4})"></div> -->
+		
+		<main class="ft-main">
+		
+			<div class="container py-4 py-md-5">
+				<div class="row justify-content-center">
+					<div class="col-12 col-lg-10 col-xl-9">
+
+						<div class="card shadow-sm border-0 ft-card">
+							<!-- Ajout hasPieces ici -->
+							<div class="card-body p-4 p-md-5"
+								th:with="hasPieces=${piecesLatest != null and !#lists.isEmpty(piecesLatest)}">
+
+								<div
+									class="d-flex justify-content-between align-items-start gap-3">
+									<div>
+										<h1 class="h4 mb-1">Adhésion El Fatoora</h1>
+										<div class="text-muted small">
+											<span th:if="${wiz != null and wiz.dossierRef != null}">
+												Référence : <span th:text="${wiz.dossierRef}">ELF-ADH-YYYY-XXXXXXXX</span>
+											</span> <span th:if="${wiz == null or wiz.dossierRef == null}">
+												Référence : non générée </span> <span class="mx-2">•</span> Etape 4
+											/ 6 – Dépôt des documents numérisés
+										</div>
+									</div>
+
+									<a class="btn btn-outline-secondary"
+										th:href="@{/adhesion/etape3}">Retour</a>
+								</div>
+								
+								
+		
+								<hr class="my-4" />
+
+								<p class="text-muted mb-4">Déposez les pièces obligatoires.
+									Si une pièce est déjà déposée, vous pouvez la visualiser, ou
+									uploader un nouveau fichier pour la remplacer (nouvelle
+									version).</p>
+
+ 								<!-- Messages -->
+								<div th:if="${error}"
+								     class="alert alert-danger alert-dismissible fade show"
+								     role="alert">
+								    <span th:text="${error}">Erreur</span>
+								    <button type="button" class="btn-close" data-bs-dismiss="alert"
+								            aria-label="Fermer"></button>
+								</div>
+								
+								<div th:if="${success}"
+								     class="alert alert-success alert-dismissible fade show"
+								     role="alert">
+								    <span th:text="${success}">OK</span>
+								    <button type="button" class="btn-close" data-bs-dismiss="alert"
+								            aria-label="Fermer"></button>
+								</div>
+
+
+								<!-- CAS 1 : Documents déjà déposés (liste) + bouton Remplacer -->
+								<div th:if="${hasPieces}">
+									<h2 class="h5 fw-bold mt-3 mb-3">Documents déjà déposés</h2>
+
+									<!-- Ton bloc liste actuel (inchangé) -->
+									<div class="d-grid gap-2">
+										<div class="p-3 border rounded-3 bg-white"
+											th:each="p : ${piecesLatest}">
+											<div
+												class="d-flex justify-content-between align-items-start gap-3 flex-wrap">
+												<div class="d-flex align-items-start gap-3">
+													<div class="icon-circle"
+														th:classappend="${p.status != null and #strings.equalsIgnoreCase(p.status,'ACTIVE') ? ' bg-success-subtle' : ' bg-light'}">
+														<i class="fa-solid fa-file-lines fa-lg"
+															th:classappend="${p.status != null and #strings.equalsIgnoreCase(p.status,'ACTIVE') ? ' text-success' : ' text-muted'}"></i>
+													</div>
+
+													<div>
+														<div class="fw-bold">
+															<span th:text="${p.pieceType}">RC</span> - V<span class="text-muted"
+																th:text="${p.versionNo}">1</span>
+														</div>
+														<div class="text-muted small">
+															<span th:text="${p.originalFilename}">rc.pdf</span> 
+														 </div>
+															
+														<div class="text-muted small mt-1">
+																<span
+																th:text="${p.uploadedAt != null ? #temporals.format(p.uploadedAt, 'dd/MM/yyyy à HH:mm') : ''}">
+																18/01/2026 04:22 
+																</span>
+														</div>
+													</div>
+												</div>
+
+												<div class="d-flex align-items-center gap-2">
+													<span class="badge"
+														th:classappend="${p.status != null and #strings.equalsIgnoreCase(p.status,'ACTIVE') ? ' bg-success' : ' bg-secondary'}"
+														th:text="${p.status}"> ACTIVE </span> <a
+														class="btn btn-sm btn-outline-primary"
+														th:href="@{/adhesion/piece/{t}(t=${p.pieceType})}"
+														target="_blank" rel="noopener"> <i
+														class="fa-solid fa-eye me-1"></i> Visualiser
+													</a>
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<!-- Bouton pour afficher la section upload -->
+									<div class="text-center my-4">
+										<button type="button" id="btnToggleUpload"
+											class="btn btn-primary btn-lg px-5"
+											onclick="toggleUploadSection()">Remplacer
+											Document(s)</button>
+									</div>
+								</div>
+
+								<!-- CAS 2 : pas de documents => on affiche directement la section upload -->
+								<!-- FORM upload : back inchangé -->
+								<form th:action="@{/adhesion/etape4}" method="post"
+									enctype="multipart/form-data"
+									th:with="req=${requiredTypes != null ? requiredTypes : T(java.util.Arrays).asList('RC','CIF','CIN_RESP','CIN_ADMIN')}"
+									data-ft-loader="on-submit"
+									data-ft-loader-text="Upload des pièces en cours..."
+									class="ft-validate">
+
+									<!-- Partie à cacher/afficher -->
+								<div id="uploadSection"
+									th:style="${hasPieces and error == null ? 'display:none;' : ''}">
+
+										<h2 class="h5 fw-bold mt-3 mb-3">Envoyer Documents</h2>
+
+										<div class="row g-4 justify-content-center">
+											<div class="col-12" th:each="type : ${req}"
+												th:with="label=${type == 'RC' ? ' Extrait RNE' :
+                          type == 'CIF' ? 'Matricul Fiscal (CIF)' :
+                          type == 'CIN_RESP' ? 'CIN Responsable Légal (CIN_RESP)' : 'CIN Administrateur ou Procuration + (CIN_ADMIN)'},
+                    fileData=${latest != null ? latest[type] : null}">
+
+												<div class="doc-card p-4">
+													<div
+														class="d-flex align-items-center justify-content-between flex-wrap gap-3">
+
+														<div class="d-flex align-items-center">
+															<div class="icon-circle me-4"
+																th:classappend="${fileData != null ? ' bg-success-subtle' : ' bg-danger-subtle'}">
+																<i class="fa-xl"
+																	th:class="${fileData != null ? 'fa-solid fa-check text-success' : 'fa-solid fa-cloud-arrow-up text-danger'}"></i>
+															</div>
+
+															<div>
+																<h5 class="mb-1 fw-bold" th:text="${label}">Nom du
+																	document</h5>
+
+																<div class="d-flex align-items-center"
+																	th:if="${fileData != null}">
+																	<span class="badge bg-success text-white me-2">Déposé</span>
+																	<small class="text-muted"
+																		th:text="${fileData.originalFilename}">fichier.pdf</small>
+																</div>
+
+
+																<div class="text-muted small mt-1">Formats
+																	acceptés : PDF, PNG, JPG.</div>
+															</div>
+														</div>
+
+														<div class="d-flex gap-2 align-items-center">
+															<a th:if="${fileData != null}"
+																th:href="@{/adhesion/piece/{t}(t=${type})}"
+																target="_blank" rel="noopener"
+																class="btn btn-outline-primary btn-sm px-3"> <i
+																class="fa-solid fa-eye me-1"></i> Visualiser
+															</a>
+
+															<div class="file-input-wrapper">
+																<label class="btn btn-sm mb-0 px-3"
+																	th:classappend="${fileData != null ? ' btn-outline-secondary' : ' btn-primary'}">
+																	<i class="fa-solid fa-upload me-1"></i> <span
+																	th:text="${fileData != null ? 'Remplacer' : 'Charger'}">Charger</span>
+
+																	<input type="file" class="d-none"
+																	th:name="${'file_' + type}"
+																	accept=".pdf,.png,.jpg,.jpeg"
+																	onchange="updatePreview(this)" />
+																</label>
+															</div>
+														</div>
+
+													</div>
+
+													<div
+														class="preview-info mt-3 p-2 bg-light rounded border-start border-primary border-4 animate__animated"
+														style="display: none;"></div>
+												</div>
+											</div>
+										</div>
+
+										<div class="alert alert-info mt-4 mb-0">Conseil : gardez
+											les originaux. TTN peut les demander ultérieurement pour
+											vérification.</div>
+
+									</div>
+									<!-- /uploadSection -->
+
+									<!-- Footer TOUJOURS visible -->
+									<div
+										class="d-flex justify-content-between align-items-center mt-4">
+										<a class="btn btn-outline-secondary"
+											th:href="@{/adhesion/etape3}"> <i
+											class="fa-solid fa-chevron-left me-2"></i> Retour
+										</a>
+										<button type="submit" class="btn btn-primary px-4">
+											Continuer <i class="fa-solid fa-chevron-right ms-2"></i>
+										</button>
+									</div>
+
+								</form>
+	
+
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</main>
+
+		<div th:replace="fragments/layout :: appFooter"></div>
+	</div>
+
+	<script th:src="@{/js/ft-theme.js}"></script>
+ 	<script th:src="@{/js/ft-etape3-4-5.js}"></script>
+
+</body>
+</html>

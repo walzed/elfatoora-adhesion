@@ -1,0 +1,32 @@
+1
+00:00:00,000 --> 00:00:03,800
+Bienvenue sur El Fatoora.
+
+2
+00:00:03,800 --> 00:00:07,800
+Voici les étapes essentielles pour réussir votre inscription.
+
+3
+00:00:07,800 --> 00:00:16,000
+Étape 1 : Identité et entreprise.
+Renseignez l’identité du demandeur et les informations de l’entreprise.
+
+4
+00:00:16,000 --> 00:00:24,500
+Étape 2 : Contacts et accès.
+Ajoutez les coordonnées, les emails de notification, et configurez l’accès sécurisé par code OTP.
+
+5
+00:00:24,500 --> 00:00:34,500
+Étape 3 : Pièces jointes.
+Téléversez le contrat, la déclaration d’adhésion, et les justificatifs nécessaires.
+
+6
+00:00:34,500 --> 00:00:45,500
+Étape 4 : Signature et engagement.
+Validez votre demande puis soumettez votre dossier à Tunisie TradeNet.
+
+7
+00:00:45,500 --> 00:00:52,000
+Vous êtes prêt.
+Commencez votre demande d’adhésion dès maintenant sur El Fatoora.

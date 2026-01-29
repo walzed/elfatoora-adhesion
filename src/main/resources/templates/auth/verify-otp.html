@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Vérification Email</title>
+  	<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+	<link rel="stylesheet" th:href="@{/css/ft-theme.min.css}">
+</head>
+<body>
+
+<div class="ft-shell">
+<div th:replace="fragments/layout :: appHeader('Vérification Email')"></div>
+
+<div class="container py-5">
+  <div class="card shadow-sm mx-auto" style="max-width: 620px;">
+    <div class="card-body p-4">
+      <h3 class="mb-1">Vérifier votre email</h3>
+      <p class="text-muted mb-4">
+        Un code a été envoyé à <b th:text="${email}">email@exemple.tn</b>.
+      </p>
+
+      <div class="alert alert-danger" th:if="${error != null}" th:text="${error}"></div>
+      <div class="alert alert-success" th:if="${success != null}" th:text="${success}"></div>
+      <div class="alert alert-warning" th:if="${warning != null}" th:text="${warning}"></div>
+
+      <form th:action="@{/auth/verify}" method="post"
+      		data-ft-loader="on-submit" data-ft-loader-text="Vérification code OTP en cours...">
+        <input type="hidden" name="email" th:value="${email}">
+        <div class="mb-3">
+          <label class="form-label">Code de vérification (OTP) *</label>
+          <input class="form-control text-center fw-semibold"
+                 name="otp" maxlength="6" minlength="6"
+                 inputmode="numeric" pattern="[0-9]{6}"
+                 placeholder="______" required>
+          <div class="form-text">Code à 6 chiffres, valable quelques minutes.</div>
+        </div>
+
+        <button class="btn btn-primary w-100" type="submit">Valider le code</button>
+      </form>
+
+      <hr class="my-4">
+
+      <form th:action="@{/auth/resend}" method="post" class="d-flex gap-2"
+      		data-ft-loader="on-submit" data-ft-loader-text="Renvoi code OTP en cours...">
+        <input type="hidden" name="email" th:value="${email}">
+        <button class="btn btn-outline-secondary w-100" type="submit">Renvoyer un code</button>
+      </form>
+
+      <div class="text-muted small mt-3">
+        Si vous n’avez pas reçu l’email, vérifiez le spam/indésirables.
+      </div>
+    </div>
+  </div>
+</div>
+
+<div th:replace="fragments/layout :: appFooter"></div>
+</div>
+
+<script th:src="@{/js/ft-theme.js}"></script>
+</body>
+</html>

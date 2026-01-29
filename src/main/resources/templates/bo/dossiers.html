@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Backoffice TTN</title>
+  	<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+	<link rel="stylesheet" th:href="@{/css/ft-theme.min.css}">
+</head>
+<body>
+
+<div class="ft-shell">
+<div th:replace="fragments/layout :: appHeader('Backoffice TTN')"></div>
+
+<div class="container py-5" style="max-width: 1200px;">
+  <div class="d-flex justify-content-between align-items-end mb-3">
+    <div>
+      <h3 class="mb-1">Demandes d’adhésion</h3>
+      <div class="text-muted">Liste, filtrage et prise en charge</div>
+    </div>
+  </div>
+
+  <div class="card shadow-sm mb-4">
+    <div class="card-body">
+      <form th:action="@{/bo/dossiers}" method="get" class="row g-3">
+        <div class="col-md-3">
+          <input class="form-control" name="ref" placeholder="Référence dossier">
+        </div>
+        <div class="col-md-3">
+          <input class="form-control" name="mf" placeholder="Matricule fiscal">
+        </div>
+        <div class="col-md-3">
+          <select class="form-select" name="statut">
+            <option value="">Statut (tous)</option>
+            <option>SOUMIS</option>
+            <option>EN_INSTRUCTION</option>
+            <option>COMPLEMENT</option>
+            <option>VALIDEE</option>
+            <option>REJETEE</option>
+          </select>
+        </div>
+        <div class="col-md-3 text-end">
+          <button class="btn btn-primary" type="submit">Rechercher</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="card shadow-sm">
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table align-middle">
+          <thead class="table-light">
+          <tr>
+            <th>Référence</th>
+            <th>Raison sociale</th>
+            <th>Matricule</th>
+            <th>Statut</th>
+            <th>MAJ</th>
+            <th class="text-end">Actions</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr th:each="d : ${dossiers}">
+            <td class="text-primary fw-semibold" th:text="${d.dossierRef}">ELF-ADH-...</td>
+            <td th:text="${d.raisonSociale}">RS</td>
+            <td th:text="${d.matriculeFiscal}">MF</td>
+            <td>
+              <span class="badge text-bg-info" th:if="${d.statut.name() == 'SOUMIS'}">SOUMIS</span>
+              <span class="badge text-bg-warning" th:if="${d.statut.name() == 'EN_INSTRUCTION'}">EN_INSTRUCTION</span>
+              <span class="badge text-bg-secondary" th:if="${d.statut.name() == 'COMPLEMENT'}">COMPLEMENT</span>
+              <span class="badge text-bg-success" th:if="${d.statut.name() == 'VALIDEE'}">VALIDEE</span>
+              <span class="badge text-bg-danger" th:if="${d.statut.name() == 'REJETEE'}">REJETEE</span>
+            </td>
+            <td class="text-muted small" th:text="${#temporals.format(d.updatedAt,'yyyy-MM-dd HH:mm')}">date</td>
+            <td class="text-end">
+              <a class="btn btn-sm btn-outline-secondary" th:href="@{/bo/dossiers/{ref}(ref=${d.dossierRef})}">Voir</a>
+
+              <form th:if="${d.statut.name() == 'SOUMIS'}"
+                    th:action="@{/bo/dossiers/{ref}/take(ref=${d.dossierRef})}"
+                    method="post" class="d-inline">
+                <button class="btn btn-sm btn-primary" type="submit">Prendre en charge</button>
+              </form>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="text-muted small">Pagination (optionnelle) — Page X / Y</div>
+    </div>
+  </div>
+</div>
+
+<div th:replace="fragments/layout :: appFooter"></div>
+</div>
+
+<script th:src="@{/js/ft-theme.js}"></script>
+
+</body>
+</html>

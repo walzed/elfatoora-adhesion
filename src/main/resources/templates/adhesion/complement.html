@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+  <meta charset="UTF-8">
+  <title>Complément – Dossier</title>
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+<link rel="stylesheet" th:href="@{/css/ft-theme.min.css}">
+</head>
+<body>
+
+<div class="ft-shell">
+<div th:replace="fragments/layout :: appHeader('Adhésion – Complément')"></div>
+
+
+<div class="container py-5">
+  <div class="card shadow-sm mx-auto" style="max-width: 980px;">
+    <div class="card-body p-4">
+
+      <!-- Bandeau wizard -->
+      <div class="d-flex justify-content-between align-items-start mb-3">
+        <div>
+          <h3 class="mb-1">Adhésion El Fatoora</h3>
+          <div class="text-muted small">
+            <span th:if="${wiz != null && wiz.dossierRef != null}">
+              Référence : <b th:text="${wiz.dossierRef}">ELF-ADH-...</b>
+            </span>
+            <span th:if="${wiz != null && wiz.dossierRef == null}">
+              Référence : <span class="text-muted">non générée</span>
+            </span>
+          </div>
+          <div class="text-muted">Complément requis – Correction et re-soumission</div>
+        </div>
+        <div class="text-muted small">
+          Email : <b sec:authentication="name">email@exemple.tn</b>
+        </div>
+      </div>
+
+      <div class="alert alert-danger" th:if="${error != null}" th:text="${error}"></div>
+
+      <div class="alert alert-warning" th:if="${dossier != null}">
+        <div class="fw-semibold">Motif TTN</div>
+        <div th:text="${dossier.motifDecision}">Pièce illisible…</div>
+      </div>
+
+      <div class="card mb-3">
+        <div class="card-body">
+          <h6 class="mb-3">Remplacer une pièce</h6>
+
+          <form th:action="@{/adhesion/complement/upload}" method="post" enctype="multipart/form-data" class="row g-3 ft-validate">
+            <div class="col-md-4">
+              <select class="form-select ft-input" name="pieceType" required>
+                <option value="">Choisir une pièce…</option>
+                <option value="RC">Extrait RC</option>
+                <option value="CIF">Carte ID fiscale</option>
+                <option value="CIN_RESP">CIN responsable légal</option>
+                <option value="CIN_ADMIN">CIN admin principal</option>
+              </select>
+            </div>
+            <div class="col-md-6">
+              <input class="form-control ft-input" type="file" name="file" accept=".pdf,.jpg,.jpeg,.png" required>
+            </div>
+            <div class="col-md-2 text-end">
+              <button class="btn btn-primary w-100" type="submit">Uploader</button>
+            </div>
+          </form>
+
+          <div class="text-muted small mt-2">
+            Formats : PDF/JPG/PNG — 10 Mo max. Toute modification invalide la signature et impose une re-signature.
+          </div>
+        </div>
+      </div>
+
+      <div class="card mb-3">
+        <div class="card-body">
+          <h6 class="mb-3">Pièces déposées (dernières versions)</h6>
+
+          <div class="alert alert-info small" th:if="${pieces == null || #lists.isEmpty(pieces)}">
+            Aucune pièce trouvée.
+          </div>
+
+          <div class="table-responsive" th:if="${pieces != null && !#lists.isEmpty(pieces)}">
+            <table class="table table-sm align-middle">
+              <thead class="table-light">
+              <tr>
+                <th>Pièce</th>
+                <th>Version</th>
+                <th>Fichier</th>
+                <th class="text-muted">SHA-256</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr th:each="p : ${pieces}">
+                <td th:text="${p.pieceType}">RC</td>
+                <td>v<span th:text="${p.versionNo}">2</span></td>
+                <td th:text="${p.originalFilename}">rc.pdf</td>
+                <td class="text-muted small" th:text="${p.sha256}">hash</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="card mb-3">
+        <div class="card-body">
+          <h6 class="mb-2">Re-signature & re-soumission</h6>
+          <div class="text-muted small mb-3">
+            Après correction, la demande doit être re-signée électroniquement puis re-soumise à TTN.
+          </div>
+
+          <div class="d-flex flex-column flex-sm-row gap-2">
+            <form th:action="@{/adhesion/complement/sign}" method="post" class="ft-validate">
+              <button class="btn btn-primary" type="submit">Re-signer</button>
+            </form>
+            <form th:action="@{/adhesion/complement/resubmit}" method="post" class="ft-validate">
+              <button class="btn btn-outline-secondary" type="submit">Re-soumettre à TTN</button>
+            </form>
+            <a class="btn btn-outline-secondary" th:href="@{/adhesion/suivi}">Retour suivi</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="alert alert-warning">
+        <b>IMPORTANT :</b> conservez les originaux papier. TTN peut demander une présentation ultérieure pour contrôle.
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<div th:replace="fragments/layout :: appFooter"></div>
+</div>
+
+<script th:src="@{/js/ft-theme.js}"></script>
+</body>
+</html>
