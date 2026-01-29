@@ -30,7 +30,7 @@ public class UserService {
         AppUser u = new AppUser();
         u.setEmail(e);
         u.setPasswordHash(encoder.encode(rawPassword));
-        u.setEmailVerified(true);
+        u.setEmailVerified(false);
         u.setEnabled(true);
         u.setLocked(false);
         u.setRoles(Collections.singleton("ROLE_CLIENT"));

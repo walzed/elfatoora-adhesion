@@ -1,10 +1,15 @@
 package tn.tn.elfatoora.web;
 
 import java.util.UUID;
-
+import javax.validation.constraints.*;
 import tn.tn.elfatoora.model.CanalEdi;
 
 public class AdhesionWizard {
+
+    public interface Step1 {}
+    public interface Step2 {}
+    public interface Step5 {}
+
     public String draftId;     // UUID string stable
     public String dossierRef;  // référence métier générée à soumission
     public String statut;
@@ -19,32 +24,75 @@ public class AdhesionWizard {
     public String nomPersonnePhysique;
     public String prenomPersonnePhysique;
      
+    @NotBlank(message = "Le registre de commerce est obligatoire", groups = Step1.class)
     public String registreCommerce;
+
+    @Pattern(regexp = "^[0-9]{7}[A-Za-z]$", message = "Matricule fiscal invalide : attendu 7 chiffres suivis d’une lettre (ex: 1234567A).", groups = Step1.class)
     public String matriculeFiscal;
+
     public String codeTVA;
     public String codeCategorie;
     public String etabSecondaire;
+
+    @NotBlank(message = "Le secteur d'activité est obligatoire", groups = Step1.class)
     public String secteurActivite;
+
+    @NotBlank(message = "L'adresse est obligatoire", groups = Step1.class)
     public String adresse;
+
+    @NotBlank(message = "Le code postal est obligatoire", groups = Step1.class)
     public String codePostal;
+
+    @NotBlank(message = "Le gouvernorat est obligatoire", groups = Step1.class)
     public String gouvernorat;
+
+    @NotBlank(message = "La ville est obligatoire", groups = Step1.class)
     public String ville;
+
+    @Pattern(regexp = "^[0-9]{8}$", message = "Téléphone invalide : attendu 8 chiffres (ex: 98123456).", groups = Step1.class)
     public String telephone;
+
+    @NotBlank(message = "L'email général est obligatoire", groups = Step1.class)
+    @Email(message = "Format email invalide", groups = Step1.class)
     public String emailGeneral;
+
+    @Email(message = "Format email invalide", groups = Step1.class)
     public String emailFacturation;
 
     // Responsables
+    @NotBlank(message = "Nom responsable légal obligatoire", groups = Step2.class)
     public String nomRespLegal;
+
+    @NotBlank(message = "Prénom responsable légal obligatoire", groups = Step2.class)
     public String prenomRespLegal;
+
+    @NotBlank(message = "Fonction responsable légal obligatoire", groups = Step2.class)
     public String fonctionRespLegal;
+
+    @NotBlank(message = "Tél responsable légal obligatoire", groups = Step2.class)
     public String telRespLegal;
+
+    @NotBlank(message = "Email responsable légal obligatoire", groups = Step2.class)
+    @Email(groups = Step2.class)
     public String emailRespLegal;
+
+    @NotBlank(message = "CIN responsable légal obligatoire", groups = Step2.class)
     public String cinRespLegal;
 
+    @NotBlank(message = "Nom admin principal obligatoire", groups = Step2.class)
     public String nomAdminPrincipal;
+
+    @NotBlank(message = "Prénom admin principal obligatoire", groups = Step2.class)
     public String prenomAdminPrincipal;
+
+    @NotBlank(message = "CIN admin principal obligatoire", groups = Step2.class)
     public String cinAdminPrincipal;
+
+    @NotBlank(message = "Tél admin principal obligatoire", groups = Step2.class)
     public String telAdminPrincipal;
+
+    @NotBlank(message = "Email admin principal obligatoire", groups = Step2.class)
+    @Email(groups = Step2.class)
     public String emailAdminPrincipal;
 
     
@@ -62,7 +110,10 @@ public class AdhesionWizard {
     public String telRespTechniqueEdi;
 
     // Consentements
+    @AssertTrue(message = "Vous devez accepter le contrat.", groups = Step5.class)
     public boolean accepteContrat;
+
+    @AssertTrue(message = "Vous devez accepter l'engagement de conservation.", groups = Step5.class)
     public boolean conserveOriginaux;
 
     // Signature

@@ -18,6 +18,8 @@ import org.springframework.http.ResponseEntity;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -83,29 +85,23 @@ public class AdhesionWizardController {
     }
 
     @PostMapping("/etape1")
-    public String postEtape1(@ModelAttribute("wiz") AdhesionWizard w,
+    public String postEtape1(@Validated(AdhesionWizard.Step1.class) @ModelAttribute("wiz") AdhesionWizard w,
+                             BindingResult result,
                              Principal principal,
                              Model model) {
+        if (result.hasErrors()) {
+            return "adhesion/etape1";
+        }
         try {
-            // Normalisation + validations serveur (défense en profondeur)
+            // Normalisation
             if (w.matriculeFiscal != null) w.matriculeFiscal = w.matriculeFiscal.trim();
             if (w.telephone != null) w.telephone = w.telephone.trim();
 
-            if (w.matriculeFiscal == null || !w.matriculeFiscal.matches("^[0-9]{7}[A-Za-z]$")) {
-                model.addAttribute("error",
-                        "Matricule fiscal invalide : attendu 7 chiffres suivis d’une lettre (ex: 1234567A).");
-                return "adhesion/etape1";
-            }
             // Uniformiser la lettre en majuscule
-            if (w.matriculeFiscal.length() == 8) {
+            if (w.matriculeFiscal != null && w.matriculeFiscal.length() == 8) {
                 String prefix = w.matriculeFiscal.substring(0, 7);
                 char last = Character.toUpperCase(w.matriculeFiscal.charAt(7));
                 w.matriculeFiscal = prefix + last;
-            }
-
-            if (w.telephone == null || !w.telephone.matches("^[0-9]{8}$")) {
-                model.addAttribute("error", "Téléphone invalide : attendu 8 chiffres (ex: 98123456).");
-                return "adhesion/etape1";
             }
 
             AdhesionDossier d = mapWizardToDossier(
@@ -135,14 +131,17 @@ public class AdhesionWizardController {
     }
 
     @PostMapping("/etape2")
-    public String postEtape2(@ModelAttribute("wiz") AdhesionWizard w,
+    public String postEtape2(@Validated(AdhesionWizard.Step2.class) @ModelAttribute("wiz") AdhesionWizard w,
+                             BindingResult result,
                              Principal principal,
                              Model model) {
+        if (result.hasErrors()) {
+            return "adhesion/etape2";
+        }
         try {
             AdhesionDossier d = mapWizardToDossier(
                     w,
-                    dossierRepo.findByDraftId(UUID.fromString(w.draftId))
-                            .orElseThrow(() -> new IllegalArgumentException("Draft introuvable"))
+                    getDossierByDraftId(w.draftId)
             );
 
             adhesionService.save(d, principal.getName(), "SAVE_STEP2");
@@ -169,8 +168,7 @@ public class AdhesionWizardController {
         try {
             AdhesionDossier d = mapWizardToDossier(
                     w,
-                    dossierRepo.findByDraftId(UUID.fromString(w.draftId))
-                            .orElseThrow(() -> new IllegalArgumentException("Draft introuvable"))
+                    getDossierByDraftId(w.draftId)
             );
 
             adhesionService.save(d, principal.getName(), "SAVE_STEP3");
@@ -358,18 +356,15 @@ public class AdhesionWizardController {
     }
 
     @PostMapping("/etape5")
-    public String postEtape5(@ModelAttribute("wiz") AdhesionWizard w,
+    public String postEtape5(@Validated(AdhesionWizard.Step5.class) @ModelAttribute("wiz") AdhesionWizard w,
+                             BindingResult result,
                              Principal principal,
                              Model model) {
+        if (result.hasErrors()) {
+            return "adhesion/etape5";
+        }
         try {
-            if (!Boolean.TRUE.equals(w.accepteContrat) || !Boolean.TRUE.equals(w.conserveOriginaux)) {
-                model.addAttribute("error", "Vous devez cocher les deux engagements obligatoires avant de continuer.");
-                model.addAttribute("wiz", w);
-                return "adhesion/etape5";
-            }
-
-            AdhesionDossier d = dossierRepo.findByDraftId(UUID.fromString(w.draftId))
-                    .orElseThrow(() -> new IllegalArgumentException("Draft introuvable"));
+            AdhesionDossier d = getDossierByDraftId(w.draftId);
 
             d.setAccepteContrat(Boolean.TRUE.equals(w.accepteContrat));
             d.setConserveOriginaux(Boolean.TRUE.equals(w.conserveOriginaux));
@@ -647,5 +642,10 @@ public class AdhesionWizardController {
         d.setToErp(w.toErp != null ? w.toErp : 0);
 
         return d;
+    }
+
+    private AdhesionDossier getDossierByDraftId(String draftId) {
+        return dossierRepo.findByDraftId(UUID.fromString(draftId))
+                .orElseThrow(() -> new IllegalArgumentException("Draft introuvable"));
     }
 }
