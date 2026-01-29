@@ -12,9 +12,6 @@ public interface AdhesionDossierRepository extends JpaRepository<AdhesionDossier
 
     Optional<AdhesionDossier> findByDraftId(UUID draftId);
     Optional<AdhesionDossier> findByDossierRef(String dossierRef);
-    
-    Optional<AdhesionDossier> findByDraftId(String draftId);
-
 
     List<AdhesionDossier> findByMatriculeFiscal(String matriculeFiscal);
 
