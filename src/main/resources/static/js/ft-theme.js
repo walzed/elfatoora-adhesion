@@ -339,13 +339,13 @@ document.addEventListener("DOMContentLoaded", function () {
       // binding live pour éviter copie “one shot”
       bindLive();
     })();
-  // disparition du  message alert auto après 15secondes
+  // disparition du  message alert auto après 120secondes
   setTimeout(function () {
     document.querySelectorAll('.alert').forEach(function (el) {
       var alert = bootstrap.Alert.getOrCreateInstance(el);
       alert.close();
     });
-  }, 15000);
+  }, 120000);
   
   
   

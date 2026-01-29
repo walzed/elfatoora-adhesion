@@ -20,6 +20,14 @@
   </properties>
 
   <dependencies>
+    <!-- Force Servlet API 4.0.1 FIRST to ensure priority -->
+    <dependency>
+       <groupId>javax.servlet</groupId>
+       <artifactId>javax.servlet-api</artifactId>
+       <version>4.0.1</version>
+       <scope>provided</scope>
+    </dependency>
+
     <!-- Web / MVC -->
     <dependency>
       <groupId>org.springframework.boot</groupId>
