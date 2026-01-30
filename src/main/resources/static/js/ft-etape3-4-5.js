@@ -181,14 +181,16 @@
   var cb2 = document.getElementById("conserveOriginaux");
   var btn = document.getElementById("btnNext");
 
+  if (!cb1 || !cb2 || !btn) return;
+
   var tile1 = document.getElementById("tileContrat");
   var tile2 = document.getElementById("tileOriginaux");
 
   function refresh() {
     var ok = cb1.checked && cb2.checked;
     btn.disabled = !ok;
-    tile1.classList.remove("accept-error");
-    tile2.classList.remove("accept-error");
+    if (tile1) tile1.classList.remove("accept-error");
+    if (tile2) tile2.classList.remove("accept-error");
   }
 
   cb1.addEventListener("change", refresh);
@@ -202,8 +204,40 @@
       if (z && z.scrollIntoView) {
         z.scrollIntoView({ behavior: "smooth", block: "center" });
       }
-      if (!cb1.checked) tile1.classList.add("accept-error");
-      if (!cb2.checked) tile2.classList.add("accept-error");
+      if (!cb1.checked && tile1) tile1.classList.add("accept-error");
+      if (!cb2.checked && tile2) tile2.classList.add("accept-error");
     }, 50);
   }
 })();		
+
+// --- Validation taille fichier (Etape 4) ---
+// Note: MAX_FILE_SIZE_STR et MAX_SIZE_BYTES doivent être définis globalement dans la page HTML
+// car ils dépendent de la configuration serveur injectée par Thymeleaf.
+function validateAndPreview(input) {
+    // On vérifie si les constantes sont définies, sinon on utilise une valeur par défaut (1MB)
+    const maxSize = (typeof MAX_SIZE_BYTES !== 'undefined') ? MAX_SIZE_BYTES : 1048576;
+    const maxStr = (typeof MAX_FILE_SIZE_STR !== 'undefined') ? MAX_FILE_SIZE_STR : '1MB';
+
+    if (input.files && input.files[0]) {
+        const file = input.files[0];
+
+        // Check size
+        if (file.size > maxSize) {
+            alert("Le fichier est trop volumineux (" + (file.size / 1024 / 1024).toFixed(2) + " MB). La taille maximum autorisée est de " + maxStr);
+            input.value = ""; // Reset input
+
+            // Masquer la preview si elle était affichée
+            const card = input.closest('.doc-card');
+            if (card) {
+                const preview = card.querySelector('.preview-info');
+                if (preview) {
+                    preview.style.display = 'none';
+                }
+            }
+            return;
+        }
+
+        // Call original updatePreview
+        updatePreview(input);
+    }
+}

@@ -216,7 +216,7 @@
 																<div class="d-flex align-items-center"
 																	th:if="${fileData != null}">
 																	<span class="badge bg-success text-white me-2">Déposé</span>
-																	<small class="text-muted"
+																	<small class="text-muted existing-file-name"
 																		th:text="${fileData.originalFilename}">fichier.pdf</small>
 																</div>
 
@@ -242,8 +242,9 @@
 
 																	<input type="file" class="d-none"
 																	th:name="${'file_' + type}"
+																	th:data-max-size-str="${@environment.getProperty('piece.upload.max-file-size')}"
 																	accept=".pdf,.png,.jpg,.jpeg"
-																	onchange="updatePreview(this)" />
+																	onchange="validateAndPreview(this)" />
 																</label>
 															</div>
 														</div>

@@ -52,7 +52,31 @@ document.addEventListener("DOMContentLoaded", function () {
   if (window.bootstrap && bootstrap.Tooltip) {
     var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
     tooltipTriggerList.map(function (el) {
-      return new bootstrap.Tooltip(el, { html: true, interactive: true, sanitize: false });
+      // Allow HTML content but sanitize it for security
+      return new bootstrap.Tooltip(el, { 
+        html: true, 
+        interactive: true, 
+        sanitize: true, // Enable sanitization
+        // Allow specific tags and attributes for our use case (img, div, hr)
+        allowList: {
+          ...bootstrap.Tooltip.Default.allowList,
+          'div': ['class', 'style'],
+          'hr': ['class'],
+          'img': ['src', 'class', 'style', 'data-zoom-src'] // Use data-zoom-src instead of onmouseup
+        }
+      });
+    });
+    
+    // Event delegation for zoom functionality in tooltips
+    // This avoids inline 'onmouseup' which is often blocked by CSP
+    document.body.addEventListener('mouseup', function(e) {
+        if (e.target && e.target.matches('.help-zoom-img')) {
+            // Use data-zoom-src if available, otherwise fallback to src
+            var src = e.target.getAttribute('data-zoom-src') || e.target.src;
+            if (src) {
+                zoomImage(src);
+            }
+        }
     });
   }
 
@@ -248,6 +272,9 @@ document.addEventListener("DOMContentLoaded", function () {
       var rs = el("raisonSocialeInput");
       var nom = el("nomInput");
       var prenom = el("prenomInput");
+
+      // Sécurité : si les éléments n'existent pas (ex: on est sur Etape 4), on arrête tout.
+      if (!morale || !physique || !blocRS || !blocNP) return;
 
       var isPhysique = physique && physique.checked;
 
