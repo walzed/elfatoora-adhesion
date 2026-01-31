@@ -18,7 +18,7 @@
 
         <h3 class="mb-2">Vérification du code</h3>
         <p class="text-muted mb-4">
-          Saisissez le code reçu par email pour continuer la réinitialisation.
+          Saisissez le code reçu par **SMS** sur votre mobile pour continuer.
         </p>
 
         <div class="alert alert-danger" th:if="${error}" th:text="${error}"></div>
@@ -39,8 +39,9 @@
             </div>
           </div>
 
+
           <div class="ft-field">
-            <label class="form-label">Code</label>
+            <label class="form-label">Code SMS</label>
             <div class="ft-input-wrapper">
               <i class="bi bi-shield-lock ft-input-icon-left"></i>
               <input class="form-control ft-input with-icon-left"

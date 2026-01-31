@@ -2,6 +2,7 @@ package tn.tn.elfatoora.web;
 
 import tn.tn.elfatoora.service.OtpService;
 import tn.tn.elfatoora.service.PasswordResetService;
+import tn.tn.elfatoora.service.SmsService;
 import tn.tn.elfatoora.service.UserService;
 
 import java.net.URLEncoder;
@@ -33,6 +34,7 @@ public class AuthController {
 
     @PostMapping("/register")
     public String register(@RequestParam String email,
+                           @RequestParam String phoneNumber,
                            @RequestParam String password,
                            @RequestParam String confirmPassword,
                            Model model) {
@@ -41,11 +43,13 @@ public class AuthController {
                 model.addAttribute("error", "Les mots de passe ne correspondent pas.");
                 return "auth/register";
             }
-            userService.registerClient(email, password);
-            otpService.sendOtp(email);
+            userService.registerClient(email, phoneNumber, password);
+
+             otpService.sendOtp(email, phoneNumber);
 
             model.addAttribute("email", email.toLowerCase());
-            model.addAttribute("success", "Compte crée. Un code a été envoyé par email.");
+            model.addAttribute("phoneNumber", phoneNumber);
+            model.addAttribute("success", "Un code vous a été envoyé par SMS.");
             return "auth/verify-otp";
         } catch (Exception e) {
             model.addAttribute("error", e.getMessage());
@@ -54,19 +58,24 @@ public class AuthController {
     }
 
     @GetMapping("/verify")
-    public String verifyPage(@RequestParam(required = false) String email, Model model) {
+    public String verifyPage(@RequestParam(required = false) String email,
+                             @RequestParam String phoneNumber,
+                             Model model) {
         if (email != null) model.addAttribute("email", email);
+        if (phoneNumber != null) model.addAttribute("phoneNumber", phoneNumber);
         return "auth/verify-otp";
     }
 
     @PostMapping("/verify")
     public String verify(@RequestParam String email,
+                         @RequestParam String phoneNumber,
                          @RequestParam String otp,
                          Model model) {
         try {
             boolean ok = otpService.verify(email, otp);
             if (!ok) {
                 model.addAttribute("email", email);
+                model.addAttribute("phoneNumber", phoneNumber);
                 model.addAttribute("error", "Code incorrect.");
                 return "auth/verify-otp";
             }
@@ -77,16 +86,20 @@ public class AuthController {
 
         } catch (Exception e) {
             model.addAttribute("email", email);
+            model.addAttribute("phoneNumber", phoneNumber);
             model.addAttribute("error", e.getMessage());
             return "auth/verify-otp";
         }
     }
 
     @PostMapping("/resend")
-    public String resend(@RequestParam String email, Model model) {
+    public String resend(@RequestParam String email,
+                         @RequestParam String phoneNumber,
+                         Model model) {
         try {
-            otpService.sendOtp(email);
+            otpService.sendOtp(email, phoneNumber);
             model.addAttribute("email", email);
+            model.addAttribute("phoneNumber", phoneNumber);
             model.addAttribute("success", "Nouveau code envoyé.");
             return "auth/verify-otp";
         } catch (Exception e) {
@@ -107,7 +120,9 @@ public class AuthController {
     }
 
     @PostMapping("/forgot")
-    public String forgotSubmit(@RequestParam String email, Model model) {
+    public String forgotSubmit(@RequestParam String email,
+                               @RequestParam String phoneNumber,
+                               Model model) {
         String normalized = (email == null) ? "" : email.trim().toLowerCase();
 
         if (normalized.isEmpty()) {
@@ -116,13 +131,16 @@ public class AuthController {
         }
 
         try {
-            otpService.sendOtp(normalized);
+            otpService.sendOtp(normalized, phoneNumber);
         } catch (Exception ignored) {
             // anti-énumération
         }
 
         try {
-            return "redirect:/auth/reset/otp?email=" + URLEncoder.encode(normalized, "UTF-8");
+            model.addAttribute("phoneNumber", phoneNumber); // Crucial pour l'affichage
+            return "redirect:/auth/reset/otp?email=" + URLEncoder.encode(normalized, "UTF-8")
+                    + "&phoneNumber=" + phoneNumber;
+
         } catch (Exception e) {
             model.addAttribute("success", true);
             return "auth/forgot-password";

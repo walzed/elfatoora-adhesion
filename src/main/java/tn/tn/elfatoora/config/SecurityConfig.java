@@ -38,6 +38,13 @@ public class SecurityConfig {
 
 		    .antMatchers("/myspace/**", "/adhesion/**").hasRole("CLIENT")
 		    .antMatchers("/bo/**").hasRole("AGENT_TTN")
+			// UNIQUEMENT l'admin peut voir le Health Check
+			.antMatchers("/actuator/**").hasRole("ADMIN")
+				/**
+				 * Accède à http://localhost:9090/actuator/health.
+				 * * Le navigateur doit t'ouvrir une petite fenêtre (Pop-up)
+				 * te demandant un Nom d'utilisateur et un Mot de passe.
+ 				 */
 		    .anyRequest().authenticated()
 		    
 	        .and()
@@ -52,6 +59,8 @@ public class SecurityConfig {
 	                .logoutUrl("/logout")
 	                .logoutSuccessUrl("/auth/login?logout")
 	                .permitAll()
+			.and()
+				.httpBasic() // <---  pop-up sur /actuator
 	        .and()
 	        	.exceptionHandling()
 	                	.accessDeniedPage("/error")

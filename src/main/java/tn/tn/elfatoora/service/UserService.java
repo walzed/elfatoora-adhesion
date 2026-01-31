@@ -14,21 +14,28 @@ public class UserService {
     private final AppUserRepository userRepo;
     private final PasswordEncoder encoder;
 
+
     public UserService(AppUserRepository userRepo, PasswordEncoder encoder) {
         this.userRepo = userRepo;
         this.encoder = encoder;
     }
 
     @Transactional
-    public AppUser registerClient(String email, String rawPassword) {
+    public AppUser registerClient(String email, String phoneNumber, String rawPassword) {
         String e = email.toLowerCase().trim();
+        String p = phoneNumber.trim();
 
         userRepo.findByEmailIgnoreCase(e).ifPresent(u -> {
             throw new IllegalArgumentException("Cet email est déjà enregistré.");
         });
 
+        userRepo.findByPhoneNumber(p).ifPresent(u -> {
+            throw new IllegalArgumentException("Cet N° Téléphone est déjà enregistré.");
+        });
+
         AppUser u = new AppUser();
         u.setEmail(e);
+        u.setPhoneNumber(p);
         u.setPasswordHash(encoder.encode(rawPassword));
         u.setEmailVerified(false);
         u.setEnabled(true);
@@ -47,18 +54,37 @@ public class UserService {
     }
 
     @Transactional
-    public void createAgentIfNeeded(String email, String rawPassword) {
+    public void createAgentIfNeeded(String email, String phoneNumber, String rawPassword) {
         // Utilitaire pour bootstrap (à enlever en prod)
         String e = email.toLowerCase().trim();
+        String p = phoneNumber.trim();
         if (userRepo.findByEmailIgnoreCase(e).isPresent()) return;
 
         AppUser u = new AppUser();
         u.setEmail(e);
+        u.setPhoneNumber(p);
         u.setPasswordHash(encoder.encode(rawPassword));
         u.setEmailVerified(true);
         u.setEnabled(true);
         u.setLocked(false);
         u.getRoles().add("ROLE_AGENT_TTN");
+        userRepo.save(u);
+    }
+    @Transactional
+    public void createAdminIfNeeded(String email, String phoneNumber, String rawPassword) {
+        // Utilitaire pour bootstrap (à enlever en prod)
+        String e = email.toLowerCase().trim();
+        String p = phoneNumber.trim();
+        if (userRepo.findByEmailIgnoreCase(e).isPresent()) return;
+
+        AppUser u = new AppUser();
+        u.setEmail(e);
+        u.setPhoneNumber(p);
+        u.setPasswordHash(encoder.encode(rawPassword));
+        u.setEmailVerified(true);
+        u.setEnabled(true);
+        u.setLocked(false);
+        u.getRoles().add("ROLE_ADMIN");
         userRepo.save(u);
     }
 

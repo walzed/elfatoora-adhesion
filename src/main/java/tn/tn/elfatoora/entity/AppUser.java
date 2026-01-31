@@ -18,6 +18,9 @@ public class AppUser {
     @Column(nullable=false, length=255, unique = true)
     private String email;
 
+    @Column(name="phone_number",nullable=false, length=50, unique = true)
+    private String phoneNumber;
+
     @Column(name="password_hash", nullable=false, length=120)
     private String passwordHash;
 
@@ -42,6 +45,8 @@ public class AppUser {
     public Long getId() { return id; }
     public String getEmail() { return email; }
     public void setEmail(String email) { this.email = email; }
+    public String getPhoneNumber() { return phoneNumber; }
+    public void setPhoneNumber(String phoneNumber) { this.phoneNumber = phoneNumber; }
     public String getPasswordHash() { return passwordHash; }
     public void setPasswordHash(String passwordHash) { this.passwordHash = passwordHash; }
     public boolean isEmailVerified() { return emailVerified; }

@@ -4,11 +4,12 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "email_otp", indexes = {
+@Table(name = "sms_otp", indexes = {
         @Index(name="idx_otp_email", columnList = "email"),
+        @Index(name="idx_otp_phone_number", columnList = "phone_number"),
         @Index(name="idx_otp_expires", columnList = "expires_at")
 })
-public class EmailOtp {
+public class SmsOtp {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,6 +17,10 @@ public class EmailOtp {
 
     @Column(nullable=false, length=255)
     private String email;
+
+    @Column(name="phone_number",nullable=false, length=50, unique = true)
+    private String phoneNumber;
+
 
     @Column(nullable=false, length=20)
     private String code;
@@ -36,6 +41,8 @@ public class EmailOtp {
     public Long getId() { return id; }
     public String getEmail() { return email; }
     public void setEmail(String email) { this.email = email; }
+    public String getPhoneNumber() { return phoneNumber; }
+    public void setPhoneNumber(String phoneNumber) { this.phoneNumber = phoneNumber; }
     public String getCode() { return code; }
     public void setCode(String code) { this.code = code; }
     public LocalDateTime getExpiresAt() { return expiresAt; }

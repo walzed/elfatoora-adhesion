@@ -366,6 +366,53 @@ document.addEventListener("DOMContentLoaded", function () {
       // binding live pour éviter copie “one shot”
       bindLive();
     })();
+
+// TiMER RENVOI CODE OTP
+document.addEventListener('DOMContentLoaded', function() {
+  const resendForm = document.querySelector('form[action*="/auth/resend"]');
+
+  if (resendForm) {
+    const resendBtn = resendForm.querySelector('button');
+    const email = resendForm.querySelector('input[name="email"]')?.value || 'default';
+    const storageKey = `otp_expiry_${email.replace(/[^a-zA-Z0-9]/g, '_')}`;
+
+    function startTimer(expiryTime) {
+      resendBtn.disabled = true;
+
+      const timer = setInterval(() => {
+        const now = new Date().getTime();
+        const distance = expiryTime - now;
+
+        if (distance <= 0) {
+          clearInterval(timer);
+          resendBtn.innerText = "Renvoyer un code";
+          resendBtn.disabled = false;
+          localStorage.removeItem(storageKey);
+        } else {
+          const m = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+          const s = Math.floor((distance % (1000 * 60)) / 1000);
+          resendBtn.innerText = `Attendre ${m}:${s < 10 ? '0' : ''}${s}`;
+        }
+      }, 1000);
+    }
+
+    // 1. Vérifier si un timer est déjà enregistré dans le navigateur
+    const savedExpiry = localStorage.getItem(storageKey);
+    if (savedExpiry && parseInt(savedExpiry) > new Date().getTime()) {
+      startTimer(parseInt(savedExpiry));
+    }
+
+    // 2. Événement lors du clic sur le bouton
+    resendForm.addEventListener('submit', function() {
+      // On définit la fin dans 4 minutes (240 000 ms)
+      const expiryTime = new Date().getTime() + (4 * 60 * 1000);
+      localStorage.setItem(storageKey, expiryTime.toString());
+
+      // On laisse le formulaire partir, mais on prépare l'UI
+      setTimeout(() => startTimer(expiryTime), 50);
+    });
+  }
+});
   // disparition du  message alert auto après 120secondes
   setTimeout(function () {
     document.querySelectorAll('.alert').forEach(function (el) {
