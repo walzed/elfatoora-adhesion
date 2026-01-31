@@ -17,6 +17,7 @@
   <properties>
     <java.version>1.8</java.version>
     <minio.version>8.5.7</minio.version>
+    <jasper.version>6.20.6</jasper.version>
   </properties>
 
   <dependencies>
@@ -107,6 +108,19 @@
       <groupId>org.glassfish</groupId>
       <artifactId>javax.json</artifactId>
       <version>1.1.4</version>
+    </dependency>
+
+    <!-- JasperReports -->
+    <dependency>
+        <groupId>net.sf.jasperreports</groupId>
+        <artifactId>jasperreports</artifactId>
+        <version>${jasper.version}</version>
+    </dependency>
+    <!-- JasperReports Fonts (optionnel mais recommandé pour éviter les problèmes de polices) -->
+    <dependency>
+        <groupId>net.sf.jasperreports</groupId>
+        <artifactId>jasperreports-fonts</artifactId>
+        <version>${jasper.version}</version>
     </dependency>
 
     <!-- MinIO -->

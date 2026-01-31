@@ -63,10 +63,24 @@
 
                   <div class="d-flex gap-2">
                     <a class="btn btn-primary" th:href="@{/adhesion/contrat}" target="_blank" rel="noopener">
-                      Visualiser le contrat
+                      Visualiser Contrat
                     </a>
                     <a class="btn btn-outline-secondary" th:href="@{/adhesion/contrat/pdf}" target="_blank" rel="noopener">
-                      Fiche renseignement
+                      le contrat
+                    </a>
+                  </div>
+
+                  <div class="d-flex gap-2" th:if="${wiz != null}">
+                    <!-- Utilise dossierRef s'il existe, sinon draftId -->
+                    <a class="btn btn-primary"
+                       th:href="@{/adhesion/fiche(ref=${wiz.dossierRef != null ? wiz.dossierRef : wiz.draftId})}"
+                       target="_blank" rel="noopener">
+                      Visualiser Fiche
+                    </a>
+                    <a class="btn btn-outline-secondary"
+                       th:href="@{/adhesion/fiche/pdf(ref=${wiz.dossierRef != null ? wiz.dossierRef : wiz.draftId})}"
+                       target="_blank" rel="noopener">
+                      Télécharger Fiche
                     </a>
                   </div>
                 </div>

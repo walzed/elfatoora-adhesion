@@ -388,6 +388,28 @@ public class AdhesionService {
     }
 
     /**
+     * (AJOUT) Récupère un dossier par ref ou draftId.
+     */
+    @Transactional(readOnly = true)
+    public AdhesionDossier getDossierForUserByRefOrDraftId(String actorEmail, String refOrId) {
+        AppUser owner = requireOwner(actorEmail);
+        
+        // Essayer par dossierRef
+        return dossierRepo.findByAppUser_IdAndDossierRef(owner.getId(), refOrId)
+                .orElseGet(() -> {
+                    // Si pas trouvé, essayer par draftId si c'est un UUID valide
+                    try {
+                        UUID draftId = UUID.fromString(refOrId);
+                        return dossierRepo.findByDraftId(draftId)
+                                .filter(d -> d.getAppUser().getId().equals(owner.getId()))
+                                .orElseThrow(() -> new IllegalArgumentException("Dossier introuvable (ref/id=" + refOrId + ")"));
+                    } catch (IllegalArgumentException e) {
+                        throw new IllegalArgumentException("Dossier introuvable (ref=" + refOrId + ")");
+                    }
+                });
+    }
+
+    /**
      * (AJOUT) Récupère un brouillon par ref pour le modifier.
      */
 //    @Transactional(readOnly = true)

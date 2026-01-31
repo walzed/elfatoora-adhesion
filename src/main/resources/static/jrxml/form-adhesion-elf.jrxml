@@ -1,828 +1,840 @@
-<?xml version="1.0" encoding="UTF-8"  ?>
-<!-- Created with iReport - A designer for JasperReports -->
-<!DOCTYPE jasperReport PUBLIC "//JasperReports//DTD Report Design//EN" "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
-<jasperReport
-		 name="form-adhesion-elf"
-		 columnCount="1"
-		 printOrder="Vertical"
-		 orientation="Portrait"
-		 pageWidth="595"
-		 pageHeight="842"
-		 columnWidth="535"
-		 columnSpacing="0"
-		 leftMargin="30"
-		 rightMargin="30"
-		 topMargin="20"
-		 bottomMargin="20"
-		 whenNoDataType="NoPages"
-		 isTitleNewPage="false"
-		 isSummaryNewPage="false">
-	<property name="ireport.scriptlethandling" value="0" />
-	<property name="ireport.encoding" value="UTF-8" />
-	<import value="java.util.*" />
-	<import value="net.sf.jasperreports.engine.*" />
-	<import value="net.sf.jasperreports.engine.data.*" />
-
-
-		<background>
-			<band height="0"  isSplitAllowed="true" >
-			</band>
-		</background>
-		<title>
-			<band height="0"  isSplitAllowed="true" >
-			</band>
-		</title>
-		<pageHeader>
-			<band height="0"  isSplitAllowed="true" >
-			</band>
-		</pageHeader>
-		<columnHeader>
-			<band height="0"  isSplitAllowed="true" >
-			</band>
-		</columnHeader>
-		<detail>
-			<band height="659"  isSplitAllowed="true" >
-				<staticText>
-					<reportElement
-						mode="Transparent"
-						x="7"
-						y="64"
-						width="83"
-						height="12"
-						forecolor="#D70E0E"
-						backcolor="#CCCCCC"
-						key="staticText-2"
-						isPrintWhenDetailOverflows="true"/>
-					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.20.6.final using JasperReports Library version 6.20.6-5c96b6aa8a39ac1dc6b6bea4b81168e16dd39231  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="form-adhesion-elf" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="30" rightMargin="30" topMargin="20" bottomMargin="20" uuid="4eedbb89-b4f6-4469-9ab6-f642a1688cf7">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<field name="raisonSociale" class="java.lang.String"/>
+	<field name="nomPersonnePhysique" class="java.lang.String"/>
+	<field name="prenomPersonnePhysique" class="java.lang.String"/>
+	<field name="telephone" class="java.lang.String"/>
+	<field name="emailGeneral" class="java.lang.String"/>
+	<field name="adresse" class="java.lang.String"/>
+	<field name="codePostal" class="java.lang.String"/>
+	<field name="gouvernorat" class="java.lang.String"/>
+	<field name="ville" class="java.lang.String"/>
+	<field name="registreCommerce" class="java.lang.String"/>
+	<field name="matriculeFiscal" class="java.lang.String"/>
+	<field name="etabSecondaire" class="java.lang.String"/>
+	<field name="codeCategorie" class="java.lang.String"/>
+	<field name="codeTVA" class="java.lang.String"/>
+	<field name="nomRespLegal" class="java.lang.String"/>
+	<field name="prenomRespLegal" class="java.lang.String"/>
+	<field name="emailRespLegal" class="java.lang.String"/>
+	<field name="telRespLegal" class="java.lang.String"/>
+	<field name="nomAdminPrincipal" class="java.lang.String"/>
+	<field name="prenomAdminPrincipal" class="java.lang.String"/>
+	<field name="cinAdminPrincipal" class="java.lang.String"/>
+	<field name="emailAdminPrincipal" class="java.lang.String"/>
+	<field name="telAdminPrincipal" class="java.lang.String"/>
+	<field name="certSerial" class="java.lang.String"/>
+	<field name="nomRespTechniqueEdi" class="java.lang.String"/>
+	<field name="prenomRespTechniqueEdi" class="java.lang.String"/>
+	<field name="telRespTechniqueEdi" class="java.lang.String"/>
+	<field name="emailRespTechniqueEdi" class="java.lang.String"/>
+	<field name="emailFacturation" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="659" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Transparent" x="7" y="64" width="83" height="12" forecolor="#D70E0E" backcolor="#CCCCCC" uuid="2b4f44ca-8d6d-4b04-87b6-77c9b330d8fd">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-</box>
-					<textElement textAlignment="Left" verticalAlignment="Middle">
-						<font fontName="Times New Roman" pdfFontName="TIMES.TTF" size="8" isBold="true" pdfEncoding ="Cp1256"/>
-					</textElement>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" isBold="true"/>
+				</textElement>
 				<text><![CDATA[TYPE D’OPERATION]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						mode="Transparent"
-						x="198"
-						y="63"
-						width="83"
-						height="12"
-						forecolor="#D70E0E"
-						backcolor="#CCCCCC"
-						key="staticText-3"
-						isPrintWhenDetailOverflows="true"/>
-					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="198" y="63" width="83" height="12" forecolor="#D70E0E" backcolor="#CCCCCC" uuid="a1b2c3d4-e5f6-4789-a012-345678901234">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-</box>
-					<textElement textAlignment="Left" verticalAlignment="Middle">
-						<font fontName="Times New Roman" pdfFontName="TIMES.TTF" size="8" isBold="true" pdfEncoding ="Cp1256"/>
-					</textElement>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" isBold="true"/>
+				</textElement>
 				<text><![CDATA[PREMIERE DEMANDE]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						mode="Transparent"
-						x="370"
-						y="63"
-						width="83"
-						height="12"
-						forecolor="#D70E0E"
-						backcolor="#CCCCCC"
-						key="staticText-4"
-						isPrintWhenDetailOverflows="true"/>
-					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="370" y="63" width="83" height="12" forecolor="#D70E0E" backcolor="#CCCCCC" uuid="b2c3d4e5-f6a7-4890-b123-456789012345">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-</box>
-					<textElement textAlignment="Left" verticalAlignment="Middle">
-						<font fontName="Times New Roman" pdfFontName="TIMES.TTF" size="8" isBold="true" pdfEncoding ="Cp1256"/>
-					</textElement>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" isBold="true"/>
+				</textElement>
 				<text><![CDATA[ACTUALISATION]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						mode="Transparent"
-						x="6"
-						y="82"
-						width="92"
-						height="12"
-						forecolor="#D70E0E"
-						backcolor="#CCCCCC"
-						key="staticText-5"
-						isPrintWhenDetailOverflows="true"/>
-					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="6" y="82" width="92" height="12" forecolor="#D70E0E" backcolor="#CCCCCC" uuid="c3d4e5f6-a7b8-4901-c234-567890123456">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-</box>
-					<textElement textAlignment="Left" verticalAlignment="Middle">
-						<font fontName="Times New Roman" pdfFontName="TIMES.TTF" size="8" isBold="true" pdfEncoding ="Cp1256"/>
-					</textElement>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" isBold="true"/>
+				</textElement>
 				<text><![CDATA[MODE DE CONNEXION]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						mode="Transparent"
-						x="198"
-						y="82"
-						width="43"
-						height="12"
-						forecolor="#D70E0E"
-						backcolor="#CCCCCC"
-						key="staticText-6"
-						isPrintWhenDetailOverflows="true"/>
-					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="198" y="82" width="43" height="12" forecolor="#D70E0E" backcolor="#CCCCCC" uuid="d4e5f6a7-b8c9-4012-d345-678901234567">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-</box>
-					<textElement textAlignment="Left" verticalAlignment="Middle">
-						<font fontName="Times New Roman" pdfFontName="TIMES.TTF" size="8" isBold="true" pdfEncoding ="Cp1256"/>
-					</textElement>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" isBold="true"/>
+				</textElement>
 				<text><![CDATA[MODE EDI         ]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						mode="Transparent"
-						x="370"
-						y="82"
-						width="47"
-						height="12"
-						forecolor="#D70E0E"
-						backcolor="#CCCCCC"
-						key="staticText-7"
-						isPrintWhenDetailOverflows="true"/>
-					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="370" y="82" width="47" height="12" forecolor="#D70E0E" backcolor="#CCCCCC" uuid="e5f6a7b8-c9d0-4123-e456-789012345678">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-</box>
-					<textElement textAlignment="Left" verticalAlignment="Middle">
-						<font fontName="Times New Roman" pdfFontName="TIMES.TTF" size="8" isBold="true" pdfEncoding ="Cp1256"/>
-					</textElement>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" isBold="true"/>
+				</textElement>
 				<text><![CDATA[MODE WEB        ]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						mode="Transparent"
-						x="7"
-						y="109"
-						width="100"
-						height="12"
-						forecolor="#D70E0E"
-						backcolor="#CCCCCC"
-						key="staticText-8"
-						isPrintWhenDetailOverflows="true"/>
-					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="7" y="109" width="100" height="12" forecolor="#D70E0E" backcolor="#CCCCCC" uuid="f6a7b8c9-d0e1-4234-f567-890123456789">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-</box>
-					<textElement textAlignment="Left" verticalAlignment="Middle">
-						<font fontName="Times New Roman" pdfFontName="TIMES.TTF" size="8" isBold="true" pdfEncoding ="Cp1256"/>
-					</textElement>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" isBold="true"/>
+				</textElement>
 				<text><![CDATA[NOMBRE DE COMPTES DEMANDES]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						mode="Transparent"
-						x="7"
-						y="130"
-						width="149"
-						height="12"
-						forecolor="#D70E0E"
-						backcolor="#CCCCCC"
-						key="staticText-9"
-						isPrintWhenDetailOverflows="true"/>
-					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="7" y="130" width="149" height="12" forecolor="#D70E0E" backcolor="#CCCCCC" uuid="a7b8c9d0-e1f2-4345-0678-901234567890">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-</box>
-					<textElement textAlignment="Left" verticalAlignment="Middle">
-						<font fontName="Times New Roman" pdfFontName="TIMES.TTF" size="8" isBold="true" pdfEncoding ="Cp1256"/>
-					</textElement>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" isBold="true"/>
+				</textElement>
 				<text><![CDATA[RAISON SOCIALE   / NOM PRENOM]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						mode="Transparent"
-						x="7"
-						y="150"
-						width="64"
-						height="12"
-						forecolor="#D70E0E"
-						backcolor="#CCCCCC"
-						key="staticText-10"
-						isPrintWhenDetailOverflows="true"/>
-					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="160" y="130" width="350" height="12" uuid="b8c9d0e1-f2a3-4456-1789-012345678901">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{raisonSociale} != null ? $F{raisonSociale} : ($F{nomPersonnePhysique} + " " + $F{prenomPersonnePhysique})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Transparent" x="7" y="150" width="64" height="12" forecolor="#D70E0E" backcolor="#CCCCCC" uuid="c9d0e1f2-a3b4-4567-2890-123456789012">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-</box>
-					<textElement textAlignment="Left" verticalAlignment="Middle">
-						<font fontName="Times New Roman" pdfFontName="TIMES.TTF" size="8" isBold="true" pdfEncoding ="Cp1256"/>
-					</textElement>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" isBold="true"/>
+				</textElement>
 				<text><![CDATA[TELEPHONE   ]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						mode="Transparent"
-						x="198"
-						y="150"
-						width="39"
-						height="12"
-						forecolor="#D70E0E"
-						backcolor="#CCCCCC"
-						key="staticText-11"
-						isPrintWhenDetailOverflows="true"/>
-					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="75" y="150" width="100" height="12" uuid="d0e1f2a3-b4c5-4678-3901-234567890123">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{telephone}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Transparent" x="198" y="150" width="39" height="12" forecolor="#D70E0E" backcolor="#CCCCCC" uuid="e1f2a3b4-c5d6-4789-4012-345678901234">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-</box>
-					<textElement textAlignment="Left" verticalAlignment="Middle">
-						<font fontName="Times New Roman" pdfFontName="TIMES.TTF" size="8" isBold="true" pdfEncoding ="Cp1256"/>
-					</textElement>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" isBold="true"/>
+				</textElement>
 				<text><![CDATA[E-MAIL]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						mode="Transparent"
-						x="6"
-						y="172"
-						width="40"
-						height="12"
-						forecolor="#D70E0E"
-						backcolor="#CCCCCC"
-						key="staticText-12"
-						isPrintWhenDetailOverflows="true"/>
-					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="240" y="150" width="200" height="12" uuid="f2a3b4c5-d6e7-4890-5123-456789012345">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{emailGeneral}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Transparent" x="6" y="172" width="40" height="12" forecolor="#D70E0E" backcolor="#CCCCCC" uuid="03b4c5d6-e7f8-4901-6234-567890123456">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-</box>
-					<textElement textAlignment="Left" verticalAlignment="Middle">
-						<font fontName="Times New Roman" pdfFontName="TIMES.TTF" size="8" isBold="true" pdfEncoding ="Cp1256"/>
-					</textElement>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" isBold="true"/>
+				</textElement>
 				<text><![CDATA[ADRESSE]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						mode="Transparent"
-						x="7"
-						y="219"
-						width="149"
-						height="12"
-						forecolor="#D70E0E"
-						backcolor="#CCCCCC"
-						key="staticText-13"
-						isPrintWhenDetailOverflows="true"/>
-					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="50" y="172" width="450" height="12" uuid="14c5d6e7-f8a9-4012-7345-678901234567">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{adresse}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Transparent" x="7" y="219" width="149" height="12" forecolor="#D70E0E" backcolor="#CCCCCC" uuid="25d6e7f8-a9b0-4123-8456-789012345678">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-</box>
-					<textElement textAlignment="Left" verticalAlignment="Middle">
-						<font fontName="Times New Roman" pdfFontName="TIMES.TTF" size="8" isBold="true" pdfEncoding ="Cp1256"/>
-					</textElement>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" isBold="true"/>
+				</textElement>
 				<text><![CDATA[N° RNE (  REGISTRE DU COMMERCE) ]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						mode="Transparent"
-						x="7"
-						y="239"
-						width="139"
-						height="20"
-						forecolor="#D70E0E"
-						backcolor="#CCCCCC"
-						key="staticText-14"
-						isPrintWhenDetailOverflows="true"/>
-					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="160" y="219" width="200" height="12" uuid="36e7f8a9-b0c1-4234-9567-890123456789">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{registreCommerce}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Transparent" x="7" y="239" width="139" height="20" forecolor="#D70E0E" backcolor="#CCCCCC" uuid="47f8a9b0-c1d2-4345-0678-901234567890">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-</box>
-					<textElement textAlignment="Left" verticalAlignment="Middle">
-						<font fontName="Times New Roman" pdfFontName="TIMES.TTF" size="8" isBold="true" pdfEncoding ="Cp1256"/>
-					</textElement>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" isBold="true"/>
+				</textElement>
 				<text><![CDATA[N° DE LA CARTE IDENTIFICATION
 FISCALE
 ]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						mode="Transparent"
-						x="198"
-						y="239"
-						width="37"
-						height="12"
-						forecolor="#D70E0E"
-						backcolor="#CCCCCC"
-						key="staticText-15"
-						isPrintWhenDetailOverflows="true"/>
-					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="7" y="260" width="139" height="12" uuid="58a9b0c1-d2e3-4456-1789-012345678901">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{matriculeFiscal}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Transparent" x="198" y="239" width="37" height="12" forecolor="#D70E0E" backcolor="#CCCCCC" uuid="69b0c1d2-e3f4-4567-2890-123456789012">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-</box>
-					<textElement textAlignment="Left" verticalAlignment="Middle">
-						<font fontName="Times New Roman" pdfFontName="TIMES.TTF" size="8" isBold="true" pdfEncoding ="Cp1256"/>
-					</textElement>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" isBold="true"/>
+				</textElement>
 				<text><![CDATA[N° ETAB. SECONDAIRE]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						mode="Transparent"
-						x="263"
-						y="239"
-						width="52"
-						height="12"
-						forecolor="#D70E0E"
-						backcolor="#CCCCCC"
-						key="staticText-16"
-						isPrintWhenDetailOverflows="true"/>
-					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="198" y="252" width="60" height="12" uuid="7ac1d2e3-f4a5-4678-3901-234567890123">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{etabSecondaire}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Transparent" x="263" y="239" width="52" height="12" forecolor="#D70E0E" backcolor="#CCCCCC" uuid="8bd2e3f4-a5b6-4789-4012-345678901234">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-</box>
-					<textElement textAlignment="Left" verticalAlignment="Middle">
-						<font fontName="Times New Roman" pdfFontName="TIMES.TTF" size="8" isBold="true" pdfEncoding ="Cp1256"/>
-					</textElement>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" isBold="true"/>
+				</textElement>
 				<text><![CDATA[MATRICLLE FISCAL]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						mode="Transparent"
-						x="362"
-						y="239"
-						width="55"
-						height="20"
-						forecolor="#D70E0E"
-						backcolor="#CCCCCC"
-						key="staticText-17"
-						isPrintWhenDetailOverflows="true"/>
-					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="263" y="252" width="90" height="12" uuid="9ce3f4a5-b6c7-4890-5123-456789012345">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{matriculeFiscal}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Transparent" x="362" y="239" width="55" height="20" forecolor="#D70E0E" backcolor="#CCCCCC" uuid="adf4a5b6-c7d8-4901-6234-567890123456">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-</box>
-					<textElement textAlignment="Left" verticalAlignment="Middle">
-						<font fontName="Times New Roman" pdfFontName="TIMES.TTF" size="8" isBold="true" pdfEncoding ="Cp1256"/>
-					</textElement>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" isBold="true"/>
+				</textElement>
 				<text><![CDATA[CODE CATEGORIE]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						mode="Transparent"
-						x="445"
-						y="239"
-						width="51"
-						height="12"
-						forecolor="#D70E0E"
-						backcolor="#CCCCCC"
-						key="staticText-18"
-						isPrintWhenDetailOverflows="true"/>
-					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="362" y="260" width="70" height="12" uuid="bef5b6c7-d8e9-4012-7345-678901234567">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{codeCategorie}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Transparent" x="445" y="239" width="51" height="12" forecolor="#D70E0E" backcolor="#CCCCCC" uuid="cff6c7d8-e9f0-4123-8456-789012345678">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-</box>
-					<textElement textAlignment="Left" verticalAlignment="Middle">
-						<font fontName="Times New Roman" pdfFontName="TIMES.TTF" size="8" isBold="true" pdfEncoding ="Cp1256"/>
-					</textElement>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" isBold="true"/>
+				</textElement>
 				<text><![CDATA[CODE TVA]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						mode="Transparent"
-						x="6"
-						y="292"
-						width="191"
-						height="12"
-						forecolor="#D70E0E"
-						backcolor="#CCCCCC"
-						key="staticText-19"
-						isPrintWhenDetailOverflows="true"/>
-					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="445" y="252" width="50" height="12" uuid="d007d8e9-f0a1-4234-9567-890123456789">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{codeTVA}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Transparent" x="6" y="292" width="191" height="12" forecolor="#D70E0E" backcolor="#CCCCCC" uuid="e118e9f0-a1b2-4345-0678-901234567890">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-</box>
-					<textElement textAlignment="Left" verticalAlignment="Middle">
-						<font fontName="Times New Roman" pdfFontName="TIMES.TTF" size="8" isBold="true" pdfEncoding ="Cp1256"/>
-					</textElement>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" isBold="true"/>
+				</textElement>
 				<text><![CDATA[NOM ET PRENOM DU PREMIER RESPONSABLE ]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						mode="Transparent"
-						x="198"
-						y="313"
-						width="34"
-						height="12"
-						forecolor="#D70E0E"
-						backcolor="#CCCCCC"
-						key="staticText-20"
-						isPrintWhenDetailOverflows="true"/>
-					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="200" y="292" width="300" height="12" uuid="f229f0a1-b2c3-4456-1789-012345678901">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nomRespLegal} + " " + $F{prenomRespLegal}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Transparent" x="198" y="313" width="34" height="12" forecolor="#D70E0E" backcolor="#CCCCCC" uuid="033a01b2-c3d4-4567-2890-123456789012">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-</box>
-					<textElement textAlignment="Left" verticalAlignment="Middle">
-						<font fontName="Times New Roman" pdfFontName="TIMES.TTF" size="8" isBold="true" pdfEncoding ="Cp1256"/>
-					</textElement>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" isBold="true"/>
+				</textElement>
 				<text><![CDATA[E-MAIL]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						mode="Transparent"
-						x="7"
-						y="313"
-						width="63"
-						height="12"
-						forecolor="#D70E0E"
-						backcolor="#CCCCCC"
-						key="staticText-21"
-						isPrintWhenDetailOverflows="true"/>
-					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="235" y="313" width="200" height="12" uuid="144b12c3-d4e5-4678-3901-234567890123">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{emailRespLegal}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Transparent" x="7" y="313" width="63" height="12" forecolor="#D70E0E" backcolor="#CCCCCC" uuid="255c23d4-e5f6-4789-4012-345678901234">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-</box>
-					<textElement textAlignment="Left" verticalAlignment="Middle">
-						<font fontName="Times New Roman" pdfFontName="TIMES.TTF" size="8" isBold="true" pdfEncoding ="Cp1256"/>
-					</textElement>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" isBold="true"/>
+				</textElement>
 				<text><![CDATA[TELEPHONE   ]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						mode="Transparent"
-						x="6"
-						y="344"
-						width="363"
-						height="12"
-						forecolor="#D70E0E"
-						backcolor="#CCCCCC"
-						key="staticText-22"
-						isPrintWhenDetailOverflows="true"/>
-					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="75" y="313" width="100" height="12" uuid="366d34e5-f6a7-4890-5123-456789012345">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{telRespLegal}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Transparent" x="6" y="344" width="363" height="12" forecolor="#D70E0E" backcolor="#CCCCCC" uuid="477e45f6-a7b8-4901-6234-567890123456">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-</box>
-					<textElement textAlignment="Left" verticalAlignment="Middle">
-						<font fontName="Times New Roman" pdfFontName="TIMES.TTF" size="8" isBold="true" pdfEncoding ="Cp1256"/>
-					</textElement>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" isBold="true"/>
+				</textElement>
 				<text><![CDATA[NOM ET PENOM DE L’ADMINISTRATEUR PRINCIPAL SUR LA PLATEFORME EL FATOORA  ]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						mode="Transparent"
-						x="6"
-						y="422"
-						width="51"
-						height="12"
-						forecolor="#D70E0E"
-						backcolor="#CCCCCC"
-						key="staticText-23"
-						isPrintWhenDetailOverflows="true"/>
-					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="370" y="344" width="150" height="12" uuid="588f56a7-b8c9-4012-7345-678901234567">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nomAdminPrincipal} + " " + $F{prenomAdminPrincipal}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Transparent" x="6" y="422" width="51" height="12" forecolor="#D70E0E" backcolor="#CCCCCC" uuid="699067b8-c9d0-4123-8456-789012345678">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-</box>
-					<textElement textAlignment="Left" verticalAlignment="Middle">
-						<font fontName="Times New Roman" pdfFontName="TIMES.TTF" size="8" isBold="true" pdfEncoding ="Cp1256"/>
-					</textElement>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" isBold="true"/>
+				</textElement>
 				<text><![CDATA[TELEPHONE   ]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						mode="Transparent"
-						x="198"
-						y="422"
-						width="36"
-						height="12"
-						forecolor="#D70E0E"
-						backcolor="#CCCCCC"
-						key="staticText-24"
-						isPrintWhenDetailOverflows="true"/>
-					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="60" y="422" width="100" height="12" uuid="7aa178c9-d0e1-4234-9567-890123456789">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{telAdminPrincipal}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Transparent" x="198" y="422" width="36" height="12" forecolor="#D70E0E" backcolor="#CCCCCC" uuid="8bb289d0-e1f2-4345-0678-901234567890">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-</box>
-					<textElement textAlignment="Left" verticalAlignment="Middle">
-						<font fontName="Times New Roman" pdfFontName="TIMES.TTF" size="8" isBold="true" pdfEncoding ="Cp1256"/>
-					</textElement>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" isBold="true"/>
+				</textElement>
 				<text><![CDATA[E-MAIL]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						mode="Transparent"
-						x="6"
-						y="367"
-						width="116"
-						height="12"
-						forecolor="#D70E0E"
-						backcolor="#CCCCCC"
-						key="staticText-25"
-						isPrintWhenDetailOverflows="true"/>
-					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="240" y="422" width="200" height="12" uuid="9cc39ae1-f2a3-4456-1789-012345678901">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{emailAdminPrincipal}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Transparent" x="6" y="367" width="116" height="12" forecolor="#D70E0E" backcolor="#CCCCCC" uuid="add4abf2-a3b4-4567-2890-123456789012">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-</box>
-					<textElement textAlignment="Left" verticalAlignment="Middle">
-						<font fontName="Times New Roman" pdfFontName="TIMES.TTF" size="8" isBold="true" pdfEncoding ="Cp1256"/>
-					</textElement>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" isBold="true"/>
+				</textElement>
 				<text><![CDATA[N° DE LA PIECE D'IDENTITE   ]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						mode="Transparent"
-						x="6"
-						y="385"
-						width="249"
-						height="12"
-						forecolor="#D70E0E"
-						backcolor="#CCCCCC"
-						key="staticText-26"
-						isPrintWhenDetailOverflows="true"/>
-					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="130" y="367" width="150" height="12" uuid="bee5bcc3-b4c5-4678-3901-234567890123">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cinAdminPrincipal}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Transparent" x="6" y="385" width="249" height="12" forecolor="#D70E0E" backcolor="#CCCCCC" uuid="cff6cdd4-c5d6-4789-4012-345678901234">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-</box>
-					<textElement textAlignment="Left" verticalAlignment="Middle">
-						<font fontName="Times New Roman" pdfFontName="TIMES.TTF" size="8" isBold="true" pdfEncoding ="Cp1256"/>
-					</textElement>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" isBold="true"/>
+				</textElement>
 				<text><![CDATA[N° DE SERIE DU CERTIFICAT DE SIGNATURE ELECTRONIQUE ]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						mode="Transparent"
-						x="6"
-						y="402"
-						width="211"
-						height="12"
-						forecolor="#D70E0E"
-						backcolor="#CCCCCC"
-						key="staticText-27"
-						isPrintWhenDetailOverflows="true"/>
-					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="260" y="385" width="200" height="12" uuid="d007dee5-d6e7-4890-5123-456789012345">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{certSerial}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Transparent" x="6" y="402" width="211" height="12" forecolor="#D70E0E" backcolor="#CCCCCC" uuid="e118eff6-e7f8-4901-6234-567890123456">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-</box>
-					<textElement textAlignment="Left" verticalAlignment="Middle">
-						<font fontName="Times New Roman" pdfFontName="TIMES.TTF" size="8" isBold="true" pdfEncoding ="Cp1256"/>
-					</textElement>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" isBold="true"/>
+				</textElement>
 				<text><![CDATA[E-MAIL ASSOCIE AU CERTIFICAT  ELECTRONIQUE ]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						mode="Transparent"
-						x="7"
-						y="467"
-						width="201"
-						height="12"
-						forecolor="#D70E0E"
-						backcolor="#CCCCCC"
-						key="staticText-28"
-						isPrintWhenDetailOverflows="true"/>
-					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="220" y="402" width="200" height="12" uuid="f229f007-f8a9-4012-7345-678901234567">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{emailAdminPrincipal}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Transparent" x="7" y="467" width="201" height="12" forecolor="#D70E0E" backcolor="#CCCCCC" uuid="033a0118-a9b0-4123-8456-789012345678">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-</box>
-					<textElement textAlignment="Left" verticalAlignment="Middle">
-						<font fontName="Times New Roman" pdfFontName="TIMES.TTF" size="8" isBold="true" pdfEncoding ="Cp1256"/>
-					</textElement>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" isBold="true"/>
+				</textElement>
 				<text><![CDATA[NOM ET PRENOM DU  RESPONSABLE TECHNIQUE]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						mode="Transparent"
-						x="8"
-						y="488"
-						width="53"
-						height="12"
-						forecolor="#D70E0E"
-						backcolor="#CCCCCC"
-						key="staticText-29"
-						isPrintWhenDetailOverflows="true"/>
-					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="210" y="467" width="250" height="12" uuid="144b1229-b0c1-4234-9567-890123456789">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nomRespTechniqueEdi} + " " + $F{prenomRespTechniqueEdi}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Transparent" x="8" y="488" width="53" height="12" forecolor="#D70E0E" backcolor="#CCCCCC" uuid="255c233a-c1d2-4345-0678-901234567890">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-</box>
-					<textElement textAlignment="Left" verticalAlignment="Middle">
-						<font fontName="Times New Roman" pdfFontName="TIMES.TTF" size="8" isBold="true" pdfEncoding ="Cp1256"/>
-					</textElement>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" isBold="true"/>
+				</textElement>
 				<text><![CDATA[TELEPHONE   ]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						mode="Transparent"
-						x="198"
-						y="488"
-						width="35"
-						height="12"
-						forecolor="#D70E0E"
-						backcolor="#CCCCCC"
-						key="staticText-30"
-						isPrintWhenDetailOverflows="true"/>
-					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="65" y="488" width="100" height="12" uuid="366d344b-d2e3-4456-1789-012345678901">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{telRespTechniqueEdi}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Transparent" x="198" y="488" width="35" height="12" forecolor="#D70E0E" backcolor="#CCCCCC" uuid="477e455c-e3f4-4567-2890-123456789012">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-</box>
-					<textElement textAlignment="Left" verticalAlignment="Middle">
-						<font fontName="Times New Roman" pdfFontName="TIMES.TTF" size="8" isBold="true" pdfEncoding ="Cp1256"/>
-					</textElement>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" isBold="true"/>
+				</textElement>
 				<text><![CDATA[E-MAIL]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						mode="Transparent"
-						x="6"
-						y="536"
-						width="226"
-						height="12"
-						forecolor="#D70E0E"
-						backcolor="#CCCCCC"
-						key="staticText-31"
-						isPrintWhenDetailOverflows="true"/>
-					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="240" y="488" width="200" height="12" uuid="588f566d-f4a5-4678-3901-234567890123">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{emailRespTechniqueEdi}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Transparent" x="6" y="536" width="226" height="12" forecolor="#D70E0E" backcolor="#CCCCCC" uuid="6990677e-a5b6-4789-4012-345678901234">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-</box>
-					<textElement textAlignment="Left" verticalAlignment="Middle">
-						<font fontName="Times New Roman" pdfFontName="TIMES.TTF" size="8" isBold="true" pdfEncoding ="Cp1256"/>
-					</textElement>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" isBold="true"/>
+				</textElement>
 				<text><![CDATA[NOM ET PRENOM DU  RESPONSABLE ADMINISTRATIF]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						mode="Transparent"
-						x="7"
-						y="557"
-						width="54"
-						height="12"
-						forecolor="#D70E0E"
-						backcolor="#CCCCCC"
-						key="staticText-32"
-						isPrintWhenDetailOverflows="true"/>
-					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="7" y="557" width="54" height="12" forecolor="#D70E0E" backcolor="#CCCCCC" uuid="7aa1788f-b6c7-4890-5123-456789012345">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-</box>
-					<textElement textAlignment="Left" verticalAlignment="Middle">
-						<font fontName="Times New Roman" pdfFontName="TIMES.TTF" size="8" isBold="true" pdfEncoding ="Cp1256"/>
-					</textElement>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" isBold="true"/>
+				</textElement>
 				<text><![CDATA[TELEPHONE   ]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						mode="Transparent"
-						x="198"
-						y="557"
-						width="54"
-						height="12"
-						forecolor="#D70E0E"
-						backcolor="#CCCCCC"
-						key="staticText-33"
-						isPrintWhenDetailOverflows="true"/>
-					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="198" y="557" width="54" height="12" forecolor="#D70E0E" backcolor="#CCCCCC" uuid="8bb28990-c7d8-4901-6234-567890123456">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-</box>
-					<textElement textAlignment="Left" verticalAlignment="Middle">
-						<font fontName="Times New Roman" pdfFontName="TIMES.TTF" size="8" isBold="true" pdfEncoding ="Cp1256"/>
-					</textElement>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" isBold="true"/>
+				</textElement>
 				<text><![CDATA[E-MAIL]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						mode="Transparent"
-						x="7"
-						y="601"
-						width="109"
-						height="12"
-						forecolor="#D70E0E"
-						backcolor="#CCCCCC"
-						key="staticText-34"
-						isPrintWhenDetailOverflows="true"/>
-					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="7" y="601" width="109" height="12" forecolor="#D70E0E" backcolor="#CCCCCC" uuid="9cc39aa1-d8e9-4012-7345-678901234567">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-</box>
-					<textElement textAlignment="Left" verticalAlignment="Middle">
-						<font fontName="Times New Roman" pdfFontName="TIMES.TTF" size="8" isBold="true" pdfEncoding ="Cp1256"/>
-					</textElement>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" isBold="true"/>
+				</textElement>
 				<text><![CDATA[E-MAIL DE FACTURATION ]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						mode="Transparent"
-						x="6"
-						y="193"
-						width="61"
-						height="12"
-						forecolor="#D70E0E"
-						backcolor="#CCCCCC"
-						key="staticText-35"
-						isPrintWhenDetailOverflows="true"/>
-					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="120" y="601" width="300" height="12" uuid="add4abb2-e9f0-4123-8456-789012345678">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{emailFacturation}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Transparent" x="6" y="193" width="61" height="12" forecolor="#D70E0E" backcolor="#CCCCCC" uuid="bee5bcc3-f0a1-4234-9567-890123456789">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-</box>
-					<textElement textAlignment="Left" verticalAlignment="Middle">
-						<font fontName="Times New Roman" pdfFontName="TIMES.TTF" size="8" isBold="true" pdfEncoding ="Cp1256"/>
-					</textElement>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" isBold="true"/>
+				</textElement>
 				<text><![CDATA[CODE POSTAL  ]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						mode="Transparent"
-						x="198"
-						y="193"
-						width="70"
-						height="12"
-						forecolor="#D70E0E"
-						backcolor="#CCCCCC"
-						key="staticText-36"
-						isPrintWhenDetailOverflows="true"/>
-					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="70" y="193" width="100" height="12" uuid="cff6cdd4-a1b2-4345-0678-901234567890">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{codePostal}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Transparent" x="198" y="193" width="70" height="12" forecolor="#D70E0E" backcolor="#CCCCCC" uuid="d007dee5-b2c3-4456-1789-012345678901">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-</box>
-					<textElement textAlignment="Left" verticalAlignment="Middle">
-						<font fontName="Times New Roman" pdfFontName="TIMES.TTF" size="8" isBold="true" pdfEncoding ="Cp1256"/>
-					</textElement>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" isBold="true"/>
+				</textElement>
 				<text><![CDATA[GOUVERNORAT]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						mode="Transparent"
-						x="384"
-						y="193"
-						width="30"
-						height="12"
-						forecolor="#D70E0E"
-						backcolor="#CCCCCC"
-						key="staticText-37"
-						isPrintWhenDetailOverflows="true"/>
-					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="270" y="193" width="100" height="12" uuid="e118eff6-c3d4-4567-2890-123456789012">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{gouvernorat}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Transparent" x="384" y="193" width="30" height="12" forecolor="#D70E0E" backcolor="#CCCCCC" uuid="f229f007-d4e5-4678-3901-234567890123">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-</box>
-					<textElement textAlignment="Left" verticalAlignment="Middle">
-						<font fontName="Times New Roman" pdfFontName="TIMES.TTF" size="8" isBold="true" pdfEncoding ="Cp1256"/>
-					</textElement>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" isBold="true"/>
+				</textElement>
 				<text><![CDATA[VILLE]]></text>
-				</staticText>
-				<rectangle>
-					<reportElement
-						mode="Transparent"
-						x="477"
-						y="136"
-						width="31"
-						height="24"
-						forecolor="#990099"
-						key="rectangle-2"/>
-					<graphicElement stretchType="NoStretch"/>
-				</rectangle>
-			</band>
-		</detail>
-		<columnFooter>
-			<band height="0"  isSplitAllowed="true" >
-			</band>
-		</columnFooter>
-		<pageFooter>
-			<band height="0"  isSplitAllowed="true" >
-			</band>
-		</pageFooter>
-		<summary>
-			<band height="0"  isSplitAllowed="true" >
-			</band>
-		</summary>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="420" y="193" width="100" height="12" uuid="033a0118-e5f6-4789-4012-345678901234">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ville}]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement mode="Transparent" x="7" y="12" width="507" height="36" forecolor="#990099" uuid="144b1229-f6a7-4890-5123-456789012345">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+			</rectangle>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
 </jasperReport>
